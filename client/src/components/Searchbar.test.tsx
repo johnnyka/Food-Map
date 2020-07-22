@@ -1,14 +1,11 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
-import { Paper } from '@material-ui/core';
+import { mount } from 'enzyme';
 import Searchbar from './Searchbar';
 
-const wrapper = mount(<Searchbar />);
+const wrapper = mount(<Searchbar nearbyRestaurants={() => ''} />);
 
 describe('The Searchbar component', () => {
   test('Should contain a <form>', () => {
-    // const form = wrapper.find('form');
-    console.log('form:', wrapper.html());
-    expect(wrapper.find(Searchbar)).toEqual(true)
+    expect(wrapper.exists(Searchbar)).toEqual(true);
   });
 });

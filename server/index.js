@@ -39,24 +39,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require('dotenv').config();
 var express_1 = __importDefault(require("express"));
 var dbUtils_1 = __importDefault(require("./dbUtils"));
+require('dotenv').config();
 var app = express_1.default();
 app.get('/api/nearby', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var data, query;
+    var data;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 data = '';
-                query = req.query.ll;
-                if (!(process.env.NODE_ENV === 'production')) return [3 /*break*/, 1];
-                return [2 /*return*/]; //  Make api call
-            case 1: return [4 /*yield*/, dbUtils_1.default('../mock_db/foursquare/hornsgatan.json')];
-            case 2:
+                // const query = req.query.ll;
+                if (process.env.NODE_ENV === 'production') {
+                    return [2 /*return*/]; //  Make api call
+                }
+                return [4 /*yield*/, dbUtils_1.default('../mock_db/hornsgatan.json')];
+            case 1:
                 data = _a.sent();
-                _a.label = 3;
-            case 3:
                 res.status(200).send(data);
                 return [2 /*return*/];
         }
@@ -74,6 +73,25 @@ app.get('/api/se/cities', function (req, res) { return __awaiter(void 0, void 0,
         }
     });
 }); });
+app.get('/api/nearby/:city', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                data = '';
+                if (!(process.env.NODE_ENV === 'production')) return [3 /*break*/, 1];
+                return [3 /*break*/, 3];
+            case 1: return [4 /*yield*/, dbUtils_1.default('../mock_db/stockholm.json')];
+            case 2:
+                data = _a.sent();
+                _a.label = 3;
+            case 3:
+                res.status(200).send(data);
+                return [2 /*return*/];
+        }
+    });
+}); });
+// https://api.foursquare.com/v2/venues/search?nar=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259
 app.listen(8080, function () {
     console.log('listening on port 8080');
 });

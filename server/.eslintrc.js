@@ -7,16 +7,18 @@ module.exports = {
   },
   extends: [
     'plugin:react/recommended',
-    'salt',
+    'airbnb-typescript',
   ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 11,
+    project: './tsconfig.json',
   },
   plugins: [
     'react',
+    '@typescript-eslint',
   ],
   rules: {
   },

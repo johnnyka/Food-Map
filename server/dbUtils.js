@@ -42,12 +42,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = __importDefault(require("fs"));
 var util_1 = __importDefault(require("util"));
 var readFilePromise = util_1.default.promisify(fs_1.default.readFile);
-var readFile = function (path) { return __awaiter(void 0, void 0, void 0, function () {
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0: return [4 /*yield*/, readFilePromise(path, 'utf8')];
-            case 1: return [2 /*return*/, _a.sent()];
-        }
-    });
-}); };
+var readFile = function (path) { return __awaiter(void 0, void 0, void 0, function () { return __generator(this, function (_a) {
+    return [2 /*return*/, readFilePromise(path, 'utf8')];
+}); }); };
 exports.default = readFile;
