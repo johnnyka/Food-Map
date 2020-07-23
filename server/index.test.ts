@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from './index';
-import readFile from './dbUtils';
+import { readFile } from './dbUtils';
 
 describe('Express server routes', () => {
   test('Gives the correct status and mock data from our db', async () => {

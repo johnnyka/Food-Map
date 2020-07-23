@@ -41,13 +41,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var supertest_1 = __importDefault(require("supertest"));
 var index_1 = __importDefault(require("./index"));
-var dbUtils_1 = __importDefault(require("./dbUtils"));
+var dbUtils_1 = require("./dbUtils");
 describe('Express server routes', function () {
     test('Gives the correct status and mock data from our db', function () { return __awaiter(void 0, void 0, void 0, function () {
         var mockData;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, dbUtils_1.default('../mock_db/foursquare/hornsgatan.json')];
+                case 0: return [4 /*yield*/, dbUtils_1.readFile('../mock_db/foursquare/hornsgatan.json')];
                 case 1:
                     mockData = _a.sent();
                     return [2 /*return*/, supertest_1.default(index_1.default)
@@ -60,7 +60,7 @@ describe('Express server routes', function () {
         var mockData;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, dbUtils_1.default('./cities_SE.json')];
+                case 0: return [4 /*yield*/, dbUtils_1.readFile('./cities_SE.json')];
                 case 1:
                     mockData = _a.sent();
                     return [2 /*return*/, supertest_1.default(index_1.default)

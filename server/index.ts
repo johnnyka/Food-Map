@@ -1,9 +1,14 @@
 import express from 'express';
-import readFile from './dbUtils';
+import https from 'https';
+import fs from 'fs';
+import bodyParser from 'body-parser';
+import { readFile, addReview } from './dbUtils';
 
 require('dotenv').config();
 
 const app = express();
+
+app.use(bodyParser.json());
 
 app.get('/api/nearby', async (req: express.Request, res: express.Response) => {
   let data = '';
@@ -32,10 +37,20 @@ app.get('/api/nearby/:city', async (req: express.Request, res: express.Response)
   res.status(200).send(data);
 });
 
+app.post('/api/users/reviews', async (req: express.Request, res: express.Response) => {
+  const review = req.body;
+  await addReview(review);
+  res.status(201).send('Successfully added review');
+});
+
 // https://api.foursquare.com/v2/venues/search?nar=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259
 
-app.listen(8080, () => {
-  console.log('listening on port 8080');
+https.createServer({
+  key: fs.readFileSync('./certificates/server.key'),
+  cert: fs.readFileSync('./certificates/server.crt'),
+  passphrase: process.env.OPENSSL_PASS,
+}, app).listen(8080, () => {
+  console.log('listening on port 8080'); // eslint-disable-line
 });
 
 export default app;

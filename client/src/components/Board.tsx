@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Grid } from '@material-ui/core';
 import Searchbar from './Searchbar';
 import RestaurantCard from './RestaurantCard';
 
@@ -29,7 +30,9 @@ function Board(): JSX.Element {
     if (searchResults) {
       return (
         searchResults.map((restaurant: any): JSX.Element => (
-          <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+          <Grid item xs={12} sm={6} md={4} justify="center">
+            <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+          </Grid>
         ))
       );
     } return '';
@@ -37,10 +40,68 @@ function Board(): JSX.Element {
 
   return (
     <section>
-      <Searchbar nearbyRestaurants={searchNearbyRestaurants} />
-      {!searchResults ? null : renderCards()}
+      <Grid container justify="center">
+        <Searchbar nearbyRestaurants={searchNearbyRestaurants} />
+      </Grid>
+      <Grid container justify="space-evenly">
+        {!searchResults ? null : renderCards()}
+      </Grid>
     </section>
   );
 }
 
 export default Board;
+
+// import React from 'react';
+// import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+// import Paper from '@material-ui/core/Paper';
+// import Grid from '@material-ui/core/Grid';
+
+// const useStyles = makeStyles((theme: Theme) =>
+//   createStyles({
+//     root: {
+//       flexGrow: 1,
+//     },
+//     paper: {
+//       padding: theme.spacing(1),
+//       textAlign: 'center',
+//       color: theme.palette.text.secondary,
+//     },
+//   }),
+// );
+
+// export default function NestedGrid() {
+//   const classes = useStyles();
+
+//   function FormRow() {
+//     return (
+//       <React.Fragment>
+//         <Grid item xs={4}>
+//           <Paper className={classes.paper}>item</Paper>
+//         </Grid>
+//         <Grid item xs={4}>
+//           <Paper className={classes.paper}>item</Paper>
+//         </Grid>
+//         <Grid item xs={4}>
+//           <Paper className={classes.paper}>item</Paper>
+//         </Grid>
+//       </React.Fragment>
+//     );
+//   }
+
+//   return (
+//     <div className={classes.root}>
+//       <Grid container spacing={1}>
+//         <Grid container item xs={12} spacing={3}>
+//           <FormRow />
+//         </Grid>
+//         <Grid container item xs={12} spacing={3}>
+//           <FormRow />
+//         </Grid>
+//         <Grid container item xs={12} spacing={3}>
+//           <FormRow />
+//         </Grid>
+//       </Grid>
+//     </div>
+//   );
+// }
