@@ -11,7 +11,6 @@ import {
 import {
   makeStyles, createStyles, useTheme,
 } from '@material-ui/core/styles';
-import StarWidget from './StarWidget';
 
 const useStyles = makeStyles(() => createStyles({
   modal: {
@@ -22,36 +21,35 @@ const useStyles = makeStyles(() => createStyles({
 interface IModal {
   open: boolean;
   handleClose: () => void;
-  handleSave: (stars: number, review: string) => void;
+  handleSave: (comment: string) => void;
   name: string;
 }
 
-export default function VisitedModal(props: IModal) {
+export default function BookmarkModal(props: IModal) {
   const {
     handleClose, handleSave, open, name,
   } = props;
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('xs'));
   const classes = useStyles();
-  const [stars, setStars] = useState<number>(0);
-  const [review, setReview] = useState<string>('');
+  const [comment, setComment] = useState<string>('');
 
   return (
     <div>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" fullScreen={fullScreen}>
         <DialogTitle className={classes.modal} id="form-dialog-title">
-          Rate
+          Bookmark
           {' '}
           {name}
         </DialogTitle>
-        <StarWidget stars={stars} setStars={setStars} />
+
         <DialogContent>
           <TextField
-            onChange={(e) => setReview(e.target.value)}
+            onChange={(e) => setComment(e.target.value)}
             autoFocus
             margin="dense"
             id="name"
-            label="Write your review"
+            label="Write a comment"
             type="text"
             fullWidth
             multiline
@@ -61,7 +59,7 @@ export default function VisitedModal(props: IModal) {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => handleSave(stars, review)} color="primary">
+          <Button onClick={() => handleSave(comment)} color="primary">
             Save
           </Button>
         </DialogActions>

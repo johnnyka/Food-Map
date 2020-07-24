@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addReview = exports.readFile = void 0;
+exports.addBookmark = exports.addReview = exports.readFile = void 0;
 var fs_1 = __importDefault(require("fs"));
 var util_1 = __importDefault(require("util"));
 var uuidv4_1 = require("uuidv4");
@@ -50,19 +50,11 @@ function readFile(path) {
     }); });
 }
 exports.readFile = readFile;
-;
+var writeFilePromise = util_1.default.promisify(fs_1.default.writeFile);
 function saveToFile(path, data) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, fs_1.default.writeFile(path, data, function (err) {
-                        if (err)
-                            throw new Error('Unable to write to file.');
-                    })];
-                case 1:
-                    _a.sent();
-                    return [2 /*return*/, true];
-            }
+            return [2 /*return*/, writeFilePromise(path, data)];
         });
     });
 }
@@ -72,13 +64,12 @@ function saveToFile(path, data) {
 //   restaurant: Object;
 // }
 function validateReview(data) {
-    console.log('VALIDATE REVIDEW:', data);
     var review = data.review, stars = data.stars, id = data.id, name = data.name, location = data.location, categories = data.categories;
     var address = location.address, city = location.city, lat = location.lat, lng = location.lng, postalCode = location.postalCode, country = location.country;
     var neighborhood = location.neighborhood ? location.neighborhood : null;
     var _a = categories[0], categoryId = _a.id, categoryName = _a.name;
     if (Number.isNaN(stars) || stars > 5 || stars < 0)
-        throw new Error('Starrating must be a number from 0-5');
+        throw new Error('Star rating must be a number from 0-5');
     return {
         id: uuidv4_1.uuid(),
         date: new Date(),
@@ -86,17 +77,39 @@ function validateReview(data) {
             id: id,
             name: name,
             location: {
-                address: address, city: city, lat: lat, lng: lng, postalCode: postalCode, country: country, neighborhood: neighborhood
+                address: address, city: city, lat: lat, lng: lng, postalCode: postalCode, country: country, neighborhood: neighborhood,
             },
             categories: {
                 categoryId: categoryId,
                 categoryName: categoryName,
-            }
+            },
         },
         review: {
             review: review,
-            stars: stars
-        }
+            stars: stars,
+        },
+    };
+}
+function validateBookmark(data) {
+    var comment = data.comment, id = data.id, name = data.name, location = data.location, categories = data.categories;
+    var address = location.address, city = location.city, lat = location.lat, lng = location.lng, postalCode = location.postalCode, country = location.country;
+    var neighborhood = location.neighborhood ? location.neighborhood : null;
+    var _a = categories[0], categoryId = _a.id, categoryName = _a.name;
+    return {
+        id: uuidv4_1.uuid(),
+        date: new Date(),
+        restaurant: {
+            id: id,
+            name: name,
+            location: {
+                address: address, city: city, lat: lat, lng: lng, postalCode: postalCode, country: country, neighborhood: neighborhood,
+            },
+            categories: {
+                categoryId: categoryId,
+                categoryName: categoryName,
+            },
+        },
+        comment: comment,
     };
 }
 function addReview(data) {
@@ -119,3 +132,23 @@ function addReview(data) {
     });
 }
 exports.addReview = addReview;
+function addBookmark(data) {
+    return __awaiter(this, void 0, void 0, function () {
+        var bookmarks, validatedBookmark, updatedBookmarks;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, readFile('./db/bookmarks.json')];
+                case 1:
+                    bookmarks = _a.sent();
+                    validatedBookmark = validateBookmark(data);
+                    updatedBookmarks = JSON.parse(bookmarks);
+                    updatedBookmarks.bookmarks.push(validatedBookmark);
+                    return [4 /*yield*/, saveToFile('./db/bookmarks.json', JSON.stringify(updatedBookmarks, null, 2))];
+                case 2:
+                    _a.sent();
+                    return [2 /*return*/, 'Success'];
+            }
+        });
+    });
+}
+exports.addBookmark = addBookmark;

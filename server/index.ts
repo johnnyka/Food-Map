@@ -2,7 +2,7 @@ import express from 'express';
 import https from 'https';
 import fs from 'fs';
 import bodyParser from 'body-parser';
-import { readFile, addReview } from './dbUtils';
+import { readFile, addReview, addBookmark } from './dbUtils';
 
 require('dotenv').config();
 
@@ -41,6 +41,12 @@ app.post('/api/users/reviews', async (req: express.Request, res: express.Respons
   const review = req.body;
   await addReview(review);
   res.status(201).send('Successfully added review');
+});
+
+app.post('/api/users/bookmarks', async (req: express.Request, res: express.Response) => {
+  const comment = req.body;
+  await addBookmark(comment);
+  res.status(201).send('Successfully added bookmark');
 });
 
 // https://api.foursquare.com/v2/venues/search?nar=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259

@@ -40,10 +40,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var dbUtils_1 = require("./dbUtils");
 var https_1 = __importDefault(require("https"));
 var fs_1 = __importDefault(require("fs"));
 var body_parser_1 = __importDefault(require("body-parser"));
+var dbUtils_1 = require("./dbUtils");
 require('dotenv').config();
 var app = express_1.default();
 app.use(body_parser_1.default.json());
@@ -109,12 +109,26 @@ app.post('/api/users/reviews', function (req, res) { return __awaiter(void 0, vo
         }
     });
 }); });
+app.post('/api/users/bookmarks', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var comment;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                comment = req.body;
+                return [4 /*yield*/, dbUtils_1.addBookmark(comment)];
+            case 1:
+                _a.sent();
+                res.status(201).send('Successfully added bookmark');
+                return [2 /*return*/];
+        }
+    });
+}); });
 // https://api.foursquare.com/v2/venues/search?nar=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259
 https_1.default.createServer({
     key: fs_1.default.readFileSync('./certificates/server.key'),
     cert: fs_1.default.readFileSync('./certificates/server.crt'),
-    passphrase: process.env.OPENSSL_PASS
+    passphrase: process.env.OPENSSL_PASS,
 }, app).listen(8080, function () {
-    console.log('listening on port 8080');
+    console.log('listening on port 8080'); // eslint-disable-line
 });
 exports.default = app;

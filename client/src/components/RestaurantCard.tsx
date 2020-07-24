@@ -13,6 +13,7 @@ import { red } from '@material-ui/core/colors';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import StarIcon from '@material-ui/icons/Star';
 import VisitedModal from './VisitedModal';
+import BookmarkModal from './BookmarkModal';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -82,14 +83,21 @@ function RestaurantCard(props: any): JSX.Element {
   const classes = useStyles();
   const { restaurant } = props;
   const { name, categories, location } = restaurant;
-  const [open, setOpen] = useState(false);
+  const [visitedOpen, setVisitedOpen] = useState(false);
+  const [bookmarkOpen, setBookmarkOpen] = useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleVisitedClickOpen = () => {
+    setVisitedOpen(true);
+  };
+  const handleBookmarkOpen = () => {
+    setBookmarkOpen(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleVisitedClose = () => {
+    setVisitedOpen(false);
+  };
+  const handleBookmarkClose = () => {
+    setBookmarkOpen(false);
   };
 
   function saveToVisited(stars: number, review:string) {
@@ -100,11 +108,18 @@ function RestaurantCard(props: any): JSX.Element {
         'content-type': 'Application/json',
       },
     })
-      .then(() => setOpen(false));
+      .then(() => setVisitedOpen(false));
   }
 
-  function saveToWantToVisit() {
-    return '';
+  function saveToBookmarks(comment: string) {
+    fetch('/api/users/bookmarks', {
+      method: 'POST',
+      body: JSON.stringify({ ...restaurant, comment }),
+      headers: {
+        'content-type': 'Application/json',
+      },
+    })
+      .then(() => setBookmarkOpen(false));
   }
 
   return (
@@ -125,17 +140,27 @@ function RestaurantCard(props: any): JSX.Element {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites" onClick={handleClickOpen}>
+          <IconButton aria-label="add to favorites" onClick={handleVisitedClickOpen}>
             <StarIcon className={classes.star} />
           </IconButton>
-          <IconButton aria-label="share" onClick={() => saveToWantToVisit()}>
+          <IconButton aria-label="share" onClick={handleBookmarkOpen}>
             <BookmarkIcon className={classes.bookmark} />
           </IconButton>
 
         </CardActions>
       </Card>
-
-      <VisitedModal name={name} handleSave={saveToVisited} handleClose={handleClose} open={open} />
+      <BookmarkModal
+        name={name}
+        handleSave={saveToBookmarks}
+        handleClose={handleBookmarkClose}
+        open={bookmarkOpen}
+      />
+      <VisitedModal
+        name={name}
+        handleSave={saveToVisited}
+        handleClose={handleVisitedClose}
+        open={visitedOpen}
+      />
     </>
   );
 }

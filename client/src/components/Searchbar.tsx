@@ -41,7 +41,9 @@ interface CityInterface {
   population?: string
 }
 interface SearchBarInterface {
-  nearbyRestaurants: (query:string, searchType:string) => void
+  nearbyRestaurants: (query:string, searchType:string) => void;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
+  setSearchResults: React.Dispatch<React.SetStateAction<Array<Object> | false>>
 }
 
 function Searchbar(props:SearchBarInterface): JSX.Element {
@@ -61,10 +63,14 @@ function Searchbar(props:SearchBarInterface): JSX.Element {
 
   function handleSubmit(e:React.FormEvent):void {
     e.preventDefault();
+    props.setLoading(true);
+    props.setSearchResults(false);
     props.nearbyRestaurants(searchText, 'city');
   }
 
   function getGeoLocation():void{
+    props.setLoading(true);
+    props.setSearchResults(false);
     navigator.geolocation.getCurrentPosition((pos) => {
       props.nearbyRestaurants(`${pos.coords.latitude}:${pos.coords.longitude}`, 'geo');
     });
