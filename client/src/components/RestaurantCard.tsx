@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import {
   Card,
@@ -14,6 +14,8 @@ import BookmarkIcon from '@material-ui/icons/Bookmark';
 import StarIcon from '@material-ui/icons/Star';
 import VisitedModal from './VisitedModal';
 import BookmarkModal from './BookmarkModal';
+import { logedInContext } from '../LogedInContext';
+
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -85,8 +87,10 @@ function RestaurantCard(props: any): JSX.Element {
   const { name, categories, location } = restaurant;
   const [visitedOpen, setVisitedOpen] = useState(false);
   const [bookmarkOpen, setBookmarkOpen] = useState(false);
+  const { islogedIn, setislogedIn } = useContext(logedInContext);
 
   const handleVisitedClickOpen = () => {
+    
     setVisitedOpen(true);
   };
   const handleBookmarkOpen = () => {

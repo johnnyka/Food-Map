@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "cookie": "a88b159c-e2aa-4dfa-8228-c29124e58164",
+      "sub": "107965929427677676896",
+      "email": "josephine.een@appliedtechnology.se",
+      "given_name": "josephine",
+      "family_name": "een",
+      "picture": "https://lh4.googleusercontent.com/-NXw62znraWE/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuckSrdhxV1CoRhGe_qAReRAlcXWubw/s96-c/photo.jpg"
+    },
+    {
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "sub": "116088308319852982510",
+      "email": "johnny.kan@appliedtechnology.se",
+      "given_name": "johnny",
+      "family_name": "kan",
+      "picture": "https://lh5.googleusercontent.com/-UC1Ea1OkkFA/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucnOPBhd5TV_M4HOQzIaSHGJwwylJw/s96-c/photo.jpg"
+    },
+    {
+      "cookie": "8df5585c-689c-49b2-976c-e5804d592343",
+      "sub": "110814812671748837623",
+      "email": "mans.jackson@appliedtechnology.se",
+      "given_name": "mans",
+      "family_name": "jackson",
+      "picture": "https://lh5.googleusercontent.com/-q3xEXHISCac/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucky6fsx2sWfZLExrXN8Eg5SLvsCgA/s96-c/photo.jpg"
+    },
+    {
+      "cookie": "17eb4678-6fd4-4236-9ccf-b0f12c8dcacd",
+      "sub": "100520258388901966232",
+      "email": "josephine.een@gmail.com",
+      "given_name": "Joséphine",
+      "family_name": "Eén",
+      "picture": "https://lh3.googleusercontent.com/a-/AOh14GifhD70UVm53QQ1iH_ZwziEuo5hWuzgA6ekl5QBPg=s96-c"
+    },
+    {
+      "cookie": "6734d89f-f9ba-4230-9f8a-25ddeab0a3e6",
+      "sub": "110901907698397607527",
+      "email": "danijela.milenkovic@appliedtechnology.se",
+      "given_name": "danijela",
+      "family_name": "milenkovic",
+      "picture": "https://lh5.googleusercontent.com/-9RXvFhdHaM0/AAAAAAAAAAI/AAAAAAAAAAA/AMZuucmpbjFnT-sp541ZcP-wUtArjn_o_Q/s96-c/photo.jpg"
+    },
+    {
+      "cookie": "cf60cd43-1d1c-4fe8-ad99-5da5d7c2a6fb",
+      "sub": "109072050572519064498",
+      "email": "d.arsikj@gmail.com",
+      "given_name": "Danijela",
+      "family_name": "Arsikj",
+      "picture": "https://lh3.googleusercontent.com/a-/AOh14GjpdW6xtrNqmtLRSrUdICqYKHWDhKk8O3z4fbTP=s96-c"
+    }
+  ]
+}

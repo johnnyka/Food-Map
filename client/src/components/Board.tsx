@@ -7,7 +7,7 @@ import Loader from './Loader'
 function Board(): JSX.Element {
   const [searchResults, setSearchResults] = useState<Array<Object> | false>(false);
   const [loading, setLoading] = useState<boolean>(false);
-
+  
   function searchNearbyRestaurants(query: string, searchType: string) {
     if (searchType === 'city') {
       fetch(`/api/nearby/${query}`)

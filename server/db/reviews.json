@@ -1,5 +1,131 @@
 {
   "reviews": [
-
+    {
+      "id": "47b0a4ff-e7bb-40e8-97ff-65fe0a6cef9f",
+      "date": "2020-07-27T13:00:57.763Z",
+      "restaurant": {
+        "id": "4adcdaebf964a520cf5921e3",
+        "name": "Akkurat",
+        "location": {
+          "address": "Hornsgatan 18",
+          "city": "Stockholm",
+          "lat": 59.319809,
+          "lng": 18.06883,
+          "postalCode": "118 20",
+          "country": "Sweden",
+          "neighborhood": "Mariatorget"
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d11b941735",
+          "categoryName": "Pub"
+        }
+      },
+      "review": {
+        "review": "Cool place",
+        "stars": 5
+      }
+    },
+    {
+      "id": "2d4b0018-8767-4d1d-bd44-e30bc4a344f0",
+      "date": "2020-07-27T13:03:35.681Z",
+      "restaurant": {
+        "id": "5dd91a1f15b2280008674fd4",
+        "name": "Stigbergets Fot",
+        "location": {
+          "address": "Götgatan 5",
+          "city": "Stockholm",
+          "lat": 59.3184594862526,
+          "lng": 18.071313500404358,
+          "postalCode": "116 46",
+          "country": "Sweden",
+          "neighborhood": "Östra Katarina"
+        },
+        "categories": {
+          "categoryId": "56aa371ce4b08b9a8d57356c",
+          "categoryName": "Beer Bar"
+        }
+      },
+      "review": {
+        "review": "hejsan",
+        "stars": 5
+      }
+    },
+    {
+      "id": "34557557-17e3-4db5-a980-178ed5dc5f68",
+      "date": "2020-07-27T13:04:07.796Z",
+      "restaurant": {
+        "id": "4adcdaebf964a520cf5921e3",
+        "name": "Akkurat",
+        "location": {
+          "address": "Hornsgatan 18",
+          "city": "Stockholm",
+          "lat": 59.319809,
+          "lng": 18.06883,
+          "postalCode": "118 20",
+          "country": "Sweden",
+          "neighborhood": "Mariatorget"
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d11b941735",
+          "categoryName": "Pub"
+        }
+      },
+      "review": {
+        "review": "Nice nice ",
+        "stars": 5
+      }
+    },
+    {
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "id": "a01bafd3-ee15-493a-a434-ff8de74197aa",
+      "date": "2020-07-27T13:27:52.224Z",
+      "restaurant": {
+        "id": "5f0409d11bb40b7f6a1eb418",
+        "name": "Ön",
+        "location": {
+          "address": "Karlshällsvägen 14",
+          "city": "Stockholm",
+          "lat": 59.321896,
+          "lng": 18.017837,
+          "postalCode": "117 33",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d1c4941735",
+          "categoryName": "Restaurant"
+        }
+      },
+      "review": {
+        "review": "Not so good.",
+        "stars": 1
+      }
+    },
+    {
+      "cookie": "cf60cd43-1d1c-4fe8-ad99-5da5d7c2a6fb",
+      "id": "180c5ac1-2b2a-44db-9a3c-ea814dd0bc3f",
+      "date": "2020-07-27T15:03:03.193Z",
+      "restaurant": {
+        "id": "4adcdaebf964a520cf5921e3",
+        "name": "Akkurat",
+        "location": {
+          "address": "Hornsgatan 18",
+          "city": "Stockholm",
+          "lat": 59.319809,
+          "lng": 18.06883,
+          "postalCode": "118 20",
+          "country": "Sweden",
+          "neighborhood": "Mariatorget"
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d11b941735",
+          "categoryName": "Pub"
+        }
+      },
+      "review": {
+        "review": "Bad place",
+        "stars": 2.5
+      }
+    }
   ]
 }

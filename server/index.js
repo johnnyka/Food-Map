@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -44,9 +55,58 @@ var https_1 = __importDefault(require("https"));
 var fs_1 = __importDefault(require("fs"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var dbUtils_1 = require("./dbUtils");
+var google_auth_library_1 = require("google-auth-library");
+var cookie_parser_1 = __importDefault(require("cookie-parser"));
+var ipfilter = require('express-ipfilter').IpFilter;
+var ips = ['127.0.0.1:3000', '::ffff:127.0.0.1'];
+var client = new google_auth_library_1.OAuth2Client(process.env.GOOGLE_ID);
 require('dotenv').config();
 var app = express_1.default();
+app.use(cookie_parser_1.default());
+app.use(ipfilter(ips, { mode: 'allow' }));
 app.use(body_parser_1.default.json());
+app.get('/api/google_id', function (req, res) {
+    res.status(200).json(process.env.GOOGLE_ID);
+});
+app.get('/api/clear_cookie', function (req, res) {
+    res.clearCookie('user_id');
+    res.status(200).json('Cookie cleared');
+});
+app.post('/api/google_id/verify', function (req, res) {
+    function verify() {
+        return __awaiter(this, void 0, void 0, function () {
+            var ticket, payload, userid, exists, result;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, client.verifyIdToken({
+                            idToken: req.body.token,
+                            audience: process.env.GOOGLE_ID,
+                        })];
+                    case 1:
+                        ticket = _a.sent();
+                        payload = ticket.getPayload();
+                        console.log('Payload: ', payload);
+                        userid = payload['sub'];
+                        console.log('USER ID:', userid);
+                        return [4 /*yield*/, dbUtils_1.userExist(userid)];
+                    case 2:
+                        exists = _a.sent();
+                        console.log('exists: ', exists);
+                        if (!!exists) return [3 /*break*/, 4];
+                        return [4 /*yield*/, dbUtils_1.addUser(payload)];
+                    case 3:
+                        result = _a.sent();
+                        console.log('addUser result: ', result);
+                        _a.label = 4;
+                    case 4: return [2 /*return*/, dbUtils_1.getCookie(userid)];
+                }
+            });
+        });
+    }
+    verify()
+        .then(function (response) { return res.status(200).cookie('user_id', response).json(response); })
+        .catch(function (err) { return console.error('ERRORRRRR!', err); });
+});
 app.get('/api/nearby', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var data;
     return __generator(this, function (_a) {
@@ -101,7 +161,7 @@ app.post('/api/users/reviews', function (req, res) { return __awaiter(void 0, vo
         switch (_a.label) {
             case 0:
                 review = req.body;
-                return [4 /*yield*/, dbUtils_1.addReview(review)];
+                return [4 /*yield*/, dbUtils_1.addReview(__assign(__assign({}, review), { cookie: req.cookies.user_id }))];
             case 1:
                 _a.sent();
                 res.status(201).send('Successfully added review');
@@ -115,7 +175,7 @@ app.post('/api/users/bookmarks', function (req, res) { return __awaiter(void 0, 
         switch (_a.label) {
             case 0:
                 comment = req.body;
-                return [4 /*yield*/, dbUtils_1.addBookmark(comment)];
+                return [4 /*yield*/, dbUtils_1.addBookmark(__assign(__assign({}, comment), { cookie: req.cookies.user_id }))];
             case 1:
                 _a.sent();
                 res.status(201).send('Successfully added bookmark');

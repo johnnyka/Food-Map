@@ -1,5 +1,71 @@
 {
   "bookmarks": [
-
+    {
+      "id": "64bfecff-400d-4690-b131-77441309514f",
+      "date": "2020-07-27T13:01:10.968Z",
+      "restaurant": {
+        "id": "4adcdaebf964a520cf5921e3",
+        "name": "Akkurat",
+        "location": {
+          "address": "Hornsgatan 18",
+          "city": "Stockholm",
+          "lat": 59.319809,
+          "lng": 18.06883,
+          "postalCode": "118 20",
+          "country": "Sweden",
+          "neighborhood": "Mariatorget"
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d11b941735",
+          "categoryName": "Pub"
+        }
+      },
+      "comment": "Want to go"
+    },
+    {
+      "id": "d1752835-9fd8-49cc-8fe6-9005a5b9d3a1",
+      "date": "2020-07-27T13:04:30.098Z",
+      "restaurant": {
+        "id": "4adcdaebf964a520cf5921e3",
+        "name": "Akkurat",
+        "location": {
+          "address": "Hornsgatan 18",
+          "city": "Stockholm",
+          "lat": 59.319809,
+          "lng": 18.06883,
+          "postalCode": "118 20",
+          "country": "Sweden",
+          "neighborhood": "Mariatorget"
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d11b941735",
+          "categoryName": "Pub"
+        }
+      },
+      "comment": "Want to go"
+    },
+    {
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "id": "e69ea3dd-0b2b-47e4-901c-01ce0e6c7230",
+      "date": "2020-07-27T13:28:02.891Z",
+      "restaurant": {
+        "id": "5f0c5d83d2102511cad21759",
+        "name": "Espresso House",
+        "location": {
+          "address": "Järnagatan",
+          "city": "Södertälje",
+          "lat": 59.1947,
+          "lng": 17.627922,
+          "postalCode": "151 72",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d1e0931735",
+          "categoryName": "Coffee Shop"
+        }
+      },
+      "comment": "Cheap."
+    }
   ]
 }

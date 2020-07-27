@@ -35,11 +35,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addBookmark = exports.addReview = exports.readFile = void 0;
+exports.addBookmark = exports.addReview = exports.userExist = exports.addUser = exports.getCookie = exports.readFile = void 0;
 var fs_1 = __importDefault(require("fs"));
 var util_1 = __importDefault(require("util"));
 var uuidv4_1 = require("uuidv4");
@@ -63,14 +70,67 @@ function saveToFile(path, data) {
 //   stars: number;
 //   restaurant: Object;
 // }
+function getCookie(googleId) {
+    return __awaiter(this, void 0, void 0, function () {
+        var db, parsedDb, cookie;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, readFile('./db/users.json')];
+                case 1:
+                    db = _a.sent();
+                    parsedDb = JSON.parse(db);
+                    cookie = parsedDb.users.find(function (user) { return user.sub === googleId; }).cookie;
+                    console.log('Cookie:', cookie);
+                    return [2 /*return*/, cookie];
+            }
+        });
+    });
+}
+exports.getCookie = getCookie;
+function addUser(userInfo) {
+    return __awaiter(this, void 0, void 0, function () {
+        var db, parsedDb, sub, email, given_name, family_name, picture;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, readFile('./db/users.json')];
+                case 1:
+                    db = _a.sent();
+                    parsedDb = JSON.parse(db);
+                    sub = userInfo.sub, email = userInfo.email, given_name = userInfo.given_name, family_name = userInfo.family_name, picture = userInfo.picture;
+                    parsedDb.users = __spreadArrays(parsedDb.users, [{ cookie: uuidv4_1.uuid(), sub: sub, email: email, given_name: given_name, family_name: family_name, picture: picture }]);
+                    return [4 /*yield*/, saveToFile('./db/users.json', JSON.stringify(parsedDb, null, 2))];
+                case 2:
+                    _a.sent();
+                    return [2 /*return*/, 'Success'];
+            }
+        });
+    });
+}
+exports.addUser = addUser;
+function userExist(googleID) {
+    return __awaiter(this, void 0, void 0, function () {
+        var users, parsedUsers;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, readFile('./db/users.json')];
+                case 1:
+                    users = _a.sent();
+                    parsedUsers = JSON.parse(users);
+                    return [2 /*return*/, parsedUsers.users.find(function (user) { return user.sub === googleID; }) === undefined ? false : true];
+            }
+        });
+    });
+}
+exports.userExist = userExist;
 function validateReview(data) {
-    var review = data.review, stars = data.stars, id = data.id, name = data.name, location = data.location, categories = data.categories;
+    var review = data.review, stars = data.stars, id = data.id, name = data.name, location = data.location, categories = data.categories, cookie = data.cookie;
     var address = location.address, city = location.city, lat = location.lat, lng = location.lng, postalCode = location.postalCode, country = location.country;
     var neighborhood = location.neighborhood ? location.neighborhood : null;
     var _a = categories[0], categoryId = _a.id, categoryName = _a.name;
     if (Number.isNaN(stars) || stars > 5 || stars < 0)
         throw new Error('Star rating must be a number from 0-5');
     return {
+        cookie: cookie,
         id: uuidv4_1.uuid(),
         date: new Date(),
         restaurant: {
@@ -91,11 +151,12 @@ function validateReview(data) {
     };
 }
 function validateBookmark(data) {
-    var comment = data.comment, id = data.id, name = data.name, location = data.location, categories = data.categories;
+    var comment = data.comment, id = data.id, name = data.name, location = data.location, categories = data.categories, cookie = data.cookie;
     var address = location.address, city = location.city, lat = location.lat, lng = location.lng, postalCode = location.postalCode, country = location.country;
     var neighborhood = location.neighborhood ? location.neighborhood : null;
     var _a = categories[0], categoryId = _a.id, categoryName = _a.name;
     return {
+        cookie: cookie,
         id: uuidv4_1.uuid(),
         date: new Date(),
         restaurant: {

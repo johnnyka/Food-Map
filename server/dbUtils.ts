@@ -17,9 +17,41 @@ async function saveToFile(path: string, data: string): Promise<void> {
 //   restaurant: Object;
 // }
 
+export async function getCookie(googleId:string):Promise<string> {
+  const db = await readFile('./db/users.json');
+  const parsedDb = JSON.parse(db);
+  const  cookie = parsedDb.users.find((user:IUser)=> user.sub === googleId).cookie;
+  console.log('Cookie:',cookie);
+  return cookie;
+}
+
+export async function addUser(userInfo: any): Promise<string> {
+  const db = await readFile('./db/users.json');
+  let parsedDb = JSON.parse(db);
+  const {sub, email, given_name, family_name, picture} = userInfo;
+  parsedDb.users = [...parsedDb.users, { cookie: uuid(),sub, email, given_name, family_name, picture}]
+  await saveToFile('./db/users.json', JSON.stringify(parsedDb, null, 2));
+  return 'Success';
+} 
+
+
+interface IUser {
+  given_name: string;
+  family_name: string;
+  picture: string;
+  cookie:string;
+  email: string;
+  sub:string;
+}
+export async function userExist(googleID: string): Promise<boolean> {
+  const users = await readFile('./db/users.json')
+  const parsedUsers = JSON.parse(users);
+  return parsedUsers.users.find((user: IUser) => user.sub === googleID) === undefined ? false : true;
+}
+
 function validateReview(data: any): any {
   const {
-    review, stars, id, name, location, categories,
+    review, stars, id, name, location, categories, cookie
   } = data;
   const {
     address, city, lat, lng, postalCode, country,
@@ -28,6 +60,7 @@ function validateReview(data: any): any {
   const { id: categoryId, name: categoryName } = categories[0];
   if (Number.isNaN(stars) || stars > 5 || stars < 0) throw new Error('Star rating must be a number from 0-5');
   return {
+    cookie,
     id: uuid(),
     date: new Date(),
     restaurant: {
@@ -50,7 +83,7 @@ function validateReview(data: any): any {
 
 function validateBookmark(data: any): any {
   const {
-    comment, id, name, location, categories,
+    comment, id, name, location, categories, cookie
   } = data;
   const {
     address, city, lat, lng, postalCode, country,
@@ -58,6 +91,7 @@ function validateBookmark(data: any): any {
   const neighborhood = location.neighborhood ? location.neighborhood : null;
   const { id: categoryId, name: categoryName } = categories[0];
   return {
+    cookie,
     id: uuid(),
     date: new Date(),
     restaurant: {
