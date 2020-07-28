@@ -46,7 +46,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addBookmark = exports.addReview = exports.userExist = exports.addUser = exports.getCookie = exports.readFile = void 0;
+exports.addBookmark = exports.addReview = exports.userExist = exports.addUser = exports.getCookie = exports.getRestaurant = exports.readFile = void 0;
 var fs_1 = __importDefault(require("fs"));
 var util_1 = __importDefault(require("util"));
 var uuidv4_1 = require("uuidv4");
@@ -65,11 +65,21 @@ function saveToFile(path, data) {
         });
     });
 }
-// interface IData {
-//   review: string;
-//   stars: number;
-//   restaurant: Object;
-// }
+function getRestaurant(cookie, path) {
+    return __awaiter(this, void 0, void 0, function () {
+        var db, parsedDb;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, readFile("./db/" + path + ".json")];
+                case 1:
+                    db = _a.sent();
+                    parsedDb = JSON.parse(db);
+                    return [2 /*return*/, parsedDb[path].filter(function (el) { return el.cookie === cookie; })];
+            }
+        });
+    });
+}
+exports.getRestaurant = getRestaurant;
 function getCookie(googleId) {
     return __awaiter(this, void 0, void 0, function () {
         var db, parsedDb, cookie;
@@ -107,7 +117,7 @@ function addUser(userInfo) {
     });
 }
 exports.addUser = addUser;
-function userExist(googleID) {
+function userExist(identifier, searchType) {
     return __awaiter(this, void 0, void 0, function () {
         var users, parsedUsers;
         return __generator(this, function (_a) {
@@ -116,7 +126,7 @@ function userExist(googleID) {
                 case 1:
                     users = _a.sent();
                     parsedUsers = JSON.parse(users);
-                    return [2 /*return*/, parsedUsers.users.find(function (user) { return user.sub === googleID; }) === undefined ? false : true];
+                    return [2 /*return*/, parsedUsers.users.find(function (user) { return user[searchType] === identifier; }) === undefined ? false : true];
             }
         });
     });

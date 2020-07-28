@@ -11,11 +11,34 @@ async function saveToFile(path: string, data: string): Promise<void> {
   return writeFilePromise(path, data);
 }
 
-// interface IData {
-//   review: string;
-//   stars: number;
-//   restaurant: Object;
-// }
+interface IdatabaseData {
+  cookie: string;
+  id: string;
+  date: string;
+  restaurant: {
+    id: string;
+    name: string;
+    location: {
+      address: string;
+      city: string;
+      lat: number;
+      lng: number;
+      postalCode: string;
+      country: string;
+      neighborrhood: string;
+    }
+    categories: {
+      categoryId: string;
+      categoryName: string;
+    }
+  }
+}
+
+export async function getRestaurant(cookie:string, path:string) {
+  const db = await readFile(`./db/${path}.json`);
+  const parsedDb = JSON.parse(db);
+  return parsedDb[path].filter((el: IdatabaseData) => el.cookie === cookie);
+}
 
 export async function getCookie(googleId:string):Promise<string> {
   const db = await readFile('./db/users.json');
@@ -43,10 +66,10 @@ interface IUser {
   email: string;
   sub:string;
 }
-export async function userExist(googleID: string): Promise<boolean> {
+export async function userExist(identifier: string, searchType: 'cookie'|'sub'): Promise<boolean> {
   const users = await readFile('./db/users.json')
   const parsedUsers = JSON.parse(users);
-  return parsedUsers.users.find((user: IUser) => user.sub === googleID) === undefined ? false : true;
+  return parsedUsers.users.find((user: IUser) => user[searchType] === identifier) === undefined ? false : true;
 }
 
 function validateReview(data: any): any {

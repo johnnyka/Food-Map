@@ -85,18 +85,14 @@ app.post('/api/google_id/verify', function (req, res) {
                     case 1:
                         ticket = _a.sent();
                         payload = ticket.getPayload();
-                        console.log('Payload: ', payload);
                         userid = payload['sub'];
-                        console.log('USER ID:', userid);
-                        return [4 /*yield*/, dbUtils_1.userExist(userid)];
+                        return [4 /*yield*/, dbUtils_1.userExist(userid, 'sub')];
                     case 2:
                         exists = _a.sent();
-                        console.log('exists: ', exists);
                         if (!!exists) return [3 /*break*/, 4];
                         return [4 /*yield*/, dbUtils_1.addUser(payload)];
                     case 3:
                         result = _a.sent();
-                        console.log('addUser result: ', result);
                         _a.label = 4;
                     case 4: return [2 /*return*/, dbUtils_1.getCookie(userid)];
                 }
@@ -105,8 +101,20 @@ app.post('/api/google_id/verify', function (req, res) {
     }
     verify()
         .then(function (response) { return res.status(200).cookie('user_id', response).json(response); })
-        .catch(function (err) { return console.error('ERRORRRRR!', err); });
+        .catch(function (err) { return console.error('ERROR:', err); });
 });
+app.get('/api/checkValidCookie', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var exists;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, dbUtils_1.userExist(req.cookies.user_id, 'cookie')];
+            case 1:
+                exists = _a.sent();
+                res.status(200).json({ exists: exists });
+                return [2 /*return*/];
+        }
+    });
+}); });
 app.get('/api/nearby', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var data;
     return __generator(this, function (_a) {
@@ -179,6 +187,34 @@ app.post('/api/users/bookmarks', function (req, res) { return __awaiter(void 0, 
             case 1:
                 _a.sent();
                 res.status(201).send('Successfully added bookmark');
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get('/api/users/reviews', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var cookie, reviews;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                cookie = req.cookies.user_id;
+                return [4 /*yield*/, dbUtils_1.getRestaurant(cookie, 'reviews')];
+            case 1:
+                reviews = _a.sent();
+                res.status(200).json(reviews);
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get('/api/users/bookmarks', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var cookie, bookmarks;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                cookie = req.cookies.user_id;
+                return [4 /*yield*/, dbUtils_1.getRestaurant(cookie, 'bookmarks')];
+            case 1:
+                bookmarks = _a.sent();
+                res.status(200).json(bookmarks);
                 return [2 /*return*/];
         }
     });

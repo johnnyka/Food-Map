@@ -31,7 +31,7 @@ interface IRating {
   setStars: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function HoverRating(props: IRating) {
+export default function HoverRating(props: IRating, readOnly: boolean) {
   const [hover, setHover] = React.useState(-1);
   const classes = useStyles();
   const { stars, setStars } = props;

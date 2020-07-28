@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Paper, Divider, IconButton, TextField,
 } from '@material-ui/core';
@@ -6,14 +6,17 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import NearMeIcon from '@material-ui/icons/NearMe';
 import { Autocomplete } from '@material-ui/lab';
+import { useHistory } from 'react-router-dom';
+import { SearchresultsContext } from './SearchresultsProvider';
+import { LoadingContext } from './LoadingProvider';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
-    padding: '2px 4px',
+    padding: '0',
     display: 'flex',
     alignItems: 'center',
     width: 'fit-content',
-    marginTop: '30px',
+
   },
   input: {
     marginLeft: theme.spacing(1),
@@ -40,16 +43,31 @@ interface CityInterface {
   lng?: string
   population?: string
 }
-interface SearchBarInterface {
-  nearbyRestaurants: (query:string, searchType:string) => void;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>
-  setSearchResults: React.Dispatch<React.SetStateAction<Array<Object> | false>>
-}
 
-function Searchbar(props:SearchBarInterface): JSX.Element {
+function Searchbar(): JSX.Element {
   const classes = useStyles();
   const [cities, setCities] = useState<Array<CityInterface>>([{ city: 'Loading...' }]);
   const [searchText, setSearchText] = useState<string>('');
+  const { updateSearchResults } = useContext(SearchresultsContext);
+  const { updateisLoading } = useContext(LoadingContext);
+  const history = useHistory();
+
+  function searchNearbyRestaurants(query: string, searchType: string) {
+    history.push('/');
+    if (searchType === 'city') {
+      fetch(`/api/nearby/${query}`)
+        .then((res) => res.json())
+        .then((results) => updateSearchResults(results.response.venues))
+        .then(() => updateisLoading(false));
+    } else if (searchType === 'geo') {
+      const lat = query.split(':')[0];
+      const lng = query.split(':')[1];
+      fetch(`/api/nearby?lat=${lat}&lng=${lng}`)
+        .then((res) => res.json())
+        .then((results) => updateSearchResults(results.response.venues))
+        .then(() => updateisLoading(false));
+    }
+  }
 
   function getCities(): void {
     fetch('/api/se/cities')
@@ -61,18 +79,18 @@ function Searchbar(props:SearchBarInterface): JSX.Element {
     getCities();
   }, []);
 
-  function handleSubmit(e:React.FormEvent):void {
+  function handleSubmit(e: React.FormEvent): void {
     e.preventDefault();
-    props.setLoading(true);
-    props.setSearchResults(false);
-    props.nearbyRestaurants(searchText, 'city');
+    updateisLoading(true);
+    updateSearchResults(false);
+    searchNearbyRestaurants(searchText, 'city');
   }
 
-  function getGeoLocation():void{
-    props.setLoading(true);
-    props.setSearchResults(false);
+  function getGeoLocation(): void {
+    updateisLoading(true);
+    updateSearchResults(false);
     navigator.geolocation.getCurrentPosition((pos) => {
-      props.nearbyRestaurants(`${pos.coords.latitude}:${pos.coords.longitude}`, 'geo');
+      searchNearbyRestaurants(`${pos.coords.latitude}:${pos.coords.longitude}`, 'geo');
     });
   }
 

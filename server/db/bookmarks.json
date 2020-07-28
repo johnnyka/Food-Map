@@ -66,6 +66,121 @@
         }
       },
       "comment": "Cheap."
+    },
+    {
+      "cookie": "8df5585c-689c-49b2-976c-e5804d592343",
+      "id": "2d6265d7-a52b-4c86-94ed-475ba3bc59ed",
+      "date": "2020-07-28T08:50:11.813Z",
+      "restaurant": {
+        "id": "5dd91a1f15b2280008674fd4",
+        "name": "Stigbergets Fot",
+        "location": {
+          "address": "Götgatan 5",
+          "city": "Stockholm",
+          "lat": 59.3184594862526,
+          "lng": 18.071313500404358,
+          "postalCode": "116 46",
+          "country": "Sweden",
+          "neighborhood": "Östra Katarina"
+        },
+        "categories": {
+          "categoryId": "56aa371ce4b08b9a8d57356c",
+          "categoryName": "Beer Bar"
+        }
+      },
+      "comment": "fan va najs"
+    },
+    {
+      "cookie": "a88b159c-e2aa-4dfa-8228-c29124e58164",
+      "id": "36836daf-edac-4af4-8fe2-dbf3a961e71a",
+      "date": "2020-07-28T10:57:13.092Z",
+      "restaurant": {
+        "id": "4adcdaf2f964a520105c21e3",
+        "name": "Vete-Katten",
+        "location": {
+          "address": "Kungsgatan 55",
+          "city": "Stockholm",
+          "lat": 59.33417768875955,
+          "lng": 18.05823909702743,
+          "postalCode": "111 22",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d16d941735",
+          "categoryName": "Café"
+        }
+      },
+      "comment": "Göd kanelbulle\n"
+    },
+    {
+      "cookie": "a88b159c-e2aa-4dfa-8228-c29124e58164",
+      "id": "f75336e9-4a26-4388-b50e-06e10be643e5",
+      "date": "2020-07-28T10:57:23.503Z",
+      "restaurant": {
+        "id": "5f0409d11bb40b7f6a1eb418",
+        "name": "Ön",
+        "location": {
+          "address": "Karlshällsvägen 14",
+          "city": "Stockholm",
+          "lat": 59.321896,
+          "lng": 18.017837,
+          "postalCode": "117 33",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d1c4941735",
+          "categoryName": "Restaurant"
+        }
+      },
+      "comment": "Funny name"
+    },
+    {
+      "cookie": "8df5585c-689c-49b2-976c-e5804d592343",
+      "id": "61a04f14-2c0a-4c8b-897d-c245095b3196",
+      "date": "2020-07-28T14:53:31.023Z",
+      "restaurant": {
+        "id": "5dd91a1f15b2280008674fd4",
+        "name": "Stigbergets Fot",
+        "location": {
+          "address": "Götgatan 5",
+          "city": "Stockholm",
+          "lat": 59.3184594862526,
+          "lng": 18.071313500404358,
+          "postalCode": "116 46",
+          "country": "Sweden",
+          "neighborhood": "Östra Katarina"
+        },
+        "categories": {
+          "categoryId": "56aa371ce4b08b9a8d57356c",
+          "categoryName": "Beer Bar"
+        }
+      },
+      "comment": "hejsan"
+    },
+    {
+      "cookie": "8df5585c-689c-49b2-976c-e5804d592343",
+      "id": "eecbe32f-1799-454c-ae6d-374b4a3769df",
+      "date": "2020-07-28T16:20:40.743Z",
+      "restaurant": {
+        "id": "5dd91a1f15b2280008674fd4",
+        "name": "Stigbergets Fot",
+        "location": {
+          "address": "Götgatan 5",
+          "city": "Stockholm",
+          "lat": 59.3184594862526,
+          "lng": 18.071313500404358,
+          "postalCode": "116 46",
+          "country": "Sweden",
+          "neighborhood": "Östra Katarina"
+        },
+        "categories": {
+          "categoryId": "56aa371ce4b08b9a8d57356c",
+          "categoryName": "Beer Bar"
+        }
+      },
+      "comment": "roligt namn"
     }
   ]
 }

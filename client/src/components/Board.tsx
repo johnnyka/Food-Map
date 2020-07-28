@@ -1,28 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Grid } from '@material-ui/core';
-import Searchbar from './Searchbar';
 import RestaurantCard from './RestaurantCard';
-import Loader from './Loader'
+import Loader from './Loader';
+import { SearchresultsContext } from './SearchresultsProvider';
+import { LoadingContext } from './LoadingProvider';
 
 function Board(): JSX.Element {
-  const [searchResults, setSearchResults] = useState<Array<Object> | false>(false);
-  const [loading, setLoading] = useState<boolean>(false);
-  
-  function searchNearbyRestaurants(query: string, searchType: string) {
-    if (searchType === 'city') {
-      fetch(`/api/nearby/${query}`)
-        .then((res) => res.json())
-        .then((results) => setSearchResults(results.response.venues))
-        .then(() => setLoading(false));
-    } else if (searchType === 'geo') {
-      const lat = query.split(':')[0];
-      const lng = query.split(':')[1];
-      fetch(`/api/nearby?lat=${lat}&lng=${lng}`)
-        .then((res) => res.json())
-        .then((results) => setSearchResults(results.response.venues))
-        .then(() => setLoading(false));
-    }
-  }
+  const { searchresults } = useContext(SearchresultsContext);
+  const { isLoading } = useContext(LoadingContext);
 
   interface IRestaurant {
     restaurant: {
@@ -31,9 +16,9 @@ function Board(): JSX.Element {
   }
 
   function renderCards(): Array<JSX.Element> | string {
-    if (searchResults) {
+    if (searchresults) {
       return (
-        searchResults.map((restaurant: any): JSX.Element => (
+        searchresults.map((restaurant: any): JSX.Element => (
           <Grid key={restaurant.id} item xs={12} sm={6} md={4}>
             <RestaurantCard restaurant={restaurant} />
           </Grid>
@@ -45,17 +30,16 @@ function Board(): JSX.Element {
   return (
     <section>
       <Grid container justify="center">
-        <Searchbar setSearchResults={setSearchResults} setLoading={setLoading} nearbyRestaurants={searchNearbyRestaurants} />
+        <h1>Board</h1>
       </Grid>
       <Grid container justify="space-evenly">
-        {!searchResults ? null : renderCards()}
+        {!searchresults ? null : renderCards()}
       </Grid>
       <Grid container justify="center">
-        {loading ? <Loader /> : null}
+        {isLoading ? <Loader /> : null}
       </Grid>
     </section>
   );
 }
 
 export default Board;
-

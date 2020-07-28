@@ -2,7 +2,7 @@ import express from 'express';
 import https from 'https';
 import fs from 'fs';
 import bodyParser from 'body-parser';
-import { readFile, addReview, addBookmark, userExist, addUser, getCookie} from './dbUtils';
+import { readFile, addReview, addBookmark, userExist, addUser, getCookie, getRestaurant} from './dbUtils';
 import { OAuth2Client } from 'google-auth-library';
 import cookieParser from 'cookie-parser';
 
@@ -37,23 +37,24 @@ app.post('/api/google_id/verify', (req:express.Request, res:express.Response) =>
       audience: process.env.GOOGLE_ID,
     });
     const payload = ticket.getPayload();
-    console.log('Payload: ', payload);
     // @ts-ignore:
     const userid = payload['sub'];
-    console.log('USER ID:', userid);
 
-    const exists = await userExist(userid);
-    console.log('exists: ', exists);
+    const exists = await userExist(userid, 'sub');
     if (!exists) {
       const result = await addUser(payload);
-      console.log('addUser result: ', result);
     }
     return getCookie(userid);
     }
   verify()
     .then(response => res.status(200).cookie('user_id', response).json(response))
-    .catch(err => console.error('ERRORRRRR!', err));
+    .catch(err => console.error('ERROR:', err));
 })
+
+app.get('/api/checkValidCookie', async (req: express.Request, res: express.Response) => {
+  const exists = await userExist(req.cookies.user_id, 'cookie');
+  res.status(200).json({ exists });
+});
 
 app.get('/api/nearby', async (req: express.Request, res: express.Response) => {
   let data = '';
@@ -92,6 +93,18 @@ app.post('/api/users/bookmarks', async (req: express.Request, res: express.Respo
   const comment = req.body;
   await addBookmark({ ...comment, cookie: req.cookies.user_id });
   res.status(201).send('Successfully added bookmark');
+});
+
+app.get('/api/users/reviews', async (req: express.Request, res: express.Response) => {
+  const cookie = req.cookies.user_id;
+  const reviews = await getRestaurant(cookie, 'reviews');
+  res.status(200).json(reviews);
+});
+
+app.get('/api/users/bookmarks', async (req: express.Request, res: express.Response) => {
+  const cookie = req.cookies.user_id;
+  const bookmarks = await getRestaurant(cookie, 'bookmarks');
+  res.status(200).json(bookmarks);
 });
 
 // https://api.foursquare.com/v2/venues/search?nar=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259

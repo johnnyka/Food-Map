@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import {
   Card,
@@ -14,8 +14,8 @@ import BookmarkIcon from '@material-ui/icons/Bookmark';
 import StarIcon from '@material-ui/icons/Star';
 import VisitedModal from './VisitedModal';
 import BookmarkModal from './BookmarkModal';
-import { logedInContext } from '../LogedInContext';
-
+import { LogedInContext } from './LogedInProvider';
+import GoogleModal from './GoogleModal';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -87,14 +87,17 @@ function RestaurantCard(props: any): JSX.Element {
   const { name, categories, location } = restaurant;
   const [visitedOpen, setVisitedOpen] = useState(false);
   const [bookmarkOpen, setBookmarkOpen] = useState(false);
-  const { islogedIn, setislogedIn } = useContext(logedInContext);
+  const { isLogedIn, updateLogedIn } = useContext(LogedInContext);
+  const [googleOpen, setGoogleOpen] = useState(false);
+  const [lastClick, setLastClick] = useState('');
 
   const handleVisitedClickOpen = () => {
-    
-    setVisitedOpen(true);
+    setLastClick('Visited');
+    isLogedIn ? setVisitedOpen(true) : setGoogleOpen(true);
   };
   const handleBookmarkOpen = () => {
-    setBookmarkOpen(true);
+    setLastClick('Bookmark');
+    isLogedIn ? setBookmarkOpen(true) : setGoogleOpen(true);
   };
 
   const handleVisitedClose = () => {
@@ -103,8 +106,22 @@ function RestaurantCard(props: any): JSX.Element {
   const handleBookmarkClose = () => {
     setBookmarkOpen(false);
   };
+  const handleGoogleClose = () => {
+    setGoogleOpen(false);
+  };
 
-  function saveToVisited(stars: number, review:string) {
+  useEffect(() => {
+    if (isLogedIn) {
+      handleGoogleClose();
+      if (lastClick === 'Visited') {
+        handleVisitedClickOpen();
+      } else if (lastClick === 'Bookmark') {
+        handleBookmarkOpen();
+      }
+    }
+  }, [isLogedIn]);
+
+  function saveToVisited(stars: number, review: string) {
     fetch('/api/users/reviews', {
       method: 'POST',
       body: JSON.stringify({ ...restaurant, stars, review }),
@@ -164,6 +181,10 @@ function RestaurantCard(props: any): JSX.Element {
         handleSave={saveToVisited}
         handleClose={handleVisitedClose}
         open={visitedOpen}
+      />
+      <GoogleModal
+        handleClose={handleGoogleClose}
+        open={googleOpen}
       />
     </>
   );
