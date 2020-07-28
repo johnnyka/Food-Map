@@ -68,7 +68,7 @@ interface IRestaurantCard {
 function RestaurantCard(props: any): JSX.Element {
   const classes = useStyles();
   const { restaurant } = props;
-  const { name, categories, location } = restaurant;
+  const { name, categories, location,imgageURL } = restaurant;
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -77,7 +77,7 @@ function RestaurantCard(props: any): JSX.Element {
       />
       <CardMedia
         className={classes.media}
-        image="/static/images/cards/paella.jpg"
+        image={imgageURL}
         title={name}
       />
       <CardContent>

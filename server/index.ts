@@ -1,6 +1,7 @@
 import express from 'express';
-import readFile from './dbUtils';
 import puppeteer from 'puppeteer';
+import readFile from './dbUtils';
+import encodeUrl from 'encodeurl';
 
 require('dotenv').config();
 
@@ -33,7 +34,7 @@ app.get('/api/nearby/:city', async (req: express.Request, res: express.Response)
     data = await readFile('../mock_db/stockholm.json');
     addedPicture = await getPictures(data);
   }
-  res.status(200).send(addedPicture);
+  res.status(200).json(addedPicture);
 });
 
 // https://api.foursquare.com/v2/venues/search?nar=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259
@@ -61,12 +62,21 @@ async function scraping(name: string, city: string): Promise<string> {
       '--disable-gl-drawing-for-tests',
       '--use-gl=desktop',
       '--no-sandbox',
-      '--disable-gpu'
     ]
   });
   const page = await browser.newPage();
-  const pageURL = `https://www.google.com/search?q=${name}+${city}&source=lnms&tbm=isch`
+  const encodedName = encodeUrl(name);
+  console.log('!!!',encodedName);
+  const pageURL = `https://www.google.com/search?q=${encodedName}+${city}&source=lnms&tbm=isch`
   try {
+    await page.setRequestInterception(true);
+    page.on('request', request => {
+      if (request.resourceType() === 'stylesheet'
+      || request.resourceType() === 'script' )
+        request.abort();
+      else
+        request.continue();
+    });
     await page.goto(pageURL, { waitUntil: 'networkidle2' });
     //await page.waitForSelector('.sMi44c lNHeqe');
     const selector = '#islrg > div.islrc > div:nth-child(5) > a.wXeWr.islib.nfEiy.mM5pbd > div.bRMDJf.islir > img'

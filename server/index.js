@@ -2,8 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const express_1 = tslib_1.__importDefault(require("express"));
-const dbUtils_1 = tslib_1.__importDefault(require("./dbUtils"));
 const puppeteer_1 = tslib_1.__importDefault(require("puppeteer"));
+const dbUtils_1 = tslib_1.__importDefault(require("./dbUtils"));
+const encodeurl_1 = tslib_1.__importDefault(require("encodeurl"));
 require('dotenv').config();
 const app = express_1.default();
 app.get('/api/nearby', async (req, res) => {
@@ -29,9 +30,8 @@ app.get('/api/nearby/:city', async (req, res) => {
     else {
         data = await dbUtils_1.default('../mock_db/stockholm.json');
         addedPicture = await getPictures(data);
-        console.log(JSON.parse(JSON.stringify(addedPicture)));
     }
-    res.status(200).send(addedPicture);
+    res.status(200).json(addedPicture);
 });
 // https://api.foursquare.com/v2/venues/search?nar=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259
 app.listen(8080, () => {
@@ -55,14 +55,22 @@ async function scraping(name, city) {
             '--disable-gl-drawing-for-tests',
             '--use-gl=desktop',
             '--no-sandbox',
-            '--disable-gpu'
         ]
     });
     const page = await browser.newPage();
-    const pageURL = `https://www.google.com/search?q=${name}+${city}&source=lnms&tbm=isch`;
+    const encodedName = encodeurl_1.default(name);
+    console.log('!!!', encodedName);
+    const pageURL = `https://www.google.com/search?q=${encodedName}+${city}&source=lnms&tbm=isch`;
     try {
+        await page.setRequestInterception(true);
+        page.on('request', request => {
+            if (request.resourceType() === 'stylesheet'
+                || request.resourceType() === 'script')
+                request.abort();
+            else
+                request.continue();
+        });
         await page.goto(pageURL, { waitUntil: 'networkidle2' });
-        console.log('goes to ');
         //await page.waitForSelector('.sMi44c lNHeqe');
         const selector = '#islrg > div.islrc > div:nth-child(5) > a.wXeWr.islib.nfEiy.mM5pbd > div.bRMDJf.islir > img';
         imageUrl = await page.evaluate((sel) => {
