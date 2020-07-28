@@ -4,6 +4,7 @@ export const SearchresultsContext = createContext<any>([]);
 
 const SearchresultsProvider = (props: any) => {
   const [searchresults, setSearchresults] = useState<Array<any>>([]);
+  const { children } = props;
 
   return (
     <SearchresultsContext.Provider
@@ -14,7 +15,7 @@ const SearchresultsProvider = (props: any) => {
         },
       }}
     >
-      {props.children}
+      {children}
     </SearchresultsContext.Provider>
   );
 };

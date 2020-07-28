@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     marginLeft: theme.spacing(1),
     flex: 1,
     minWidth: 200,
+    [theme.breakpoints.down('xs')]: {
+      minWidth: 150,
+    },
   },
   iconButton: {
     padding: 10,

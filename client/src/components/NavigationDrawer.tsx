@@ -7,7 +7,7 @@ import {
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
-  list: {
+  listWidth: {
     width: 250,
   },
   fullList: {
@@ -15,20 +15,25 @@ const useStyles = makeStyles({
   },
 });
 
-export default function NavigationDrawer(props: { toggleDrawer: (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void, isDrawerOpen: boolean }) {
+export default function NavigationDrawer(props: {
+  toggleDrawer: (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void,
+  isDrawerOpen: boolean
+}) {
   const classes = useStyles();
+  const { listWidth } = classes;
+  const { toggleDrawer, isDrawerOpen } = props;
 
   const list = () => (
     <div
-      className={clsx(classes.list)}
+      className={clsx(listWidth)}
       role="presentation"
-      onClick={props.toggleDrawer(false)}
-      onKeyDown={props.toggleDrawer(false)}
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {['Home', 'Dashboard', 'About'].map((text, index) => (
-          <Link to={text === 'Home' ? '/' : `/${text}`}>
-            <ListItem button key={text}>
+        {['Home', 'Dashboard', 'About'].map((text) => (
+          <Link key={text} to={text === 'Home' ? '/' : `/${text}`}>
+            <ListItem button>
               <ListItemText primary={text} />
             </ListItem>
           </Link>
@@ -39,7 +44,7 @@ export default function NavigationDrawer(props: { toggleDrawer: (open: boolean) 
 
   return (
     <div>
-      <Drawer anchor="left" open={props.isDrawerOpen} onClose={props.toggleDrawer(false)}>
+      <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
         {list()}
       </Drawer>
     </div>

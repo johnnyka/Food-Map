@@ -4,7 +4,7 @@ export const LoadingContext = createContext<any>(false);
 
 const LoadingProvider = (props: any) => {
   const [isLoading, setisLoading] = useState(false);
-
+  const { children } = props;
   return (
     <LoadingContext.Provider
       value={{
@@ -14,7 +14,7 @@ const LoadingProvider = (props: any) => {
         },
       }}
     >
-      {props.children}
+      {children}
     </LoadingContext.Provider>
   );
 };

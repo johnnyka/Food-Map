@@ -43,20 +43,23 @@ export async function getRestaurant(cookie:string, path:string) {
 export async function getCookie(googleId:string):Promise<string> {
   const db = await readFile('./db/users.json');
   const parsedDb = JSON.parse(db);
-  const  cookie = parsedDb.users.find((user:IUser)=> user.sub === googleId).cookie;
-  console.log('Cookie:',cookie);
+  const { cookie } = parsedDb.users.find((user:IUser) => user.sub === googleId);
+  console.log('Cookie:', cookie);
   return cookie;
 }
 
 export async function addUser(userInfo: any): Promise<string> {
   const db = await readFile('./db/users.json');
-  let parsedDb = JSON.parse(db);
-  const {sub, email, given_name, family_name, picture} = userInfo;
-  parsedDb.users = [...parsedDb.users, { cookie: uuid(),sub, email, given_name, family_name, picture}]
+  const parsedDb = JSON.parse(db);
+  const {
+    sub, email, given_name, family_name, picture,
+  } = userInfo;
+  parsedDb.users = [...parsedDb.users, {
+    cookie: uuid(), sub, email, given_name, family_name, picture,
+  }];
   await saveToFile('./db/users.json', JSON.stringify(parsedDb, null, 2));
   return 'Success';
-} 
-
+}
 
 interface IUser {
   given_name: string;
@@ -67,14 +70,14 @@ interface IUser {
   sub:string;
 }
 export async function userExist(identifier: string, searchType: 'cookie'|'sub'): Promise<boolean> {
-  const users = await readFile('./db/users.json')
+  const users = await readFile('./db/users.json');
   const parsedUsers = JSON.parse(users);
-  return parsedUsers.users.find((user: IUser) => user[searchType] === identifier) === undefined ? false : true;
+  return parsedUsers.users.find((user: IUser) => user[searchType] === identifier) !== undefined;
 }
 
 function validateReview(data: any): any {
   const {
-    review, stars, id, name, location, categories, cookie
+    review, stars, id, name, location, categories, cookie,
   } = data;
   const {
     address, city, lat, lng, postalCode, country,
@@ -106,7 +109,7 @@ function validateReview(data: any): any {
 
 function validateBookmark(data: any): any {
   const {
-    comment, id, name, location, categories, cookie
+    comment, id, name, location, categories, cookie,
   } = data;
   const {
     address, city, lat, lng, postalCode, country,

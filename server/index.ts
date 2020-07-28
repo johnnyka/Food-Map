@@ -2,30 +2,31 @@ import express from 'express';
 import https from 'https';
 import fs from 'fs';
 import bodyParser from 'body-parser';
-import { readFile, addReview, addBookmark, userExist, addUser, getCookie, getRestaurant} from './dbUtils';
 import { OAuth2Client } from 'google-auth-library';
 import cookieParser from 'cookie-parser';
+import {
+  readFile, addReview, addBookmark, userExist, addUser, getCookie, getRestaurant,
+} from './dbUtils';
 
-const ipfilter = require('express-ipfilter').IpFilter
+const ipfilter = require('express-ipfilter').IpFilter;
 
-const ips = ['127.0.0.1:3000', '::ffff:127.0.0.1']
+const ips = ['127.0.0.1:3000', '::ffff:127.0.0.1'];
 
 const client = new OAuth2Client(process.env.GOOGLE_ID);
-
 
 require('dotenv').config();
 
 const app = express();
 
 app.use(cookieParser());
-app.use(ipfilter(ips, { mode: 'allow' }))
+app.use(ipfilter(ips, { mode: 'allow' }));
 app.use(bodyParser.json());
 
 app.get('/api/google_id', (req, res) => {
   res.status(200).json(process.env.GOOGLE_ID);
 });
 
-app.get('/api/clear_cookie',(req:express.Request, res:express.Response) => {
+app.get('/api/clear_cookie', (req:express.Request, res:express.Response) => {
   res.clearCookie('user_id');
   res.status(200).json('Cookie cleared');
 });
@@ -38,18 +39,16 @@ app.post('/api/google_id/verify', (req:express.Request, res:express.Response) =>
     });
     const payload = ticket.getPayload();
     // @ts-ignore:
-    const userid = payload['sub'];
+    const userid = payload.sub;
 
     const exists = await userExist(userid, 'sub');
-    if (!exists) {
-      const result = await addUser(payload);
-    }
+    if (!exists) await addUser(payload);
     return getCookie(userid);
-    }
+  }
   verify()
-    .then(response => res.status(200).cookie('user_id', response).json(response))
-    .catch(err => console.error('ERROR:', err));
-})
+    .then((response) => res.status(200).cookie('user_id', response).json(response))
+    .catch((err) => console.error('ERROR:', err));
+});
 
 app.get('/api/checkValidCookie', async (req: express.Request, res: express.Response) => {
   const exists = await userExist(req.cookies.user_id, 'cookie');

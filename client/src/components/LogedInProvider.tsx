@@ -4,7 +4,7 @@ export const LogedInContext = createContext<any>(false);
 
 const LogedInProvider = (props: any) => {
   const [isLogedIn, setisLogedIn] = useState(false);
-
+  const { children } = props;
   return (
     <LogedInContext.Provider
       value={{
@@ -14,7 +14,7 @@ const LogedInProvider = (props: any) => {
         },
       }}
     >
-      {props.children}
+      {children}
     </LogedInContext.Provider>
   );
 };

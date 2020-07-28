@@ -87,17 +87,19 @@ function RestaurantCard(props: any): JSX.Element {
   const { name, categories, location } = restaurant;
   const [visitedOpen, setVisitedOpen] = useState(false);
   const [bookmarkOpen, setBookmarkOpen] = useState(false);
-  const { isLogedIn, updateLogedIn } = useContext(LogedInContext);
+  const { isLogedIn } = useContext(LogedInContext);
   const [googleOpen, setGoogleOpen] = useState(false);
   const [lastClick, setLastClick] = useState('');
 
   const handleVisitedClickOpen = () => {
     setLastClick('Visited');
-    isLogedIn ? setVisitedOpen(true) : setGoogleOpen(true);
+    if (isLogedIn) setVisitedOpen(true);
+    else setGoogleOpen(true);
   };
   const handleBookmarkOpen = () => {
     setLastClick('Bookmark');
-    isLogedIn ? setBookmarkOpen(true) : setGoogleOpen(true);
+    if (isLogedIn) setBookmarkOpen(true);
+    else setGoogleOpen(true);
   };
 
   const handleVisitedClose = () => {
@@ -119,7 +121,7 @@ function RestaurantCard(props: any): JSX.Element {
         handleBookmarkOpen();
       }
     }
-  }, [isLogedIn]);
+  }, [isLogedIn]); // eslint-disable-line
 
   function saveToVisited(stars: number, review: string) {
     fetch('/api/users/reviews', {

@@ -334,6 +334,83 @@
         "review": "Great\n",
         "stars": 5
       }
+    },
+    {
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "id": "b1a23bd1-ecbd-4a38-add8-aab525c62677",
+      "date": "2020-07-28T17:05:56.252Z",
+      "restaurant": {
+        "id": "4c19f2f9838020a17270e661",
+        "name": "Orangeriet",
+        "location": {
+          "address": "Norr Mälarstrand Kajplats 464",
+          "city": "Stockholm",
+          "lat": 59.32644673376238,
+          "lng": 18.04396431329224,
+          "postalCode": "112 20",
+          "country": "Sweden",
+          "neighborhood": "Kungsholmen"
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d110941735",
+          "categoryName": "Italian Restaurant"
+        }
+      },
+      "review": {
+        "review": "Great",
+        "stars": 4
+      }
+    },
+    {
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "id": "c7c0e615-b56c-4e43-9647-3cb93b6e7207",
+      "date": "2020-07-28T17:06:16.034Z",
+      "restaurant": {
+        "id": "4b025696f964a520614822e3",
+        "name": "Johan & Nyström",
+        "location": {
+          "address": "Swedenborgsgatan 7",
+          "city": "Stockholm",
+          "lat": 59.316273,
+          "lng": 18.064016,
+          "postalCode": "118 48",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d1e0931735",
+          "categoryName": "Coffee Shop"
+        }
+      },
+      "review": {
+        "review": "OK",
+        "stars": 2
+      }
+    },
+    {
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "id": "ba7342d8-b321-4fc2-82a4-49a3633832f8",
+      "date": "2020-07-28T17:07:31.589Z",
+      "restaurant": {
+        "id": "54b67a81498ecfc4ba73cd88",
+        "name": "Omnipollos hatt",
+        "location": {
+          "address": "Hökens Gata 3",
+          "city": "Stockholm",
+          "lat": 59.31800515272984,
+          "lng": 18.072142905395634,
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "56aa371ce4b08b9a8d57356c",
+          "categoryName": "Beer Bar"
+        }
+      },
+      "review": {
+        "review": "",
+        "stars": 0.5
+      }
     }
   ]
 }

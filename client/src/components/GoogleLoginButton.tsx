@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { LogedInContext } from './LogedInProvider';
-// const GoogleLoginButton = (props:{setislogedIn:React.Dispatch<React.SetStateAction<boolean>>}) => {
+
+function GoogleLoginButton() {
   const [CLIENT_ID, SET_CLIENT_ID] = useState('');
   const [token, setToken] = useState(null);
   const { isLogedIn, updateLogedIn } = useContext(LogedInContext);
-  // const [islogedIn, setislogedIn] = logedIn;
+
   const getClientId = () => {
     fetch('/api/google_id')
       .then((res) => res.json())
@@ -28,17 +29,17 @@ import { LogedInContext } from './LogedInProvider';
     fetch('/api/google_id/verify', options)
       .then((res) => res.json())
       .then((msg) => console.log(msg));
-  }, [token]);;
-;
+  }, [token]);
+
   const login = (response: any) => {
-    if (response.response: any
+    if (response.tokenId) {
       updateLogedIn(true);
       setToken(response.tokenId);
-      console.log('LOGIN:', isLog
+    }
   };
-;
-  const logout = (response: any) => {
-    updateLogedIn(response: any
+
+  const logout = (_response: any) => {
+    updateLogedIn(false);
     setToken(null);
     fetch('/api/clear_cookie')
       .then((res) => res.json())
@@ -46,20 +47,20 @@ import { LogedInContext } from './LogedInProvider';
       .catch((err) => console.error(err));
   };
 
-  const handleLoginFailure = (response: any) => {
+  const handleLoginFailure = (_response: any) => {
     alert('Failed to log in');
   };
 
-  const handleLogoutFailure = (response: any) => {
+  const handleLogoutFailure = (_response: any) => {
     alert('Failed to log out');
   };
 
   return (
     <div>
-      {CLIENT_ID !== ''
+      {CLIENT_ID !== '' // eslint-disable-line
         ? isLogedIn
-          // @ts-ignore:
           ? (
+          // @ts-ignore:
             <GoogleLogout
               clientId={CLIENT_ID}
               buttonText="Logout"
@@ -79,8 +80,7 @@ import { LogedInContext } from './LogedInProvider';
             />
           )
         : ''}
-      {/* {token ? <h5>Your Access Token: <br /><br /> {token}</h5> : null} */}
     </div>
   );
-};
+}
 export default GoogleLoginButton;

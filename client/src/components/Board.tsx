@@ -29,9 +29,6 @@ function Board(): JSX.Element {
 
   return (
     <section>
-      <Grid container justify="center">
-        <h1>Board</h1>
-      </Grid>
       <Grid container justify="space-evenly">
         {!searchresults ? null : renderCards()}
       </Grid>

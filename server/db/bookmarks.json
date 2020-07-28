@@ -181,6 +181,52 @@
         }
       },
       "comment": "roligt namn"
+    },
+    {
+      "cookie": "cf60cd43-1d1c-4fe8-ad99-5da5d7c2a6fb",
+      "id": "e340f6bd-abe2-4262-914b-4a3db564975f",
+      "date": "2020-07-28T17:05:44.025Z",
+      "restaurant": {
+        "id": "5dd91a1f15b2280008674fd4",
+        "name": "Stigbergets Fot",
+        "location": {
+          "address": "Götgatan 5",
+          "city": "Stockholm",
+          "lat": 59.3184594862526,
+          "lng": 18.071313500404358,
+          "postalCode": "116 46",
+          "country": "Sweden",
+          "neighborhood": "Östra Katarina"
+        },
+        "categories": {
+          "categoryId": "56aa371ce4b08b9a8d57356c",
+          "categoryName": "Beer Bar"
+        }
+      },
+      "comment": "cxc"
+    },
+    {
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "id": "961e66e4-cbf7-40ab-9c81-7d452a9bac82",
+      "date": "2020-07-28T17:06:23.625Z",
+      "restaurant": {
+        "id": "4b025696f964a520614822e3",
+        "name": "Johan & Nyström",
+        "location": {
+          "address": "Swedenborgsgatan 7",
+          "city": "Stockholm",
+          "lat": 59.316273,
+          "lng": 18.064016,
+          "postalCode": "118 48",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d1e0931735",
+          "categoryName": "Coffee Shop"
+        }
+      },
+      "comment": "jfskldfjlskf"
     }
   ]
 }

@@ -21,22 +21,22 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 export default function Dashboard() {
   const [reviews, setReviews] = useState([]);
   const [bookmarks, setBookmarks] = useState([]);
-  const { isLogedIn, updateLogedIn } = useContext(LogedInContext);
-  useEffect(() => {
-    getSavedData();
-  }, []);
+  const { isLogedIn } = useContext(LogedInContext);
+  const classes = useStyles();
 
   function getSavedData() {
     fetch('/api/users/reviews')
       .then((res) => res.json())
-      .then((reviews) => setReviews(reviews));
+      .then((data) => setReviews(data));
 
     fetch('/api/users/bookmarks')
       .then((res) => res.json())
-      .then((bookmarks) => setBookmarks(bookmarks));
+      .then((data) => setBookmarks(data));
   }
 
-  const classes = useStyles();
+  useEffect(() => {
+    getSavedData();
+  }, []);
 
   interface IdatabaseData {
     cookie: string;
@@ -75,7 +75,9 @@ export default function Dashboard() {
                 <Typography className={classes.heading}>Reviews</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                {reviews.map((review: IdatabaseData) => <AccordionCard key={review.id} data={review} />)}
+                {reviews.map((review: IdatabaseData) => (
+                  <AccordionCard key={review.id} data={review} />
+                ))}
               </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -87,7 +89,9 @@ export default function Dashboard() {
                 <Typography className={classes.heading}>Bookmarks</Typography>
               </AccordionSummary>
               <AccordionDetails>
-                {bookmarks.map((bookmark: IdatabaseData) => <AccordionCard key={bookmark.id} data={bookmark} />)}
+                {bookmarks.map((bookmark: IdatabaseData) => (
+                  <AccordionCard key={bookmark.id} data={bookmark} />
+                ))}
               </AccordionDetails>
             </Accordion>
           </>
