@@ -411,6 +411,32 @@
         "review": "",
         "stars": 0.5
       }
+    },
+    {
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "id": "3c22f110-5791-4dd3-9738-bf6a9115b0dd",
+      "date": "2020-07-28T18:52:16.349Z",
+      "restaurant": {
+        "id": "5f0c5ffd67564371a926b384",
+        "name": "Stråket 117",
+        "location": {
+          "address": "Råsundavägen 117",
+          "city": "Solna",
+          "lat": 59.364943,
+          "lng": 17.994047,
+          "postalCode": "169 50",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d1c9941735",
+          "categoryName": "Ice Cream Shop"
+        }
+      },
+      "review": {
+        "review": "Excellent ice cream!",
+        "stars": 5
+      }
     }
   ]
 }

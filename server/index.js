@@ -54,9 +54,9 @@ var express_1 = __importDefault(require("express"));
 var https_1 = __importDefault(require("https"));
 var fs_1 = __importDefault(require("fs"));
 var body_parser_1 = __importDefault(require("body-parser"));
-var dbUtils_1 = require("./dbUtils");
 var google_auth_library_1 = require("google-auth-library");
 var cookie_parser_1 = __importDefault(require("cookie-parser"));
+var dbUtils_1 = require("./dbUtils");
 var ipfilter = require('express-ipfilter').IpFilter;
 var ips = ['127.0.0.1:3000', '::ffff:127.0.0.1'];
 var client = new google_auth_library_1.OAuth2Client(process.env.GOOGLE_ID);
@@ -75,7 +75,7 @@ app.get('/api/clear_cookie', function (req, res) {
 app.post('/api/google_id/verify', function (req, res) {
     function verify() {
         return __awaiter(this, void 0, void 0, function () {
-            var ticket, payload, userid, exists, result;
+            var ticket, payload, userid, exists;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, client.verifyIdToken({
@@ -85,14 +85,14 @@ app.post('/api/google_id/verify', function (req, res) {
                     case 1:
                         ticket = _a.sent();
                         payload = ticket.getPayload();
-                        userid = payload['sub'];
+                        userid = payload.sub;
                         return [4 /*yield*/, dbUtils_1.userExist(userid, 'sub')];
                     case 2:
                         exists = _a.sent();
                         if (!!exists) return [3 /*break*/, 4];
                         return [4 /*yield*/, dbUtils_1.addUser(payload)];
                     case 3:
-                        result = _a.sent();
+                        _a.sent();
                         _a.label = 4;
                     case 4: return [2 /*return*/, dbUtils_1.getCookie(userid)];
                 }

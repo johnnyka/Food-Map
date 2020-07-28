@@ -107,7 +107,10 @@ function addUser(userInfo) {
                     db = _a.sent();
                     parsedDb = JSON.parse(db);
                     sub = userInfo.sub, email = userInfo.email, given_name = userInfo.given_name, family_name = userInfo.family_name, picture = userInfo.picture;
-                    parsedDb.users = __spreadArrays(parsedDb.users, [{ cookie: uuidv4_1.uuid(), sub: sub, email: email, given_name: given_name, family_name: family_name, picture: picture }]);
+                    parsedDb.users = __spreadArrays(parsedDb.users, [{
+                            cookie: uuidv4_1.uuid(),
+                            sub: sub, email: email, given_name: given_name, family_name: family_name, picture: picture,
+                        }]);
                     return [4 /*yield*/, saveToFile('./db/users.json', JSON.stringify(parsedDb, null, 2))];
                 case 2:
                     _a.sent();
@@ -126,7 +129,7 @@ function userExist(identifier, searchType) {
                 case 1:
                     users = _a.sent();
                     parsedUsers = JSON.parse(users);
-                    return [2 /*return*/, parsedUsers.users.find(function (user) { return user[searchType] === identifier; }) === undefined ? false : true];
+                    return [2 /*return*/, parsedUsers.users.find(function (user) { return user[searchType] === identifier; }) !== undefined];
             }
         });
     });
