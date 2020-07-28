@@ -1,45 +1,5 @@
-import express from 'express';
-import readFile from './dbUtils';
-import {scraping} from './WebScraping'
-require('dotenv').config();
-
-const app = express();
-
-
-app.get('/api/nearby', async (req: express.Request, res: express.Response) => {
-  let data = '';
-  // const query = req.query.ll;
-  if (process.env.NODE_ENV === 'production') {
-    return; //  Make api call
-  }
-  data = await readFile('../mock_db/hornsgatan.json');
-
-  res.status(200).send(data);
-});
-
-app.get('/api/se/cities', async (req: express.Request, res: express.Response) => {
-  const data: string = await readFile('./cities_SE.json');
-
-  res.status(200).send(data);
-});
-app.get('/api/nearby/:city', async (req: express.Request, res: express.Response) => {
-  // const { city } = req.params;
-  let data = '';
-  let addedPicture:any = '';
-  if (process.env.NODE_ENV === 'production') {
-    // fetch(`https://api.foursquare.com/v2/venues/search?near=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259`)
-  } else {
-    data = await readFile('../mock_db/stockholm.json');
-    addedPicture = await getPictures(data);
-  }
-  res.status(200).json(addedPicture);
-});
-
-// https://api.foursquare.com/v2/venues/search?nar=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259
-
-app.listen(8080, () => {
-  console.log('listening on port 8080');
-});
+import puppeteer from 'puppeteer';
+import encodeUrl from 'encodeurl';
 
 async function getPictures(data: any): Promise<Object> {
   const { response } = JSON.parse(data);
@@ -53,7 +13,7 @@ async function getPictures(data: any): Promise<Object> {
   return await {response:{venues: addedPictures}};
 }
 
-/* async function scraping(name: string, city: string): Promise<string> {
+export async function scraping(name: string, city: string): Promise<string> {
   let imageUrl: any;
   const browser = await puppeteer.launch({
     args: [
@@ -87,6 +47,4 @@ async function getPictures(data: any): Promise<Object> {
     await page.close();
     return imageUrl;
   }
-
-} */
-export default app;
+}

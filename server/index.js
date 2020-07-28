@@ -2,9 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const tslib_1 = require("tslib");
 const express_1 = tslib_1.__importDefault(require("express"));
-const puppeteer_1 = tslib_1.__importDefault(require("puppeteer"));
 const dbUtils_1 = tslib_1.__importDefault(require("./dbUtils"));
-const encodeurl_1 = tslib_1.__importDefault(require("encodeurl"));
+const WebScraping_1 = require("./WebScraping");
 require('dotenv').config();
 const app = express_1.default();
 app.get('/api/nearby', async (req, res) => {
@@ -43,47 +42,45 @@ async function getPictures(data) {
     const addedPictures = await Promise.all(response.venues.map(async (restaurant) => {
         const name = restaurant.name;
         const city = restaurant.location.city;
-        const imgageURL = await scraping(name, city);
+        const imgageURL = await WebScraping_1.scraping(name, city);
         return { ...restaurant, imgageURL };
     }));
     return await { response: { venues: addedPictures } };
 }
-async function scraping(name, city) {
-    let imageUrl;
-    const browser = await puppeteer_1.default.launch({
-        args: [
-            '--disable-gl-drawing-for-tests',
-            '--use-gl=desktop',
-            '--no-sandbox',
-        ]
+/* async function scraping(name: string, city: string): Promise<string> {
+  let imageUrl: any;
+  const browser = await puppeteer.launch({
+    args: [
+      '--disable-gl-drawing-for-tests',
+      '--use-gl=desktop',
+      '--no-sandbox',
+    ]
+  });
+  const page = await browser.newPage();
+  const encodedName = encodeUrl(name);
+  const pageURL = `https://www.google.com/search?q=${encodedName}+${city}&source=lnms&tbm=isch`
+  try {
+    await page.setRequestInterception(true);
+    const ignoreResourceTypes = ['stylesheet', 'media', 'font', 'script', 'texttrack', 'xhr', 'fetch', 'eventsource', 'websocket', 'manifest']
+    page.on('request', request => {
+      if (ignoreResourceTypes.some(type => type === request.resourceType()))
+        request.abort();
+      else
+        request.continue();
     });
-    const page = await browser.newPage();
-    const encodedName = encodeurl_1.default(name);
-    console.log('!!!', encodedName);
-    const pageURL = `https://www.google.com/search?q=${encodedName}+${city}&source=lnms&tbm=isch`;
-    try {
-        await page.setRequestInterception(true);
-        page.on('request', request => {
-            if (request.resourceType() === 'stylesheet'
-                || request.resourceType() === 'script')
-                request.abort();
-            else
-                request.continue();
-        });
-        await page.goto(pageURL, { waitUntil: 'networkidle2' });
-        //await page.waitForSelector('.sMi44c lNHeqe');
-        const selector = '#islrg > div.islrc > div:nth-child(5) > a.wXeWr.islib.nfEiy.mM5pbd > div.bRMDJf.islir > img';
-        imageUrl = await page.evaluate((sel) => {
-            return document.querySelector(sel).getAttribute('src');
-        }, selector);
-        return imageUrl;
-    }
-    catch (err) {
-        console.log(`failed to open the page: ${pageURL} with the error: ${err}`);
-    }
-    finally {
-        await page.close();
-        return imageUrl;
-    }
-}
+    await page.goto(pageURL, { waitUntil: 'networkidle2' });
+    const selector = '#islrg > div.islrc > div:nth-child(5) > a.wXeWr.islib.nfEiy.mM5pbd > div.bRMDJf.islir > img'
+    imageUrl = await page.evaluate((sel) => {
+      return document.querySelector(sel).getAttribute('src');
+    },selector);
+    return imageUrl;
+  
+  } catch (err) {
+    console.log(`failed to open the page: ${pageURL} with the error: ${err}`);
+  } finally {
+    await page.close();
+    return imageUrl;
+  }
+
+} */
 exports.default = app;
