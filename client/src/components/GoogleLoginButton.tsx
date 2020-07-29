@@ -38,7 +38,6 @@ function GoogleLoginButton() {
   }, []);
 
   useEffect(() => {
-    const something = async () => {
       if (!token) return;
       const options = {
         method: 'POST',
@@ -47,15 +46,14 @@ function GoogleLoginButton() {
         },
         body: JSON.stringify({ token }),
       };
-      await fetch('/api/google_id/verify', options)
+    fetch('/api/google_id/verify', options)
         .then((res) => res.json())
         .then((msg) => console.log(msg));
       if (isLogedIn) {
         getUserPicture();
       }
     }
-    something();
-  }, [token, isLogedIn]);
+  , [token, isLogedIn]);
 
 
   useEffect(() => {
@@ -115,7 +113,7 @@ function GoogleLoginButton() {
         clientId={CLIENT_ID}
         render={renderProps => (
           <IconButton onClick={renderProps.onClick} disabled={renderProps.disabled} className={classes.iconBtn}>
-            <Avatar src={userPicture} className={classes.picture} />
+            <Avatar src={userPicture} className={classes.picture} onClick={logout}/>
           </IconButton>
         )}
         buttonText="Logout"

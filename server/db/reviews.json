@@ -463,6 +463,57 @@
         "review": "",
         "stars": 4
       }
+    },
+    {
+      "cookie": "a88b159c-e2aa-4dfa-8228-c29124e58164",
+      "id": "48b1b6d0-7310-4e2f-a38d-ea3b29e37d26",
+      "date": "2020-07-29T16:41:58.811Z",
+      "restaurant": {
+        "id": "4bdadc902a3a0f471547acb6",
+        "name": "Vintervikens Trädgårdskafé",
+        "location": {
+          "address": "Vinterviksvägen 30",
+          "city": "Stockholm",
+          "lat": 59.311146,
+          "lng": 17.999018,
+          "postalCode": "117 65",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d16d941735",
+          "categoryName": "Café"
+        }
+      },
+      "review": {
+        "review": "superb!",
+        "stars": 5
+      }
+    },
+    {
+      "cookie": "a88b159c-e2aa-4dfa-8228-c29124e58164",
+      "id": "f41f421c-b3d1-47cf-a327-141f10a5fd26",
+      "date": "2020-07-29T16:50:34.844Z",
+      "restaurant": {
+        "id": "4bc5ea99424195219f39031d",
+        "name": "Carlhälls Gård",
+        "location": {
+          "address": "Långholmen",
+          "city": "Stockholm",
+          "lat": 59.32183215989309,
+          "lng": 18.017308028934774,
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d171941735",
+          "categoryName": "Event Space"
+        }
+      },
+      "review": {
+        "review": "",
+        "stars": 4.5
+      }
     }
   ]
 }

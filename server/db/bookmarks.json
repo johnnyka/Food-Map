@@ -227,6 +227,97 @@
         }
       },
       "comment": "jfskldfjlskf"
+    },
+    {
+      "cookie": "a88b159c-e2aa-4dfa-8228-c29124e58164",
+      "id": "68fade54-e0ff-4f40-ac41-c8fcb7854185",
+      "date": "2020-07-29T16:43:39.591Z",
+      "restaurant": {
+        "id": "5f0c5ffd67564371a926b384",
+        "name": "Stråket 117",
+        "location": {
+          "address": "Råsundavägen 117",
+          "city": "Solna",
+          "lat": 59.364943,
+          "lng": 17.994047,
+          "postalCode": "169 50",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d1c9941735",
+          "categoryName": "Ice Cream Shop"
+        }
+      },
+      "comment": "testing"
+    },
+    {
+      "cookie": "a88b159c-e2aa-4dfa-8228-c29124e58164",
+      "id": "99a6a7e4-3d00-421e-8586-31aff02cdef8",
+      "date": "2020-07-29T16:45:27.086Z",
+      "restaurant": {
+        "id": "5b6dbc356bdee6002c7e205e",
+        "name": "Deniz Place",
+        "location": {
+          "address": "Blockvägen 15",
+          "city": "Botkyrka",
+          "lat": 59.189434,
+          "lng": 17.830875,
+          "postalCode": "147 54",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d151941735",
+          "categoryName": "Taco Place"
+        }
+      },
+      "comment": ""
+    },
+    {
+      "cookie": "a88b159c-e2aa-4dfa-8228-c29124e58164",
+      "id": "556d2f75-8706-4ab5-a18b-dc1a8114a23f",
+      "date": "2020-07-29T16:50:40.953Z",
+      "restaurant": {
+        "id": "4adcdaf2f964a5201e5c21e3",
+        "name": "Hötorgshallen",
+        "location": {
+          "address": "Hötorget",
+          "city": "Stockholm",
+          "lat": 59.334496037778216,
+          "lng": 18.062354560230855,
+          "postalCode": "111 57",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d1fa941735",
+          "categoryName": "Farmers Market"
+        }
+      },
+      "comment": ""
+    },
+    {
+      "cookie": "a88b159c-e2aa-4dfa-8228-c29124e58164",
+      "id": "527a485c-de62-4038-928b-e243faa8588b",
+      "date": "2020-07-29T16:50:44.531Z",
+      "restaurant": {
+        "id": "4bc5ea99424195219f39031d",
+        "name": "Carlhälls Gård",
+        "location": {
+          "address": "Långholmen",
+          "city": "Stockholm",
+          "lat": 59.32183215989309,
+          "lng": 18.017308028934774,
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d171941735",
+          "categoryName": "Event Space"
+        }
+      },
+      "comment": ""
     }
   ]
 }
