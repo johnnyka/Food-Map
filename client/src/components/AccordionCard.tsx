@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Theme, createStyles, makeStyles,
 } from '@material-ui/core/styles';
@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import Rating from '@material-ui/lab/Rating';
+import { IconButton } from '@material-ui/core';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -34,6 +36,13 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   cityText: {
     padding: '0 1rem 1rem',
+  },
+  removeBtn: {
+    height: 'fit-content',
+    color: 'lightgrey',
+    '&:hover': {
+      color: 'black',
+    },
   },
 }));
 
@@ -65,14 +74,34 @@ interface IdatabaseData {
   comment?: string;
 }
 
-export default function AccordionCard(props: { data: IdatabaseData }) {
+function AccordionCard(props: { data: IdatabaseData, updateDashboard: any }): JSX.Element {
   const classes = useStyles();
-  const { data } = props;
-  const { restaurant, review, comment } = data;
+  const { data, updateDashboard } = props;
+  const {
+    restaurant, review, comment, id,
+  } = data;
   const { neighborhood, city } = restaurant.location;
+
+  const [type, setType] = useState<string>('');
+
+  useEffect(() => {
+    if (review) {
+      setType('reviews');
+    } else if (comment) {
+      setType('bookmarks');
+    }
+  }, []);
+
+  async function handleRemove(): Promise<void> {
+    await fetch(`/api/users/${type}/${id}`, { method: 'DELETE' });
+    updateDashboard();
+  }
 
   return (
     <Card className={classes.root}>
+      <IconButton className={classes.removeBtn} aria-label="remove" onClick={handleRemove}>
+        <HighlightOffIcon />
+      </IconButton>
       <div className={classes.details}>
         <CardContent className={classes.content}>
           <Typography component="h5" variant="h5">
@@ -97,3 +126,5 @@ export default function AccordionCard(props: { data: IdatabaseData }) {
     </Card>
   );
 }
+
+export default AccordionCard;

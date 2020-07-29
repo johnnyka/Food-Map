@@ -5,7 +5,6 @@ import { uuid } from 'uuidv4';
 const readFilePromise = util.promisify(fs.readFile);
 export const writeFilePromise = util.promisify(fs.writeFile);
 
-
 export async function readFile(path: string): Promise<string> { return readFilePromise(path, 'utf8'); }
 export async function saveToFile(path: string, data: string): Promise<void> {
   return writeFilePromise(path, data);
@@ -34,16 +33,16 @@ interface IdatabaseData {
   }
 }
 
-export async function getRestaurant(cookie:string, path:string) {
+export async function getRestaurant(cookie: string, path: string) {
   const db = await readFile(`./db/${path}.json`);
   const parsedDb = JSON.parse(db);
   return parsedDb[path].filter((el: IdatabaseData) => el.cookie === cookie);
 }
 
-export async function getCookie(googleId:string):Promise<string> {
+export async function getCookie(googleId: string): Promise<string> {
   const db = await readFile('./db/users.json');
   const parsedDb = JSON.parse(db);
-  const { cookie } = parsedDb.users.find((user:IUser) => user.sub === googleId);
+  const { cookie } = parsedDb.users.find((user: IUser) => user.sub === googleId);
   return cookie;
 }
 
@@ -64,11 +63,11 @@ interface IUser {
   given_name: string;
   family_name: string;
   picture: string;
-  cookie:string;
+  cookie: string;
   email: string;
-  sub:string;
+  sub: string;
 }
-export async function userExist(identifier: string, searchType: 'cookie'|'sub'): Promise<boolean> {
+export async function userExist(identifier: string, searchType: 'cookie' | 'sub'): Promise<boolean> {
   const users = await readFile('./db/users.json');
   const parsedUsers = JSON.parse(users);
   return parsedUsers.users.find((user: IUser) => user[searchType] === identifier) !== undefined;
@@ -151,11 +150,26 @@ export async function addBookmark(data: string): Promise<string> {
   await saveToFile('./db/bookmarks.json', JSON.stringify(updatedBookmarks, null, 2));
   return 'Success';
 }
+
 export async function getUserPicture(cookie: string): Promise<string> {
-  const users = await readFile('./db/users.json')
-  console.log('cookie:', cookie)
-  const picture = JSON.parse(users).users.find((user: IUser) => user.cookie === cookie).picture;
-  console.log('Users:', JSON.parse(users).users.length)
-  console.log('User:', JSON.parse(users).users.find((user: IUser) => user.cookie === cookie))
+  const users = await readFile('./db/users.json');
+  const { picture } = JSON.parse(users).users.find((user: IUser) => user.cookie === cookie);
   return picture;
+}
+
+export async function deleteReviewBookmark(
+  id: string, cookie: string, type: string,
+): Promise<void> {
+  const file = `./db/${type}.json`;
+  const db = await readFile(file);
+  const parsedDb = JSON.parse(db);
+  let updatedDb;
+  if (type === 'reviews') {
+    const updatedData = parsedDb.reviews.filter((review: IdatabaseData) => review.id !== id);
+    updatedDb = { reviews: updatedData };
+  } else if (type === 'bookmarks') {
+    const updatedData = parsedDb.bookmarks.filter((bookmark: IdatabaseData) => bookmark.id !== id);
+    updatedDb = { bookmarks: updatedData };
+  }
+  saveToFile(file, JSON.stringify(updatedDb, null, 2));
 }

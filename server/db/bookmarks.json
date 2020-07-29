@@ -45,29 +45,6 @@
       "comment": "Want to go"
     },
     {
-      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
-      "id": "e69ea3dd-0b2b-47e4-901c-01ce0e6c7230",
-      "date": "2020-07-27T13:28:02.891Z",
-      "restaurant": {
-        "id": "5f0c5d83d2102511cad21759",
-        "name": "Espresso House",
-        "location": {
-          "address": "Järnagatan",
-          "city": "Södertälje",
-          "lat": 59.1947,
-          "lng": 17.627922,
-          "postalCode": "151 72",
-          "country": "Sweden",
-          "neighborhood": null
-        },
-        "categories": {
-          "categoryId": "4bf58dd8d48988d1e0931735",
-          "categoryName": "Coffee Shop"
-        }
-      },
-      "comment": "Cheap."
-    },
-    {
       "cookie": "8df5585c-689c-49b2-976c-e5804d592343",
       "id": "2d6265d7-a52b-4c86-94ed-475ba3bc59ed",
       "date": "2020-07-28T08:50:11.813Z",
@@ -207,26 +184,49 @@
     },
     {
       "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
-      "id": "961e66e4-cbf7-40ab-9c81-7d452a9bac82",
-      "date": "2020-07-28T17:06:23.625Z",
+      "id": "034771cf-d925-4dc3-9bcb-19fcec8338ba",
+      "date": "2020-07-29T19:19:00.910Z",
       "restaurant": {
-        "id": "4b025696f964a520614822e3",
-        "name": "Johan & Nyström",
+        "id": "4adcdaf2f964a5201e5c21e3",
+        "name": "Hötorgshallen",
         "location": {
-          "address": "Swedenborgsgatan 7",
+          "address": "Hötorget",
           "city": "Stockholm",
-          "lat": 59.316273,
-          "lng": 18.064016,
-          "postalCode": "118 48",
+          "lat": 59.334496037778216,
+          "lng": 18.062354560230855,
+          "postalCode": "111 57",
           "country": "Sweden",
           "neighborhood": null
         },
         "categories": {
-          "categoryId": "4bf58dd8d48988d1e0931735",
-          "categoryName": "Coffee Shop"
+          "categoryId": "4bf58dd8d48988d1fa941735",
+          "categoryName": "Farmers Market"
         }
       },
-      "comment": "jfskldfjlskf"
+      "comment": "Wow"
+    },
+    {
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "id": "988ab778-8805-4e70-aec2-9500561a82ac",
+      "date": "2020-07-29T19:28:00.832Z",
+      "restaurant": {
+        "id": "4adcdaf2f964a520105c21e3",
+        "name": "Vete-Katten",
+        "location": {
+          "address": "Kungsgatan 55",
+          "city": "Stockholm",
+          "lat": 59.33417768875955,
+          "lng": 18.05823909702743,
+          "postalCode": "111 22",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d16d941735",
+          "categoryName": "Café"
+        }
+      },
+      "comment": "Oh la la"
     }
   ]
 }

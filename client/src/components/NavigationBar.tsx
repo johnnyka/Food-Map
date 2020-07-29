@@ -7,7 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import GoogleLoginButton from './GoogleLoginButton';
 import Searchbar from './Searchbar';
 import NavigationDrawer from './NavigationDrawer';
-import { LogedInContext } from './LogedInProvider'
+import { LogedInContext } from './LogedInProvider';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   grow: {

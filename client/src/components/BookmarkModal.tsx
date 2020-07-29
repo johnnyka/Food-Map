@@ -45,6 +45,7 @@ export default function BookmarkModal(props: IModal) {
 
         <DialogContent>
           <TextField
+            onKeyPress={(e) => { if (e.key === 'Enter') handleSave(comment); }}
             onChange={(e) => setComment(e.target.value)}
             autoFocus
             margin="dense"

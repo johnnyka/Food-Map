@@ -1,22 +1,20 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import { LogedInContext } from './LogedInProvider';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { IconButton, Avatar } from '@material-ui/core';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { LogedInContext } from './LogedInProvider';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    picture: {
-      width: '2rem',
-      height: 'auto'
-    },
-    iconBtn: {
-      padding: 6
-    }
-  })
-);
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  picture: {
+    width: '2rem',
+    height: 'auto',
+  },
+  iconBtn: {
+    padding: 6,
+  },
+}));
 
 function GoogleLoginButton() {
   const [CLIENT_ID, SET_CLIENT_ID] = useState('');
@@ -53,10 +51,9 @@ function GoogleLoginButton() {
       if (isLogedIn) {
         getUserPicture();
       }
-    }
+    };
     something();
   }, [token, isLogedIn]);
-
 
   useEffect(() => {
     window.addEventListener('resize', () => {
@@ -66,23 +63,21 @@ function GoogleLoginButton() {
       window.removeEventListener('resize', () => {
         setWidth(window.innerWidth);
       });
-    }
+    };
   });
 
-  //useEffect(() => {
-  //console.log('!!!!',isLogedIn);
+  // useEffect(() => {
+  // console.log('!!!!',isLogedIn);
   // if (isLogedIn) {
   //  getUserPicture();
-  //}
-  //}, [isLogedIn])
+  // }
+  // }, [isLogedIn])
 
   const getUserPicture = () => {
     fetch('/api/users/picture')
-      .then(res => res.json())
-      .then(pic => setUserPicture(pic))
-  }
-
-
+      .then((res) => res.json())
+      .then((pic) => setUserPicture(pic));
+  };
 
   const login = (response: any) => {
     if (response.tokenId) {
@@ -110,24 +105,27 @@ function GoogleLoginButton() {
 
   const renderBtn = (): JSX.Element => {
     if (isLogedIn) {
-      // @ts-ignore:
-      return <GoogleLogout
-        clientId={CLIENT_ID}
-        render={renderProps => (
-          <IconButton onClick={renderProps.onClick} disabled={renderProps.disabled} className={classes.iconBtn}>
-            <Avatar src={userPicture} className={classes.picture} />
-          </IconButton>
-        )}
-        buttonText="Logout"
-        onLogoutSuccess={logout}
-        onFailure={handleLogoutFailure}
-      />
-    } else {
-      if (width < 600) {
-        return <GoogleLogin
+      return (
+        // @ts-ignore:
+        <GoogleLogout
+          clientId={CLIENT_ID}
+          render={(renderProps) => (
+            <IconButton onClick={renderProps.onClick} disabled={renderProps.disabled} className={classes.iconBtn}>
+              <Avatar src={userPicture} className={classes.picture} onClick={logout} />
+            </IconButton>
+          )}
+          buttonText="Logout"
+          onLogoutSuccess={logout}
+          onFailure={handleLogoutFailure}
+        />
+      );
+    }
+    if (width < 600) {
+      return (
+        <GoogleLogin
           uxMode="popup"
           clientId={CLIENT_ID}
-          render={renderProps => (
+          render={(renderProps) => (
             <IconButton onClick={renderProps.onClick} disabled={renderProps.disabled} className={classes.iconBtn}>
               <AccountCircleIcon className={classes.picture} />
             </IconButton>
@@ -138,18 +136,19 @@ function GoogleLoginButton() {
           cookiePolicy="single_host_origin"
           responseType="code,token"
         />
-      } else {
-        return <GoogleLogin
-          uxMode="popup"
-          clientId={CLIENT_ID}
-          buttonText="Login"
-          onSuccess={login}
-          onFailure={handleLoginFailure}
-          cookiePolicy="single_host_origin"
-          responseType="code,token"
-        />
-      }
+      );
     }
+    return (
+      <GoogleLogin
+        uxMode="popup"
+        clientId={CLIENT_ID}
+        buttonText="Login"
+        onSuccess={login}
+        onFailure={handleLoginFailure}
+        cookiePolicy="single_host_origin"
+        responseType="code,token"
+      />
+    );
   };
 
   return (

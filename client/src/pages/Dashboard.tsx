@@ -76,7 +76,7 @@ export default function Dashboard() {
               </AccordionSummary>
               <AccordionDetails>
                 {reviews.map((review: IdatabaseData) => (
-                  <AccordionCard key={review.id} data={review} />
+                  <AccordionCard key={review.id} data={review} updateDashboard={getSavedData} />
                 ))}
               </AccordionDetails>
             </Accordion>
@@ -90,7 +90,7 @@ export default function Dashboard() {
               </AccordionSummary>
               <AccordionDetails>
                 {bookmarks.map((bookmark: IdatabaseData) => (
-                  <AccordionCard key={bookmark.id} data={bookmark} />
+                  <AccordionCard key={bookmark.id} data={bookmark} updateDashboard={getSavedData} />
                 ))}
               </AccordionDetails>
             </Accordion>

@@ -60,9 +60,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateDb = void 0;
 // import fs from 'fs';
 // import util from 'util';
-var dbUtils_1 = require("./dbUtils");
 var node_fetch_1 = __importDefault(require("node-fetch"));
 var unsplash_js_1 = __importDefault(require("unsplash-js"));
+var dbUtils_1 = require("./dbUtils");
 require('dotenv').config();
 // @ts-ignore:
 global.fetch = node_fetch_1.default;
@@ -74,15 +74,15 @@ var getPictures = function (path) { return __awaiter(void 0, void 0, void 0, fun
         switch (_a.label) {
             case 0:
                 updatedPath = path.replace(/\s/g, '-');
-                return [4 /*yield*/, unsplash.search.photos(path, 1, 1, { orientation: "landscape" })];
+                return [4 /*yield*/, unsplash.search.photos(path, 1, 1, { orientation: 'landscape' })];
             case 1:
                 response = _a.sent();
                 return [4 /*yield*/, response.json()];
             case 2:
                 json = _a.sent();
-                //const url = `https://api.unsplash.com/photos/?client_id=${process.env.UNSPLASH_ACCESS_KEY}`
-                //const response = await fetch(path);
-                //const json = await response.json();
+                // const url = `https://api.unsplash.com/photos/?client_id=${process.env.UNSPLASH_ACCESS_KEY}`
+                // const response = await fetch(path);
+                // const json = await response.json();
                 return [2 /*return*/, json.results[0].urls.small];
         }
     });
@@ -113,11 +113,11 @@ exports.updateDb = function (json) { return __awaiter(void 0, void 0, void 0, fu
                 obj = {
                     meta: {
                         code: 200,
-                        requestId: "5f18063a5f54b45329b3543d"
+                        requestId: '5f18063a5f54b45329b3543d',
                     },
                     response: {
-                        venues: __spreadArrays(updatedData)
-                    }
+                        venues: __spreadArrays(updatedData),
+                    },
                 };
                 dbUtils_1.saveToFile('../mock_db/stockholm.json', JSON.stringify(obj));
                 return [2 /*return*/];

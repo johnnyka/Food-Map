@@ -47,6 +47,7 @@ export default function VisitedModal(props: IModal) {
         <StarWidget stars={stars} setStars={setStars} />
         <DialogContent>
           <TextField
+            onKeyPress={(e) => { if (e.key === 'Enter') handleSave(stars, review); }}
             onChange={(e) => setReview(e.target.value)}
             autoFocus
             margin="dense"

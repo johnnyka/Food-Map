@@ -76,32 +76,6 @@
       }
     },
     {
-      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
-      "id": "a01bafd3-ee15-493a-a434-ff8de74197aa",
-      "date": "2020-07-27T13:27:52.224Z",
-      "restaurant": {
-        "id": "5f0409d11bb40b7f6a1eb418",
-        "name": "Ön",
-        "location": {
-          "address": "Karlshällsvägen 14",
-          "city": "Stockholm",
-          "lat": 59.321896,
-          "lng": 18.017837,
-          "postalCode": "117 33",
-          "country": "Sweden",
-          "neighborhood": null
-        },
-        "categories": {
-          "categoryId": "4bf58dd8d48988d1c4941735",
-          "categoryName": "Restaurant"
-        }
-      },
-      "review": {
-        "review": "Not so good.",
-        "stars": 1
-      }
-    },
-    {
       "cookie": "cf60cd43-1d1c-4fe8-ad99-5da5d7c2a6fb",
       "id": "180c5ac1-2b2a-44db-9a3c-ea814dd0bc3f",
       "date": "2020-07-27T15:03:03.193Z",
@@ -311,96 +285,19 @@
     },
     {
       "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
-      "id": "eac61eec-a0d2-4e0c-afdc-a948dc9e745a",
-      "date": "2020-07-28T15:31:21.224Z",
+      "id": "6fbbbcf8-c0fe-41c7-bff8-de92f742b887",
+      "date": "2020-07-29T19:17:51.341Z",
       "restaurant": {
-        "id": "4adcdaebf964a520cf5921e3",
-        "name": "Akkurat",
+        "id": "5dd91a1f15b2280008674fd4",
+        "name": "Stigbergets Fot",
         "location": {
-          "address": "Hornsgatan 18",
+          "address": "Götgatan 5",
           "city": "Stockholm",
-          "lat": 59.319809,
-          "lng": 18.06883,
-          "postalCode": "118 20",
+          "lat": 59.3184594862526,
+          "lng": 18.071313500404358,
+          "postalCode": "116 46",
           "country": "Sweden",
-          "neighborhood": "Mariatorget"
-        },
-        "categories": {
-          "categoryId": "4bf58dd8d48988d11b941735",
-          "categoryName": "Pub"
-        }
-      },
-      "review": {
-        "review": "Great\n",
-        "stars": 5
-      }
-    },
-    {
-      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
-      "id": "b1a23bd1-ecbd-4a38-add8-aab525c62677",
-      "date": "2020-07-28T17:05:56.252Z",
-      "restaurant": {
-        "id": "4c19f2f9838020a17270e661",
-        "name": "Orangeriet",
-        "location": {
-          "address": "Norr Mälarstrand Kajplats 464",
-          "city": "Stockholm",
-          "lat": 59.32644673376238,
-          "lng": 18.04396431329224,
-          "postalCode": "112 20",
-          "country": "Sweden",
-          "neighborhood": "Kungsholmen"
-        },
-        "categories": {
-          "categoryId": "4bf58dd8d48988d110941735",
-          "categoryName": "Italian Restaurant"
-        }
-      },
-      "review": {
-        "review": "Great",
-        "stars": 4
-      }
-    },
-    {
-      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
-      "id": "c7c0e615-b56c-4e43-9647-3cb93b6e7207",
-      "date": "2020-07-28T17:06:16.034Z",
-      "restaurant": {
-        "id": "4b025696f964a520614822e3",
-        "name": "Johan & Nyström",
-        "location": {
-          "address": "Swedenborgsgatan 7",
-          "city": "Stockholm",
-          "lat": 59.316273,
-          "lng": 18.064016,
-          "postalCode": "118 48",
-          "country": "Sweden",
-          "neighborhood": null
-        },
-        "categories": {
-          "categoryId": "4bf58dd8d48988d1e0931735",
-          "categoryName": "Coffee Shop"
-        }
-      },
-      "review": {
-        "review": "OK",
-        "stars": 2
-      }
-    },
-    {
-      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
-      "id": "ba7342d8-b321-4fc2-82a4-49a3633832f8",
-      "date": "2020-07-28T17:07:31.589Z",
-      "restaurant": {
-        "id": "54b67a81498ecfc4ba73cd88",
-        "name": "Omnipollos hatt",
-        "location": {
-          "address": "Hökens Gata 3",
-          "city": "Stockholm",
-          "lat": 59.31800515272984,
-          "lng": 18.072142905395634,
-          "country": "Sweden",
-          "neighborhood": null
+          "neighborhood": "Östra Katarina"
         },
         "categories": {
           "categoryId": "56aa371ce4b08b9a8d57356c",
@@ -408,60 +305,33 @@
         }
       },
       "review": {
-        "review": "",
-        "stars": 0.5
+        "review": "Me like.",
+        "stars": 3.5
       }
     },
     {
       "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
-      "id": "3c22f110-5791-4dd3-9738-bf6a9115b0dd",
-      "date": "2020-07-28T18:52:16.349Z",
+      "id": "9d40811d-349d-4391-ad4e-1494466f8858",
+      "date": "2020-07-29T19:18:10.778Z",
       "restaurant": {
-        "id": "5f0c5ffd67564371a926b384",
-        "name": "Stråket 117",
+        "id": "4bc5ea99424195219f39031d",
+        "name": "Carlhälls Gård",
         "location": {
-          "address": "Råsundavägen 117",
-          "city": "Solna",
-          "lat": 59.364943,
-          "lng": 17.994047,
-          "postalCode": "169 50",
-          "country": "Sweden",
-          "neighborhood": null
-        },
-        "categories": {
-          "categoryId": "4bf58dd8d48988d1c9941735",
-          "categoryName": "Ice Cream Shop"
-        }
-      },
-      "review": {
-        "review": "Excellent ice cream!",
-        "stars": 5
-      }
-    },
-    {
-      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
-      "id": "7c8ca00f-05ea-4051-baf0-b0ec9060381f",
-      "date": "2020-07-29T06:47:31.126Z",
-      "restaurant": {
-        "id": "4adcdaf2f964a520105c21e3",
-        "name": "Vete-Katten",
-        "location": {
-          "address": "Kungsgatan 55",
+          "address": "Långholmen",
           "city": "Stockholm",
-          "lat": 59.33417768875955,
-          "lng": 18.05823909702743,
-          "postalCode": "111 22",
+          "lat": 59.32183215989309,
+          "lng": 18.017308028934774,
           "country": "Sweden",
           "neighborhood": null
         },
         "categories": {
-          "categoryId": "4bf58dd8d48988d16d941735",
-          "categoryName": "Café"
+          "categoryId": "4bf58dd8d48988d171941735",
+          "categoryName": "Event Space"
         }
       },
       "review": {
-        "review": "",
-        "stars": 4
+        "review": "Am I in heaven",
+        "stars": 4.5
       }
     }
   ]
