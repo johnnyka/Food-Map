@@ -23,15 +23,21 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     flex: 1,
     minWidth: 200,
     [theme.breakpoints.down('xs')]: {
-      minWidth: 150,
+      minWidth: 105,
     },
   },
   iconButton: {
     padding: 10,
+    [theme.breakpoints.down('xs')]: {
+      padding: 6,
+    },
   },
   divider: {
     height: 28,
     margin: 4,
+    [theme.breakpoints.down('xs')]: {
+      margin: 0,
+    },
   },
 }));
 
@@ -85,8 +91,12 @@ function Searchbar(): JSX.Element {
   function handleSubmit(e: React.FormEvent): void {
     e.preventDefault();
     updateisLoading(true);
-    updateSearchResults(false);
-    searchNearbyRestaurants(searchText, 'city');
+    if (searchText === '') {
+      updateisLoading(false);
+    } else {
+      updateSearchResults(false);
+      searchNearbyRestaurants(searchText, 'city');
+    }
   }
 
   function getGeoLocation(): void {
@@ -110,7 +120,6 @@ function Searchbar(): JSX.Element {
             // eslint-disable-next-line
             {...params}
             className={classes.input}
-            margin="normal"
             placeholder="Search for restaurants"
             fullWidth
             InputProps={{ ...params.InputProps, type: 'search' }}

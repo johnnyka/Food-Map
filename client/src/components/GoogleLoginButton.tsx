@@ -1,11 +1,31 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { LogedInContext } from './LogedInProvider';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { IconButton, Avatar } from '@material-ui/core';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    picture: {
+      width: '2rem',
+      height: 'auto'
+    },
+    iconBtn: {
+      padding: 6
+    }
+  })
+);
 
 function GoogleLoginButton() {
   const [CLIENT_ID, SET_CLIENT_ID] = useState('');
   const [token, setToken] = useState(null);
   const { isLogedIn, updateLogedIn } = useContext(LogedInContext);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [userPicture, setUserPicture] = useState('');
+
+  const classes = useStyles();
 
   const getClientId = () => {
     fetch('/api/google_id')
@@ -18,18 +38,51 @@ function GoogleLoginButton() {
   }, []);
 
   useEffect(() => {
-    if (!token) return;
-    const options = {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({ token }),
-    };
-    fetch('/api/google_id/verify', options)
-      .then((res) => res.json())
-      .then((msg) => console.log(msg));
-  }, [token]);
+    const something = async () => {
+      if (!token) return;
+      const options = {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify({ token }),
+      };
+      await fetch('/api/google_id/verify', options)
+        .then((res) => res.json())
+        .then((msg) => console.log(msg));
+      if (isLogedIn) {
+        getUserPicture();
+      }
+    }
+    something();
+  }, [token, isLogedIn]);
+
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      setWidth(window.innerWidth);
+    });
+    return () => {
+      window.removeEventListener('resize', () => {
+        setWidth(window.innerWidth);
+      });
+    }
+  });
+
+  //useEffect(() => {
+  //console.log('!!!!',isLogedIn);
+  // if (isLogedIn) {
+  //  getUserPicture();
+  //}
+  //}, [isLogedIn])
+
+  const getUserPicture = () => {
+    fetch('/api/users/picture')
+      .then(res => res.json())
+      .then(pic => setUserPicture(pic))
+  }
+
+
 
   const login = (response: any) => {
     if (response.tokenId) {
@@ -55,31 +108,53 @@ function GoogleLoginButton() {
     alert('Failed to log out');
   };
 
-  return (
-    <div>
-      {CLIENT_ID !== '' // eslint-disable-line
-        ? isLogedIn
-          ? (
-          // @ts-ignore:
-            <GoogleLogout
-              clientId={CLIENT_ID}
-              buttonText="Logout"
-              onLogoutSuccess={logout}
-              onFailure={handleLogoutFailure}
-            />
-          ) : (
-            <GoogleLogin
+  const renderBtn = (): JSX.Element => {
+    if (isLogedIn) {
+      // @ts-ignore:
+      return <GoogleLogout
+        clientId={CLIENT_ID}
+        render={renderProps => (
+          <IconButton onClick={renderProps.onClick} disabled={renderProps.disabled} className={classes.iconBtn}>
+            <Avatar src={userPicture} className={classes.picture} />
+          </IconButton>
+        )}
+        buttonText="Logout"
+        onLogoutSuccess={logout}
+        onFailure={handleLogoutFailure}
+      />
+    } else {
+      if (width < 600) {
+        return <GoogleLogin
+          uxMode="popup"
+          clientId={CLIENT_ID}
+          render={renderProps => (
+            <IconButton onClick={renderProps.onClick} disabled={renderProps.disabled} className={classes.iconBtn}>
+              <AccountCircleIcon className={classes.picture} />
+            </IconButton>
+          )}
+          buttonText="Login"
+          onSuccess={login}
+          onFailure={handleLoginFailure}
+          cookiePolicy="single_host_origin"
+          responseType="code,token"
+        />
+      } else {
+        return <GoogleLogin
+          uxMode="popup"
+          clientId={CLIENT_ID}
+          buttonText="Login"
+          onSuccess={login}
+          onFailure={handleLoginFailure}
+          cookiePolicy="single_host_origin"
+          responseType="code,token"
+        />
+      }
+    }
+  };
 
-              uxMode="popup"
-              clientId={CLIENT_ID}
-              buttonText="Login"
-              onSuccess={login}
-              onFailure={handleLoginFailure}
-              cookiePolicy="single_host_origin"
-              responseType="code,token"
-            />
-          )
-        : ''}
+  return (
+    <div id="LoginBtn">
+      {CLIENT_ID !== '' ? renderBtn() : ''}
     </div>
   );
 }

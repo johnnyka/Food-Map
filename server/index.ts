@@ -5,8 +5,9 @@ import bodyParser from 'body-parser';
 import { OAuth2Client } from 'google-auth-library';
 import cookieParser from 'cookie-parser';
 import {
-  readFile, addReview, addBookmark, userExist, addUser, getCookie, getRestaurant,
+  readFile, addReview, addBookmark, userExist, addUser, getCookie, getRestaurant, getUserPicture
 } from './dbUtils';
+import { updateDb } from './utils';
 
 const ipfilter = require('express-ipfilter').IpFilter;
 
@@ -24,6 +25,12 @@ app.use(bodyParser.json());
 
 app.get('/api/google_id', (req, res) => {
   res.status(200).json(process.env.GOOGLE_ID);
+});
+
+app.get('/api/users/picture', async (req, res)=> {
+  const cookie = req.cookies.user_id;
+  const userPicture = await getUserPicture(cookie);
+  res.status(200).json(userPicture)
 });
 
 app.get('/api/clear_cookie', (req:express.Request, res:express.Response) => {
@@ -71,6 +78,7 @@ app.get('/api/se/cities', async (req: express.Request, res: express.Response) =>
 
   res.status(200).send(data);
 });
+
 app.get('/api/nearby/:city', async (req: express.Request, res: express.Response) => {
   // const { city } = req.params;
   let data = '';
@@ -78,6 +86,11 @@ app.get('/api/nearby/:city', async (req: express.Request, res: express.Response)
     // fetch(`https://api.foursquare.com/v2/venues/search?near=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259`)
   } else {
     data = await readFile('../mock_db/stockholm.json');
+    //const temp = await updateDb(data); 
+    /** resuse for api or make an  obj, specified restaurang category
+     * if category exist in that obj, no new fetch to unsplash, 
+     * does not exist fetch that picture with query of categories type resturant 
+     * */
   }
   res.status(200).send(data);
 });

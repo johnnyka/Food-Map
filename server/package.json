@@ -18,7 +18,9 @@
   "devDependencies": {
     "@types/express": "^4.17.7",
     "@types/jest": "^26.0.5",
+    "@types/node-fetch": "^2.5.7",
     "@types/supertest": "^2.0.10",
+    "@types/unsplash-js": "^6.0.1",
     "@typescript-eslint/eslint-plugin": "^3.7.0",
     "eslint": "^7.5.0",
     "eslint-config-airbnb": "^18.2.0",
@@ -42,6 +44,8 @@
     "express": "^4.17.1",
     "express-ipfilter": "^1.1.2",
     "google-auth-library": "^6.0.5",
+    "node-fetch": "^2.6.0",
+    "unsplash-js": "^6.0.0",
     "uuidv4": "^6.2.0"
   }
 }

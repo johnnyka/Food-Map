@@ -46,25 +46,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addBookmark = exports.addReview = exports.userExist = exports.addUser = exports.getCookie = exports.getRestaurant = exports.readFile = void 0;
+exports.getUserPicture = exports.addBookmark = exports.addReview = exports.userExist = exports.addUser = exports.getCookie = exports.getRestaurant = exports.saveToFile = exports.readFile = exports.writeFilePromise = void 0;
 var fs_1 = __importDefault(require("fs"));
 var util_1 = __importDefault(require("util"));
 var uuidv4_1 = require("uuidv4");
 var readFilePromise = util_1.default.promisify(fs_1.default.readFile);
+exports.writeFilePromise = util_1.default.promisify(fs_1.default.writeFile);
 function readFile(path) {
     return __awaiter(this, void 0, void 0, function () { return __generator(this, function (_a) {
         return [2 /*return*/, readFilePromise(path, 'utf8')];
     }); });
 }
 exports.readFile = readFile;
-var writeFilePromise = util_1.default.promisify(fs_1.default.writeFile);
 function saveToFile(path, data) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            return [2 /*return*/, writeFilePromise(path, data)];
+            return [2 /*return*/, exports.writeFilePromise(path, data)];
         });
     });
 }
+exports.saveToFile = saveToFile;
 function getRestaurant(cookie, path) {
     return __awaiter(this, void 0, void 0, function () {
         var db, parsedDb;
@@ -90,7 +91,6 @@ function getCookie(googleId) {
                     db = _a.sent();
                     parsedDb = JSON.parse(db);
                     cookie = parsedDb.users.find(function (user) { return user.sub === googleId; }).cookie;
-                    console.log('Cookie:', cookie);
                     return [2 /*return*/, cookie];
             }
         });
@@ -226,3 +226,21 @@ function addBookmark(data) {
     });
 }
 exports.addBookmark = addBookmark;
+function getUserPicture(cookie) {
+    return __awaiter(this, void 0, void 0, function () {
+        var users, picture;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, readFile('./db/users.json')];
+                case 1:
+                    users = _a.sent();
+                    console.log('cookie:', cookie);
+                    picture = JSON.parse(users).users.find(function (user) { return user.cookie === cookie; }).picture;
+                    console.log('Users:', JSON.parse(users).users.length);
+                    console.log('User:', JSON.parse(users).users.find(function (user) { return user.cookie === cookie; }));
+                    return [2 /*return*/, picture];
+            }
+        });
+    });
+}
+exports.getUserPicture = getUserPicture;

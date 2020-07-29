@@ -3,11 +3,11 @@ import util from 'util';
 import { uuid } from 'uuidv4';
 
 const readFilePromise = util.promisify(fs.readFile);
+export const writeFilePromise = util.promisify(fs.writeFile);
+
+
 export async function readFile(path: string): Promise<string> { return readFilePromise(path, 'utf8'); }
-
-const writeFilePromise = util.promisify(fs.writeFile);
-
-async function saveToFile(path: string, data: string): Promise<void> {
+export async function saveToFile(path: string, data: string): Promise<void> {
   return writeFilePromise(path, data);
 }
 
@@ -25,7 +25,7 @@ interface IdatabaseData {
       lng: number;
       postalCode: string;
       country: string;
-      neighborrhood: string;
+      neighborhood: string;
     }
     categories: {
       categoryId: string;
@@ -44,7 +44,6 @@ export async function getCookie(googleId:string):Promise<string> {
   const db = await readFile('./db/users.json');
   const parsedDb = JSON.parse(db);
   const { cookie } = parsedDb.users.find((user:IUser) => user.sub === googleId);
-  console.log('Cookie:', cookie);
   return cookie;
 }
 
@@ -151,4 +150,12 @@ export async function addBookmark(data: string): Promise<string> {
   updatedBookmarks.bookmarks.push(validatedBookmark);
   await saveToFile('./db/bookmarks.json', JSON.stringify(updatedBookmarks, null, 2));
   return 'Success';
+}
+export async function getUserPicture(cookie: string): Promise<string> {
+  const users = await readFile('./db/users.json')
+  console.log('cookie:', cookie)
+  const picture = JSON.parse(users).users.find((user: IUser) => user.cookie === cookie).picture;
+  console.log('Users:', JSON.parse(users).users.length)
+  console.log('User:', JSON.parse(users).users.find((user: IUser) => user.cookie === cookie))
+  return picture;
 }

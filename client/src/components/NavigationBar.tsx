@@ -7,6 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import GoogleLoginButton from './GoogleLoginButton';
 import Searchbar from './Searchbar';
 import NavigationDrawer from './NavigationDrawer';
+import { LogedInContext } from './LogedInProvider'
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   grow: {
@@ -64,6 +65,13 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 export default function NavigationBar() {
   const classes = useStyles();
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+  const { updateLogedIn } = useContext(LogedInContext);
+
+  useEffect(() => {
+    fetch('/api/checkValidCookie')
+      .then((res) => res.json())
+      .then((res) => updateLogedIn(res.exists));
+  }, []); // eslint-disable-line
 
   const toggleDrawer = (open: boolean) => (
     event: React.KeyboardEvent | React.MouseEvent,

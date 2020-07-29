@@ -57,6 +57,7 @@ var body_parser_1 = __importDefault(require("body-parser"));
 var google_auth_library_1 = require("google-auth-library");
 var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var dbUtils_1 = require("./dbUtils");
+var utils_1 = require("./utils");
 var ipfilter = require('express-ipfilter').IpFilter;
 var ips = ['127.0.0.1:3000', '::ffff:127.0.0.1'];
 var client = new google_auth_library_1.OAuth2Client(process.env.GOOGLE_ID);
@@ -68,6 +69,20 @@ app.use(body_parser_1.default.json());
 app.get('/api/google_id', function (req, res) {
     res.status(200).json(process.env.GOOGLE_ID);
 });
+app.get('/api/users/picture', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var cookie, userPicture;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                cookie = req.cookies.user_id;
+                return [4 /*yield*/, dbUtils_1.getUserPicture(cookie)];
+            case 1:
+                userPicture = _a.sent();
+                res.status(200).json(userPicture);
+                return [2 /*return*/];
+        }
+    });
+}); });
 app.get('/api/clear_cookie', function (req, res) {
     res.clearCookie('user_id');
     res.status(200).json('Cookie cleared');
@@ -146,18 +161,21 @@ app.get('/api/se/cities', function (req, res) { return __awaiter(void 0, void 0,
     });
 }); });
 app.get('/api/nearby/:city', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var data;
+    var data, temp;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 data = '';
                 if (!(process.env.NODE_ENV === 'production')) return [3 /*break*/, 1];
-                return [3 /*break*/, 3];
+                return [3 /*break*/, 4];
             case 1: return [4 /*yield*/, dbUtils_1.readFile('../mock_db/stockholm.json')];
             case 2:
                 data = _a.sent();
-                _a.label = 3;
+                return [4 /*yield*/, utils_1.updateDb(data)];
             case 3:
+                temp = _a.sent();
+                _a.label = 4;
+            case 4:
                 res.status(200).send(data);
                 return [2 /*return*/];
         }

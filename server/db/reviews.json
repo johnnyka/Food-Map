@@ -437,6 +437,32 @@
         "review": "Excellent ice cream!",
         "stars": 5
       }
+    },
+    {
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "id": "7c8ca00f-05ea-4051-baf0-b0ec9060381f",
+      "date": "2020-07-29T06:47:31.126Z",
+      "restaurant": {
+        "id": "4adcdaf2f964a520105c21e3",
+        "name": "Vete-Katten",
+        "location": {
+          "address": "Kungsgatan 55",
+          "city": "Stockholm",
+          "lat": 59.33417768875955,
+          "lng": 18.05823909702743,
+          "postalCode": "111 22",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d16d941735",
+          "categoryName": "Café"
+        }
+      },
+      "review": {
+        "review": "",
+        "stars": 4
+      }
     }
   ]
 }
