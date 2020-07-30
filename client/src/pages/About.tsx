@@ -77,7 +77,7 @@ function About() {
               avaiablility to save reviews for memorization.
             </Typography>
             <Typography variant="body1" gutterBottom className={classes.importanceText}>
-              "I want an app that's like "Vintino"", and then Food map was born.
+              "I want an app that's like "Vivino"", and then Food Map was born.
             </Typography>
           </Paper>
         </Grid>
