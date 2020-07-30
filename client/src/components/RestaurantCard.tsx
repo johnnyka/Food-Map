@@ -223,7 +223,7 @@ function RestaurantCard(props: any): JSX.Element {
         />
         <CardMedia
           className={classes.media}
-          image="https://res.cloudinary.com/tf-lab/image/upload/w_1312,h_736,c_fill,g_auto:subject,q_auto,f_auto/restaurant/65a25515-99ba-438b-8487-747414880faf/c6d11bf4-bdf0-4da3-93f8-ea2778c68c57.jpg"
+          image={props.restaurant.picture}
           title={name}
         />
         <CardContent className={classes.textWrapper}>

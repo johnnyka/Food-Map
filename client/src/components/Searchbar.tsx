@@ -67,7 +67,7 @@ function Searchbar(): JSX.Element {
     if (searchType === 'city') {
       fetch(`/api/nearby/${query}`)
         .then((res) => res.json())
-        .then((results) => updateSearchResults(results.response.venues))
+        .then((results) => {updateSearchResults(results.response.venues)})
         .then(() => updateisLoading(false));
     } else if (searchType === 'geo') {
       const lat = query.split(':')[0];

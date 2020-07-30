@@ -1,1 +1,23 @@
-{}
+{
+  "venuesCategories": {
+    "Café": "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "American-Restaurant": "https://images.unsplash.com/photo-1575395311793-ad870d50fbd1?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Farmers-Market": "https://images.unsplash.com/photo-1567306295427-94503f8300d7?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Event-Space": "https://images.unsplash.com/photo-1503721827581-14e4c8676769?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Taco-Place": "https://images.unsplash.com/photo-1568106690101-fd6822e876f6?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Restaurant": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Beer-Bar": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Ice-Cream-Shop": "https://images.unsplash.com/photo-1582540037076-1f353ec55976?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Coffee-Shop": "https://images.unsplash.com/photo-1463797221720-6b07e6426c24?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Italian-Restaurant": "https://images.unsplash.com/photo-1568072954488-bff1c4db0956?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Bakery": "https://images.unsplash.com/photo-1477763858572-cda7deaa9bc5?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Fast-Food-Restaurant": "https://images.unsplash.com/flagged/photo-1554409321-b4b2c79dcdc8?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Deli-/-Bodega": "https://images.unsplash.com/photo-1567931177292-62e4009754de?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Pub": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Hotel": "https://images.unsplash.com/photo-1590074072786-a66914d668f1?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Department-Store": "https://images.unsplash.com/photo-1489209909448-8926a2640f1f?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Eastern-European-Restaurant": "https://images.unsplash.com/photo-1532264523420-881a47db012d?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Bar": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30",
+    "Scandinavian-Restaurant": "https://images.unsplash.com/photo-1456078003870-929d5986f0f5?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30"
+  }
+}

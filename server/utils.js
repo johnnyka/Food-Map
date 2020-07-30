@@ -69,7 +69,7 @@ global.fetch = node_fetch_1.default;
 // @ts-ignore:
 var unsplash = new unsplash_js_1.default({ accessKey: process.env.UNSPLASH_ACCESS_KEY });
 var getPictures = function (path) { return __awaiter(void 0, void 0, void 0, function () {
-    var venuesJson, venuesObj, updatedPath, updatedCategories;
+    var venuesJson, venuesObj, updatedPath, updatedCategories, response, json_1, small;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0: return [4 /*yield*/, dbUtils_1.readFile('../mock_db/venuesCategories.json')];
@@ -77,23 +77,19 @@ var getPictures = function (path) { return __awaiter(void 0, void 0, void 0, fun
                 venuesJson = _a.sent();
                 venuesObj = JSON.parse(venuesJson);
                 updatedPath = path.replace(/\s/g, '-');
-                console.log('!!', venuesObj.venuesCategories);
-                updatedCategories = __assign({}, venuesObj.venuesCategories);
-                // updatedCategories.venuesCategories[updatedPath].small ='testing' ; 
-                /*   if(`${updatedPath}` in venuesObj){
-                   // return venuesObj[updatedPath];
-                  }else {
-                    const response = await unsplash.search.photos(path, 1, 1, { orientation: 'landscape' });
-                    //const json = await response.json();
-                  
-                    // const url = `https://api.unsplash.com/photos/?client_id=${process.env.UNSPLASH_ACCESS_KEY}`
-                    // const response = await fetch(path);
-                    // const json = await response.json();
-                
-                    //return venuesObj.venuesCategories[updatedPath];
-                  } */
+                updatedCategories = __assign({}, venuesObj);
+                if (!("" + updatedPath in venuesObj.venuesCategories)) return [3 /*break*/, 2];
+                return [2 /*return*/, venuesObj.venuesCategories[updatedPath]];
+            case 2: return [4 /*yield*/, unsplash.search.photos(path, 1, 1, { orientation: 'landscape' })];
+            case 3:
+                response = _a.sent();
+                return [4 /*yield*/, response.json()];
+            case 4:
+                json_1 = _a.sent();
+                small = json_1.results[0].urls.small;
+                updatedCategories.venuesCategories[updatedPath] = small;
                 dbUtils_1.saveToFile('../mock_db/venuesCategories.json', JSON.stringify(updatedCategories));
-                return [2 /*return*/];
+                return [2 /*return*/, venuesObj.venuesCategories[updatedPath]];
         }
     });
 }); };
@@ -133,7 +129,8 @@ exports.addPictureToResponsefrom = function (json) { return __awaiter(void 0, vo
                         venues: __spreadArrays(updatedData),
                     },
                 };
-                return [2 /*return*/];
+                dbUtils_1.saveToFile('../mock_db/stockholm.json', JSON.stringify(obj));
+                return [2 /*return*/, JSON.stringify(obj)];
         }
     });
 }); };
