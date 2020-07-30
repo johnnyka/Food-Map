@@ -9,10 +9,16 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles({
   listWidth: {
     width: 250,
+    backgroundColor:'#f98016',
+    height:'100%'
   },
   fullList: {
     width: 'auto',
   },
+  root: {
+    fontWeight:'bold',
+    fontSize:'4rem',
+  }
 });
 
 export default function NavigationDrawer(props: {
@@ -44,7 +50,7 @@ export default function NavigationDrawer(props: {
 
   return (
     <div>
-      <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
+      <Drawer  anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
         {list()}
       </Drawer>
     </div>

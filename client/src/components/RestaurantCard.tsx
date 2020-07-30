@@ -23,6 +23,17 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     maxWidth: 345,
     margin: '2rem auto',
+    height: 425,
+  },
+  header: {
+    fontFamily: 'Montserrat, sans-serif',
+    fontWeight: 'bold',
+  },
+  text: {
+    fontFamily: 'Mulish, sans-serif',
+  },
+  textWrapper: {
+    paddingBottom: 0,
   },
   media: {
     height: 0,
@@ -168,6 +179,10 @@ function RestaurantCard(props: any): JSX.Element {
     <>
       <Card className={classes.root}>
         <CardHeader
+          classes={{
+            title: classes.header,
+            subheader: classes.text,
+          }}
           title={name}
           subheader={categories[0].name}
         />
@@ -176,8 +191,8 @@ function RestaurantCard(props: any): JSX.Element {
           image="https://res.cloudinary.com/tf-lab/image/upload/w_1312,h_736,c_fill,g_auto:subject,q_auto,f_auto/restaurant/65a25515-99ba-438b-8487-747414880faf/c6d11bf4-bdf0-4da3-93f8-ea2778c68c57.jpg"
           title={name}
         />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
+        <CardContent className={classes.textWrapper}>
+          <Typography className={classes.text} variant="body2" color="textSecondary" component="p">
             {`${location.address}, ${location.neighborhood ? `${location.neighborhood},` : ''} ${location.city ? location.city : ''}`}
           </Typography>
         </CardContent>

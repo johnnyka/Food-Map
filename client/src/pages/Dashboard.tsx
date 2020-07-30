@@ -10,12 +10,40 @@ import { LogedInContext } from '../components/LogedInProvider';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
-    width: '100%',
+    width: '90%',
+    margin: 'auto',
+    marginTop: 20,
+    [theme.breakpoints.down('xs')]: {
+      marginTop: 10,
+      width: '95%',
+    },
+  },
+  accordion: {
+    backgroundColor: 'rgba(0, 0, 0, 0)',
+  },
+  summary: {
+    backgroundColor: 'rgba(230, 230, 230, 0.9)',
+    '&:hover': {
+      backgroundColor: 'rgba(200, 200, 200, 0.9)',
+    },
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(20),
+    fontWeight: theme.typography.fontWeightBold,
+    fontFamily: 'Montserrat, sans-serif',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: theme.typography.pxToRem(15),
+    },
   },
+  cards: {
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    backgroundColor: 'rgba(230, 230, 230, 0.45)',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: theme.typography.pxToRem(15),
+      padding: 0,
+    },
+  }
 }));
 
 export default function Dashboard() {
@@ -66,29 +94,31 @@ export default function Dashboard() {
       {isLogedIn
         ? (
           <>
-            <Accordion TransitionProps={{ unmountOnExit: true }}>
+            <Accordion className={classes.accordion} TransitionProps={{ unmountOnExit: true }}>
               <AccordionSummary
+                className={classes.summary}
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
                 <Typography className={classes.heading}>Reviews</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className={classes.cards} >
                 {reviews.map((review: IdatabaseData) => (
                   <AccordionCard key={review.id} data={review} updateDashboard={getSavedData} />
                 ))}
               </AccordionDetails>
             </Accordion>
-            <Accordion>
+            <Accordion className={classes.accordion} >
               <AccordionSummary
+                className={classes.summary}
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls="panel2a-content"
                 id="panel2a-header"
               >
                 <Typography className={classes.heading}>Bookmarks</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className={classes.cards} >
                 {bookmarks.map((bookmark: IdatabaseData) => (
                   <AccordionCard key={bookmark.id} data={bookmark} updateDashboard={getSavedData} />
                 ))}

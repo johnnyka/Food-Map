@@ -8,28 +8,55 @@ import LoadingProvider from './components/LoadingProvider';
 import Dashboard from './pages/Dashboard';
 import NavigationBar from './components/NavigationBar';
 import About from './pages/About';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+const theme = createMuiTheme({
+  typography: {
+    h2: {
+      fontFamily: 'Amatic SC, cursive',
+      fontWeight: 'bolder'
+    },
+    h3: {
+      fontFamily: 'Amatic SC, cursive',
+      fontWeight: 'bolder'
+    },
+    h4: {
+      fontFamily: 'Amatic SC, cursive',
+      fontWeight: 'bolder'
+    },
+    h5: {
+      fontFamily: 'Amatic SC, cursive',
+      fontWeight: 'bolder'
+    },
+    h6: {
+      fontFamily: 'Amatic SC, cursive',
+      fontWeight: 'bolder'
+    },
+  },
+});
 function App() {
   return (
     <BrowserRouter>
       <LogedInProvider>
         <LoadingProvider>
           <SearchresultsProvider>
-            <div className="App">
-              <NavigationBar />
+            <ThemeProvider theme={theme}>
+              <div className="App" id="App">
+                <NavigationBar />
 
-              <Switch>
-                <Route path="/about">
-                  <About />
-                </Route>
-                <Route path="/dashboard">
-                  <Dashboard />
-                </Route>
-                <Route path="/">
-                  <Board />
-                </Route>
-              </Switch>
-            </div>
+                <Switch>
+                  <Route path="/about">
+                    <About />
+                  </Route>
+                  <Route path="/dashboard">
+                    <Dashboard />
+                  </Route>
+                  <Route path="/">
+                    <Board />
+                  </Route>
+                </Switch>
+              </div>
+            </ThemeProvider>
           </SearchresultsProvider>
         </LoadingProvider>
       </LogedInProvider>

@@ -18,10 +18,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     width: 'fit-content',
 
   },
+  
   input: {
     marginLeft: theme.spacing(1),
     flex: 1,
-    minWidth: 200,
+    minWidth: 250,
     [theme.breakpoints.down('xs')]: {
       minWidth: 105,
     },
@@ -120,7 +121,7 @@ function Searchbar(): JSX.Element {
             // eslint-disable-next-line
             {...params}
             className={classes.input}
-            placeholder="Search for restaurants"
+            placeholder="Search restaurants or cities"
             fullWidth
             InputProps={{ ...params.InputProps, type: 'search' }}
           />

@@ -5,6 +5,8 @@ import Loader from './Loader';
 import { SearchresultsContext } from './SearchresultsProvider';
 import { LoadingContext } from './LoadingProvider';
 import { LogedInContext } from './LogedInProvider';
+import Header from './Header';
+
 
 
 interface Ibookmarks {
@@ -74,7 +76,8 @@ function Board(): JSX.Element {
   }
   return (
     <section>
-      <Grid container justify="space-evenly">
+      <Header />
+       <Grid container justify="space-evenly">
         {!searchresults ? null : isLogedIn ? userIsLogedIn() : renderCards()}
       </Grid>
       <Grid container justify="center">

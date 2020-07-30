@@ -10,6 +10,9 @@ import NavigationDrawer from './NavigationDrawer';
 import { LogedInContext } from './LogedInProvider';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
+  root: {
+    backgroundColor:'#fda32e',
+  },
   grow: {
     flexGrow: 1,
   },
@@ -18,6 +21,8 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   title: {
     display: 'none',
+    fontFamily: 'Amatic SC, cursive',
+    fontSize:'3rem',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -88,7 +93,7 @@ export default function NavigationBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar position="static" className={classes.root}>
         <Toolbar>
           <IconButton
             edge="start"
