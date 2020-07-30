@@ -4,7 +4,7 @@
 - Food Map was created through the love for food and dining out. Instead of blacking out when visiting friends and relatives ask for restaurant tips, use Food Map! Or if you are a restaurant owner, use it to keep track of your competitors.
 - Make your own private reviews of your favourite restaurants or create bookmarks of interesting places so you don't forget them. Food Map fetches restaurants near you or in a specified city.
 - Food Map is a React+Express application.
-
+![homepage picture for foodMap](https://github.com/johnnyka/Food-Map/blob/master/FoodMap_homepage.png)
 
 ### Installation
 
