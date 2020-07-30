@@ -21,24 +21,20 @@ const getPictures = async (path: string) => {
   const venuesJson = await readFile('../mock_db/venuesCategories.json');
   const venuesObj = JSON.parse(venuesJson);
   const updatedPath = path.replace(/\s/g, '-');
-  console.log('!!',venuesObj.venuesCategories);
-  const updatedCategories = {...venuesObj.venuesCategories};
- // updatedCategories.venuesCategories[updatedPath].small ='testing' ; 
-/*   if(`${updatedPath}` in venuesObj){
-   // return venuesObj[updatedPath];
-  }else {
+  const updatedCategories = { ...venuesObj };
+  if (`${updatedPath}` in venuesObj.venuesCategories) {
+    return venuesObj.venuesCategories[updatedPath];
+  } else {
     const response = await unsplash.search.photos(path, 1, 1, { orientation: 'landscape' });
-    //const json = await response.json();
-  
-    // const url = `https://api.unsplash.com/photos/?client_id=${process.env.UNSPLASH_ACCESS_KEY}`
-    // const response = await fetch(path);
-    // const json = await response.json();
+    const json = await response.json();
+    let small = json.results[0].urls.small;
+    updatedCategories.venuesCategories[updatedPath] = small;
+    saveToFile('../mock_db/venuesCategories.json', JSON.stringify(updatedCategories));
+    return venuesObj.venuesCategories[updatedPath];
+  }
 
-    //return venuesObj.venuesCategories[updatedPath];
-  } */
-
-saveToFile('../mock_db/venuesCategories.json', JSON.stringify(updatedCategories));
 };
+
 
 export const addPictureToResponsefrom = async (json: string) => {
   let jsonObj = [];
@@ -52,17 +48,16 @@ export const addPictureToResponsefrom = async (json: string) => {
     const picture = await getPictures(restaurant.categories[0].name);
     return { ...restaurant, picture };
   }));
-  const obj = {
-    meta: {
-      code: 200,
-      requestId: '5f18063a5f54b45329b3543d',
-    },
-    response: {
-      venues: [...updatedData],
-    },
-  };
- // saveToFile('../mock_db/stockholm.json', JSON.stringify(obj));
+   const obj = {
+      meta: {
+        code: 200,
+        requestId: '5f18063a5f54b45329b3543d',
+      },
+      response: {
+        venues: [...updatedData],
+      },
+    };
+  saveToFile('../mock_db/stockholm.json', JSON.stringify(obj));
 
-  // console.log('Picture', picture.results[0].urls);
-  // console.log('Links', picture.results[0].links);
+ return JSON.stringify(obj)
 };

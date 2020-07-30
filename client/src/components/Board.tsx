@@ -62,7 +62,6 @@ function Board(): JSX.Element {
 
   }
   function userIsLogedIn() {
-    console.log('trigger');
     return (
       searchresults.map((restaurant: any): JSX.Element => (
         <Grid key={restaurant.id} item xs={12} sm={6} md={4}>
