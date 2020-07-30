@@ -89,8 +89,8 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
       color: 'black',
     },
     [theme.breakpoints.down('xs')]: {
-    paddingLeft: 5,
-    paddingTop: 5,
+      paddingLeft: 5,
+      paddingTop: 5,
     },
   },
   stars: {

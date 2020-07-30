@@ -12,38 +12,36 @@ import Johnny from '../Dev_team/Johnny.jpeg';
 import Josephine from '../Dev_team/Josephine.jpeg';
 import Mans from '../Dev_team/Mans.jpeg';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: 'center',
-      backgroundColor: "rgba(255, 255, 255, 0.65)",
-      color: 'black',
-      display: 'flex',
-      flexDirection: 'row',
-    },
-    control: {
-      padding: theme.spacing(2),
-    },
-    readingSpace: {
-      marginBottom: '3rem',
-    },
-    importanceText: {
-      fontStyle: 'italic',
-      fontWeight: 'bold'
-    },
-    titleFont: {
-      fontFamily: 'Amatic SC, cursive',
-    },
-    large: {
-      width: theme.spacing(20),
-      height: theme.spacing(20),
-    },
-  }),
-);
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.65)',
+    color: 'black',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  control: {
+    padding: theme.spacing(2),
+  },
+  readingSpace: {
+    marginBottom: '3rem',
+  },
+  importanceText: {
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+  },
+  titleFont: {
+    fontFamily: 'Amatic SC, cursive',
+  },
+  large: {
+    width: theme.spacing(20),
+    height: theme.spacing(20),
+  },
+}));
 function About() {
   const classes = useStyles();
   return (
@@ -59,7 +57,10 @@ function About() {
               What is Food Map?
             </Typography>
             <Typography variant="body1" gutterBottom className={classes.readingSpace}>
-              Food Map was born by need to save possible future dinners at a specific restaurant,<br /> but also the
+              Food Map was born by need to save possible future dinners at a specific restaurant,
+              <br />
+              {' '}
+              but also the
               avaiablility to save reviews for memorization.
             </Typography>
             <Typography variant="body1" gutterBottom className={classes.importanceText}>
@@ -80,17 +81,16 @@ function About() {
           <Paper className={classes.paper}>
             <Typography variant="h3" className={classes.readingSpace + classes.titleFont} gutterBottom>
               Food Map Creators
-             </Typography>
+            </Typography>
           </Paper>
         </Grid>
 
         <Grid
           container
-          direction='row'
+          direction="row"
           justify="center"
           alignItems="center"
-        >
-        </Grid>
+        />
 
         <Grid item xs={12}>
           <Paper className={classes.paper}>
@@ -123,10 +123,3 @@ function About() {
 }
 
 export default About;
-
-
-
-
-
-
-

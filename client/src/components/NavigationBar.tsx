@@ -11,7 +11,7 @@ import { LogedInContext } from './LogedInProvider';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
-    backgroundColor:'#fda32e',
+    backgroundColor: '#fda32e',
   },
   grow: {
     flexGrow: 1,
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   title: {
     display: 'none',
     fontFamily: 'Amatic SC, cursive',
-    fontSize:'3rem',
+    fontSize: '3rem',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },

@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Board from './components/Board';
 import LogedInProvider from './components/LogedInProvider';
 import SearchresultsProvider from './components/SearchresultsProvider';
@@ -8,29 +9,28 @@ import LoadingProvider from './components/LoadingProvider';
 import Dashboard from './pages/Dashboard';
 import NavigationBar from './components/NavigationBar';
 import About from './pages/About';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   typography: {
     h2: {
       fontFamily: 'Amatic SC, cursive',
-      fontWeight: 'bolder'
+      fontWeight: 'bolder',
     },
     h3: {
       fontFamily: 'Amatic SC, cursive',
-      fontWeight: 'bolder'
+      fontWeight: 'bolder',
     },
     h4: {
       fontFamily: 'Amatic SC, cursive',
-      fontWeight: 'bolder'
+      fontWeight: 'bolder',
     },
     h5: {
       fontFamily: 'Amatic SC, cursive',
-      fontWeight: 'bolder'
+      fontWeight: 'bolder',
     },
     h6: {
       fontFamily: 'Amatic SC, cursive',
-      fontWeight: 'bolder'
+      fontWeight: 'bolder',
     },
   },
 });

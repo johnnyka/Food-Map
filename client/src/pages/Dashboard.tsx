@@ -38,12 +38,12 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   cards: {
     flexWrap: 'wrap',
     justifyContent: 'space-evenly',
-    backgroundColor: 'rgba(230, 230, 230, 0.45)',
+    backgroundColor: 'rgba(230, 230, 230, 0.3)',
     [theme.breakpoints.down('xs')]: {
       fontSize: theme.typography.pxToRem(15),
       padding: 0,
     },
-  }
+  },
 }));
 
 export default function Dashboard() {
@@ -103,13 +103,13 @@ export default function Dashboard() {
               >
                 <Typography className={classes.heading}>Reviews</Typography>
               </AccordionSummary>
-              <AccordionDetails className={classes.cards} >
+              <AccordionDetails className={classes.cards}>
                 {reviews.map((review: IdatabaseData) => (
                   <AccordionCard key={review.id} data={review} updateDashboard={getSavedData} />
                 ))}
               </AccordionDetails>
             </Accordion>
-            <Accordion className={classes.accordion} >
+            <Accordion className={classes.accordion}>
               <AccordionSummary
                 className={classes.summary}
                 expandIcon={<ExpandMoreIcon />}
@@ -118,7 +118,7 @@ export default function Dashboard() {
               >
                 <Typography className={classes.heading}>Bookmarks</Typography>
               </AccordionSummary>
-              <AccordionDetails className={classes.cards} >
+              <AccordionDetails className={classes.cards}>
                 {bookmarks.map((bookmark: IdatabaseData) => (
                   <AccordionCard key={bookmark.id} data={bookmark} updateDashboard={getSavedData} />
                 ))}

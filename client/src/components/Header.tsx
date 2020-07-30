@@ -2,7 +2,6 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
     margin: '0 auto',
@@ -10,26 +9,26 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     maxWidth: 500,
     textAlign: 'center',
     alignItems: 'center',
-    color:'white',
+    color: 'white',
   },
   styleh2: {
     [theme.breakpoints.down('sm')]: {
       fontSize: '2.5rem',
-     margin:'0'
+      margin: '0',
     },
   },
-    styleh4: {
+  styleh4: {
     [theme.breakpoints.down('sm')]: {
       fontSize: '1.5rem',
-      margin:'0'
+      margin: '0',
     },
   },
-      styleh5: {
+  styleh5: {
     [theme.breakpoints.down('sm')]: {
       fontSize: '1rem',
-      margin:'0'
-    }
-  }
+      margin: '0',
+    },
+  },
 }));
 
 export default function Types() {

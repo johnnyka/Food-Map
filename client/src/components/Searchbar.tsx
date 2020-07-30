@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     width: 'fit-content',
 
   },
-  
+
   input: {
     marginLeft: theme.spacing(1),
     flex: 1,

@@ -24,20 +24,46 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     maxWidth: 345,
     margin: '2rem auto',
     height: 425,
+    [theme.breakpoints.down('xs')]: {
+      margin: '0.5rem 1rem',
+      height: 300,
+    },
+  },
+  cardHeader: {
+    [theme.breakpoints.down('xs')]: {
+      padding: '8px 0',
+    },
+  },
+  cardAction: {
+    [theme.breakpoints.down('xs')]: {
+      padding: 0,
+      justifyContent: 'center',
+    },
   },
   header: {
     fontFamily: 'Montserrat, sans-serif',
     fontWeight: 'bold',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: theme.typography.pxToRem(18),
+    },
   },
   text: {
     fontFamily: 'Mulish, sans-serif',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: theme.typography.pxToRem(12),
+    },
   },
   textWrapper: {
-    paddingBottom: 0,
+      paddingTop: 8,
+      paddingBottom: 0,
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+    [theme.breakpoints.down('xs')]: {
+      height: 0,
+      fontSize: theme.typography.pxToRem(12),
+    },
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -52,18 +78,26 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   avatar: {
     backgroundColor: red[500],
   },
-  unfilled:{
-    color:'lightgray',
+  unfilled: {
+    color: 'lightgray',
   },
   star: {
     color: '#ffe100',
     width: '2rem',
     height: '2rem',
+    [theme.breakpoints.down('xs')]: {
+      width: '1.5rem',
+      height: '1.5rem',
+    },
   },
   bookmark: {
     color: 'green',
     width: '2rem',
     height: '2rem',
+    [theme.breakpoints.down('xs')]: {
+      width: '1.5rem',
+      height: '1.5rem',
+    },
   },
 }));
 
@@ -142,15 +176,15 @@ function RestaurantCard(props: any): JSX.Element {
   }, [isLogedIn]); // eslint-disable-line
 
   useEffect(() => {
-   if(props.hasBookmark){
-     setbookmark(true);
-   }
-   if(props.hasReview){
-    setReview(true)
-   }
+    if (props.hasBookmark) {
+      setbookmark(true);
+    }
+    if (props.hasReview) {
+      setReview(true)
+    }
 
   }, []);
-  
+
   function saveToVisited(stars: number, review: string) {
     fetch('/api/users/reviews', {
       method: 'POST',
@@ -160,7 +194,7 @@ function RestaurantCard(props: any): JSX.Element {
       },
     })
       .then(() => setVisitedOpen(false));
-      setReview(true);
+    setReview(true);
   }
 
   function saveToBookmarks(comment: string) {
@@ -172,13 +206,14 @@ function RestaurantCard(props: any): JSX.Element {
       },
     })
       .then(() => setBookmarkOpen(false));
-      setbookmark(true);
+    setbookmark(true);
   }
 
   return (
     <>
       <Card className={classes.root}>
         <CardHeader
+          className={classes.cardHeader}
           classes={{
             title: classes.header,
             subheader: classes.text,
@@ -196,13 +231,13 @@ function RestaurantCard(props: any): JSX.Element {
             {`${location.address}, ${location.neighborhood ? `${location.neighborhood},` : ''} ${location.city ? location.city : ''}`}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing>
+        <CardActions className={classes.cardAction} disableSpacing>
           <IconButton aria-label="add to favorites" onClick={handleVisitedClickOpen}>
-           { review ? <StarIcon className={classes.star}/> : <StarBorderIcon className={classes.star}/>}
+            {review ? <StarIcon className={classes.star} /> : <StarBorderIcon className={classes.star} />}
           </IconButton>
           <IconButton aria-label="share" onClick={handleBookmarkOpen}>
-           { bookmark ?<BookmarkIcon className={classes.bookmark}/> :<BookmarkBorderIcon className={classes.bookmark}/>}
-         
+            {bookmark ? <BookmarkIcon className={classes.bookmark} /> : <BookmarkBorderIcon className={classes.bookmark} />}
+
           </IconButton>
 
         </CardActions>

@@ -227,6 +227,29 @@
         }
       },
       "comment": "Oh la la"
+    },
+    {
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "id": "dd72063f-5e42-49eb-8eb8-981ba18c9b0c",
+      "date": "2020-07-30T12:55:16.133Z",
+      "restaurant": {
+        "id": "5dd91a1f15b2280008674fd4",
+        "name": "Stigbergets Fot",
+        "location": {
+          "address": "Götgatan 5",
+          "city": "Stockholm",
+          "lat": 59.3184594862526,
+          "lng": 18.071313500404358,
+          "postalCode": "116 46",
+          "country": "Sweden",
+          "neighborhood": "Östra Katarina"
+        },
+        "categories": {
+          "categoryId": "56aa371ce4b08b9a8d57356c",
+          "categoryName": "Beer Bar"
+        }
+      },
+      "comment": "Interesting foot..."
     }
   ]
 }
