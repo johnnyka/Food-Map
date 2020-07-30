@@ -88,37 +88,35 @@ var getPictures = function (path) { return __awaiter(void 0, void 0, void 0, fun
                 json_1 = _a.sent();
                 small = json_1.results[0].urls.small;
                 updatedCategories.venuesCategories[updatedPath] = small;
-                dbUtils_1.saveToFile('../mock_db/venuesCategories.json', JSON.stringify(updatedCategories));
+                dbUtils_1.saveToFile('../mock_db/venuesCategories.json', JSON.stringify(updatedCategories, null, 2));
                 return [2 /*return*/, venuesObj.venuesCategories[updatedPath]];
         }
     });
 }); };
-exports.addPictureToResponsefrom = function (json) { return __awaiter(void 0, void 0, void 0, function () {
-    var jsonObj, db, updatedData, obj;
+exports.addPictureToResponsefrom = function (json, file) { return __awaiter(void 0, void 0, void 0, function () {
+    var jsonObj, updatedData, obj;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 jsonObj = [];
-                if (!(process.env.NODE_ENV === 'production')) return [3 /*break*/, 1];
-                jsonObj = JSON.parse(json);
-                return [3 /*break*/, 3];
-            case 1: return [4 /*yield*/, dbUtils_1.readFile('../mock_db/stockholm.json')];
-            case 2:
-                db = _a.sent();
-                jsonObj = JSON.parse(db);
-                _a.label = 3;
-            case 3: return [4 /*yield*/, Promise.all(jsonObj.response.venues.map(function (restaurant) { return __awaiter(void 0, void 0, void 0, function () {
-                    var picture;
-                    return __generator(this, function (_a) {
-                        switch (_a.label) {
-                            case 0: return [4 /*yield*/, getPictures(restaurant.categories[0].name)];
-                            case 1:
-                                picture = _a.sent();
-                                return [2 /*return*/, __assign(__assign({}, restaurant), { picture: picture })];
-                        }
-                    });
-                }); }))];
-            case 4:
+                if (process.env.NODE_ENV === 'production') {
+                    jsonObj = JSON.parse(json);
+                }
+                else {
+                    jsonObj = JSON.parse(json);
+                }
+                return [4 /*yield*/, Promise.all(jsonObj.response.venues.map(function (restaurant) { return __awaiter(void 0, void 0, void 0, function () {
+                        var picture;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, getPictures(restaurant.categories[0].name)];
+                                case 1:
+                                    picture = _a.sent();
+                                    return [2 /*return*/, __assign(__assign({}, restaurant), { picture: picture })];
+                            }
+                        });
+                    }); }))];
+            case 1:
                 updatedData = _a.sent();
                 obj = {
                     meta: {
@@ -129,7 +127,7 @@ exports.addPictureToResponsefrom = function (json) { return __awaiter(void 0, vo
                         venues: __spreadArrays(updatedData),
                     },
                 };
-                dbUtils_1.saveToFile('../mock_db/stockholm.json', JSON.stringify(obj));
+                dbUtils_1.saveToFile(file, JSON.stringify(obj, null, 2));
                 return [2 /*return*/, JSON.stringify(obj)];
         }
     });

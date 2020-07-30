@@ -146,8 +146,7 @@ app.get('/api/nearby', function (req, res) { return __awaiter(void 0, void 0, vo
                 return [4 /*yield*/, dbUtils_1.readFile('../mock_db/hornsgatan.json')];
             case 1:
                 data = _a.sent();
-                console.log('!!!! nearby');
-                return [4 /*yield*/, utils_1.addPictureToResponsefrom(data)];
+                return [4 /*yield*/, utils_1.addPictureToResponsefrom(data, '../mock_db/hornsgatan.json')];
             case 2:
                 data = _a.sent();
                 res.status(200).send(data);
@@ -172,8 +171,6 @@ app.get('/api/nearby/:city', function (req, res) { return __awaiter(void 0, void
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                // const { city } = req.params;
-                console.log('!!!!  param city');
                 data = '';
                 if (!(process.env.NODE_ENV === 'production')) return [3 /*break*/, 4];
                 return [4 /*yield*/, fetch("https://api.foursquare.com/v2/venues/search?near=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259")];
@@ -182,14 +179,14 @@ app.get('/api/nearby/:city', function (req, res) { return __awaiter(void 0, void
                 return [4 /*yield*/, responseAPI.json()];
             case 2:
                 data = _a.sent();
-                return [4 /*yield*/, utils_1.addPictureToResponsefrom(data)];
+                return [4 /*yield*/, utils_1.addPictureToResponsefrom(data, '../mock_db/stockholm.json')];
             case 3:
                 data = _a.sent();
                 return [3 /*break*/, 7];
             case 4: return [4 /*yield*/, dbUtils_1.readFile('../mock_db/stockholm.json')];
             case 5:
                 data = _a.sent();
-                return [4 /*yield*/, utils_1.addPictureToResponsefrom(data)];
+                return [4 /*yield*/, utils_1.addPictureToResponsefrom(data, '../mock_db/stockholm.json')];
             case 6:
                 data = _a.sent();
                 _a.label = 7;

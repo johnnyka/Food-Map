@@ -136,7 +136,7 @@ function userExist(identifier, searchType) {
 }
 exports.userExist = userExist;
 function validateReview(data) {
-    var review = data.review, stars = data.stars, id = data.id, name = data.name, location = data.location, categories = data.categories, cookie = data.cookie;
+    var review = data.review, stars = data.stars, id = data.id, name = data.name, location = data.location, categories = data.categories, cookie = data.cookie, picture = data.picture;
     var address = location.address, city = location.city, lat = location.lat, lng = location.lng, postalCode = location.postalCode, country = location.country;
     var neighborhood = location.neighborhood ? location.neighborhood : null;
     var _a = categories[0], categoryId = _a.id, categoryName = _a.name;
@@ -161,10 +161,11 @@ function validateReview(data) {
             review: review,
             stars: stars,
         },
+        picture: picture,
     };
 }
 function validateBookmark(data) {
-    var comment = data.comment, id = data.id, name = data.name, location = data.location, categories = data.categories, cookie = data.cookie;
+    var comment = data.comment, id = data.id, name = data.name, location = data.location, categories = data.categories, cookie = data.cookie, picture = data.picture;
     var address = location.address, city = location.city, lat = location.lat, lng = location.lng, postalCode = location.postalCode, country = location.country;
     var neighborhood = location.neighborhood ? location.neighborhood : null;
     var _a = categories[0], categoryId = _a.id, categoryName = _a.name;
@@ -184,6 +185,7 @@ function validateBookmark(data) {
             },
         },
         comment: comment,
+        picture: picture,
     };
 }
 function addReview(data) {

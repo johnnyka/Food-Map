@@ -75,7 +75,7 @@ export async function userExist(identifier: string, searchType: 'cookie' | 'sub'
 
 function validateReview(data: any): any {
   const {
-    review, stars, id, name, location, categories, cookie,
+    review, stars, id, name, location, categories, cookie, picture
   } = data;
   const {
     address, city, lat, lng, postalCode, country,
@@ -102,12 +102,13 @@ function validateReview(data: any): any {
       review,
       stars,
     },
+    picture,
   };
 }
 
 function validateBookmark(data: any): any {
   const {
-    comment, id, name, location, categories, cookie,
+    comment, id, name, location, categories, cookie, picture
   } = data;
   const {
     address, city, lat, lng, postalCode, country,
@@ -130,6 +131,7 @@ function validateBookmark(data: any): any {
       },
     },
     comment,
+    picture,
   };
 }
 

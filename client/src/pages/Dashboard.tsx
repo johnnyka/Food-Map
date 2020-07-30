@@ -87,6 +87,7 @@ export default function Dashboard() {
         categoryName: string;
       }
     }
+    picture: string;
   }
 
   return (

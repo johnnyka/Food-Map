@@ -29,20 +29,19 @@ const getPictures = async (path: string) => {
     const json = await response.json();
     let small = json.results[0].urls.small;
     updatedCategories.venuesCategories[updatedPath] = small;
-    saveToFile('../mock_db/venuesCategories.json', JSON.stringify(updatedCategories));
+    saveToFile('../mock_db/venuesCategories.json', JSON.stringify(updatedCategories, null, 2));
     return venuesObj.venuesCategories[updatedPath];
   }
 
 };
 
 
-export const addPictureToResponsefrom = async (json: string) => {
+export const addPictureToResponsefrom = async (json: string, file: string) => {
   let jsonObj = [];
   if (process.env.NODE_ENV === 'production') {
     jsonObj = JSON.parse(json);
   } else {
-    const db = await readFile('../mock_db/stockholm.json');
-    jsonObj = JSON.parse(db);
+    jsonObj = JSON.parse(json);
   }
   const updatedData = await Promise.all(jsonObj.response.venues.map(async (restaurant: any) => {
     const picture = await getPictures(restaurant.categories[0].name);
@@ -57,7 +56,7 @@ export const addPictureToResponsefrom = async (json: string) => {
         venues: [...updatedData],
       },
     };
-  saveToFile('../mock_db/stockholm.json', JSON.stringify(obj));
+  saveToFile(file, JSON.stringify(obj, null, 2));
 
  return JSON.stringify(obj)
 };

@@ -1,53 +1,9 @@
 {
   "bookmarks": [
     {
-      "id": "64bfecff-400d-4690-b131-77441309514f",
-      "date": "2020-07-27T13:01:10.968Z",
-      "restaurant": {
-        "id": "4adcdaebf964a520cf5921e3",
-        "name": "Akkurat",
-        "location": {
-          "address": "Hornsgatan 18",
-          "city": "Stockholm",
-          "lat": 59.319809,
-          "lng": 18.06883,
-          "postalCode": "118 20",
-          "country": "Sweden",
-          "neighborhood": "Mariatorget"
-        },
-        "categories": {
-          "categoryId": "4bf58dd8d48988d11b941735",
-          "categoryName": "Pub"
-        }
-      },
-      "comment": "Want to go"
-    },
-    {
-      "id": "d1752835-9fd8-49cc-8fe6-9005a5b9d3a1",
-      "date": "2020-07-27T13:04:30.098Z",
-      "restaurant": {
-        "id": "4adcdaebf964a520cf5921e3",
-        "name": "Akkurat",
-        "location": {
-          "address": "Hornsgatan 18",
-          "city": "Stockholm",
-          "lat": 59.319809,
-          "lng": 18.06883,
-          "postalCode": "118 20",
-          "country": "Sweden",
-          "neighborhood": "Mariatorget"
-        },
-        "categories": {
-          "categoryId": "4bf58dd8d48988d11b941735",
-          "categoryName": "Pub"
-        }
-      },
-      "comment": "Want to go"
-    },
-    {
-      "cookie": "8df5585c-689c-49b2-976c-e5804d592343",
-      "id": "2d6265d7-a52b-4c86-94ed-475ba3bc59ed",
-      "date": "2020-07-28T08:50:11.813Z",
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "id": "067ea47e-48f2-4777-aa2c-2aef18701a1d",
+      "date": "2020-07-30T14:12:27.950Z",
       "restaurant": {
         "id": "5dd91a1f15b2280008674fd4",
         "name": "Stigbergets Fot",
@@ -65,127 +21,37 @@
           "categoryName": "Beer Bar"
         }
       },
-      "comment": "fan va najs"
-    },
-    {
-      "cookie": "a88b159c-e2aa-4dfa-8228-c29124e58164",
-      "id": "36836daf-edac-4af4-8fe2-dbf3a961e71a",
-      "date": "2020-07-28T10:57:13.092Z",
-      "restaurant": {
-        "id": "4adcdaf2f964a520105c21e3",
-        "name": "Vete-Katten",
-        "location": {
-          "address": "Kungsgatan 55",
-          "city": "Stockholm",
-          "lat": 59.33417768875955,
-          "lng": 18.05823909702743,
-          "postalCode": "111 22",
-          "country": "Sweden",
-          "neighborhood": null
-        },
-        "categories": {
-          "categoryId": "4bf58dd8d48988d16d941735",
-          "categoryName": "Café"
-        }
-      },
-      "comment": "Göd kanelbulle\n"
-    },
-    {
-      "cookie": "a88b159c-e2aa-4dfa-8228-c29124e58164",
-      "id": "f75336e9-4a26-4388-b50e-06e10be643e5",
-      "date": "2020-07-28T10:57:23.503Z",
-      "restaurant": {
-        "id": "5f0409d11bb40b7f6a1eb418",
-        "name": "Ön",
-        "location": {
-          "address": "Karlshällsvägen 14",
-          "city": "Stockholm",
-          "lat": 59.321896,
-          "lng": 18.017837,
-          "postalCode": "117 33",
-          "country": "Sweden",
-          "neighborhood": null
-        },
-        "categories": {
-          "categoryId": "4bf58dd8d48988d1c4941735",
-          "categoryName": "Restaurant"
-        }
-      },
-      "comment": "Funny name"
-    },
-    {
-      "cookie": "8df5585c-689c-49b2-976c-e5804d592343",
-      "id": "61a04f14-2c0a-4c8b-897d-c245095b3196",
-      "date": "2020-07-28T14:53:31.023Z",
-      "restaurant": {
-        "id": "5dd91a1f15b2280008674fd4",
-        "name": "Stigbergets Fot",
-        "location": {
-          "address": "Götgatan 5",
-          "city": "Stockholm",
-          "lat": 59.3184594862526,
-          "lng": 18.071313500404358,
-          "postalCode": "116 46",
-          "country": "Sweden",
-          "neighborhood": "Östra Katarina"
-        },
-        "categories": {
-          "categoryId": "56aa371ce4b08b9a8d57356c",
-          "categoryName": "Beer Bar"
-        }
-      },
-      "comment": "hejsan"
-    },
-    {
-      "cookie": "8df5585c-689c-49b2-976c-e5804d592343",
-      "id": "eecbe32f-1799-454c-ae6d-374b4a3769df",
-      "date": "2020-07-28T16:20:40.743Z",
-      "restaurant": {
-        "id": "5dd91a1f15b2280008674fd4",
-        "name": "Stigbergets Fot",
-        "location": {
-          "address": "Götgatan 5",
-          "city": "Stockholm",
-          "lat": 59.3184594862526,
-          "lng": 18.071313500404358,
-          "postalCode": "116 46",
-          "country": "Sweden",
-          "neighborhood": "Östra Katarina"
-        },
-        "categories": {
-          "categoryId": "56aa371ce4b08b9a8d57356c",
-          "categoryName": "Beer Bar"
-        }
-      },
-      "comment": "roligt namn"
-    },
-    {
-      "cookie": "cf60cd43-1d1c-4fe8-ad99-5da5d7c2a6fb",
-      "id": "e340f6bd-abe2-4262-914b-4a3db564975f",
-      "date": "2020-07-28T17:05:44.025Z",
-      "restaurant": {
-        "id": "5dd91a1f15b2280008674fd4",
-        "name": "Stigbergets Fot",
-        "location": {
-          "address": "Götgatan 5",
-          "city": "Stockholm",
-          "lat": 59.3184594862526,
-          "lng": 18.071313500404358,
-          "postalCode": "116 46",
-          "country": "Sweden",
-          "neighborhood": "Östra Katarina"
-        },
-        "categories": {
-          "categoryId": "56aa371ce4b08b9a8d57356c",
-          "categoryName": "Beer Bar"
-        }
-      },
-      "comment": "cxc"
+      "comment": "Nice foot!",
+      "picture": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30"
     },
     {
       "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
-      "id": "034771cf-d925-4dc3-9bcb-19fcec8338ba",
-      "date": "2020-07-29T19:19:00.910Z",
+      "id": "1dedef30-3cd8-4d0d-aef8-d93fd7eaa788",
+      "date": "2020-07-30T14:13:20.468Z",
+      "restaurant": {
+        "id": "5b6dbc356bdee6002c7e205e",
+        "name": "Deniz Place",
+        "location": {
+          "address": "Blockvägen 15",
+          "city": "Botkyrka",
+          "lat": 59.189434,
+          "lng": 17.830875,
+          "postalCode": "147 54",
+          "country": "Sweden",
+          "neighborhood": null
+        },
+        "categories": {
+          "categoryId": "4bf58dd8d48988d151941735",
+          "categoryName": "Taco Place"
+        }
+      },
+      "comment": "Need to bring my girlfriend here!!",
+      "picture": "https://images.unsplash.com/photo-1568106690101-fd6822e876f6?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30"
+    },
+    {
+      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
+      "id": "74a51a47-fd3a-40f2-8ca3-1ed37dd670ac",
+      "date": "2020-07-30T14:14:30.264Z",
       "restaurant": {
         "id": "4adcdaf2f964a5201e5c21e3",
         "name": "Hötorgshallen",
@@ -203,53 +69,32 @@
           "categoryName": "Farmers Market"
         }
       },
-      "comment": "Wow"
+      "comment": "So mush stuff!",
+      "picture": "https://images.unsplash.com/photo-1567306295427-94503f8300d7?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30"
     },
     {
       "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
-      "id": "988ab778-8805-4e70-aec2-9500561a82ac",
-      "date": "2020-07-29T19:28:00.832Z",
+      "id": "b426a9a6-895e-457c-947f-268b5ac9da97",
+      "date": "2020-07-30T14:15:17.123Z",
       "restaurant": {
-        "id": "4adcdaf2f964a520105c21e3",
-        "name": "Vete-Katten",
+        "id": "5f0409d11bb40b7f6a1eb418",
+        "name": "Ön",
         "location": {
-          "address": "Kungsgatan 55",
+          "address": "Karlshällsvägen 14",
           "city": "Stockholm",
-          "lat": 59.33417768875955,
-          "lng": 18.05823909702743,
-          "postalCode": "111 22",
+          "lat": 59.321896,
+          "lng": 18.017837,
+          "postalCode": "117 33",
           "country": "Sweden",
           "neighborhood": null
         },
         "categories": {
-          "categoryId": "4bf58dd8d48988d16d941735",
-          "categoryName": "Café"
+          "categoryId": "4bf58dd8d48988d1c4941735",
+          "categoryName": "Restaurant"
         }
       },
-      "comment": "Oh la la"
-    },
-    {
-      "cookie": "0c5df223-495a-4a39-9d7f-c2f37eaca24d",
-      "id": "dd72063f-5e42-49eb-8eb8-981ba18c9b0c",
-      "date": "2020-07-30T12:55:16.133Z",
-      "restaurant": {
-        "id": "5dd91a1f15b2280008674fd4",
-        "name": "Stigbergets Fot",
-        "location": {
-          "address": "Götgatan 5",
-          "city": "Stockholm",
-          "lat": 59.3184594862526,
-          "lng": 18.071313500404358,
-          "postalCode": "116 46",
-          "country": "Sweden",
-          "neighborhood": "Östra Katarina"
-        },
-        "categories": {
-          "categoryId": "56aa371ce4b08b9a8d57356c",
-          "categoryName": "Beer Bar"
-        }
-      },
-      "comment": "Interesting foot..."
+      "comment": "Island?!",
+      "picture": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE1MjUwN30"
     }
   ]
 }

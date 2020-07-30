@@ -80,7 +80,7 @@ app.get('/api/nearby', async (req: express.Request, res: express.Response) => {
     data = await addPictureToResponsefrom(data); */
   }
   data = await readFile('../mock_db/hornsgatan.json');
-  data = await addPictureToResponsefrom(data);
+  data = await addPictureToResponsefrom(data, '../mock_db/hornsgatan.json');
   res.status(200).send(data);
 });
 
@@ -97,10 +97,10 @@ app.get('/api/nearby/:city', async (req: express.Request, res: express.Response)
   if (process.env.NODE_ENV === 'production') {
     const responseAPI = await fetch(`https://api.foursquare.com/v2/venues/search?near=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259`)
     data = await responseAPI.json();
-    data = await addPictureToResponsefrom(data);
+    data = await addPictureToResponsefrom(data, '../mock_db/stockholm.json');
   } else {
     data = await readFile('../mock_db/stockholm.json');
-    data = await addPictureToResponsefrom(data);
+    data = await addPictureToResponsefrom(data, '../mock_db/stockholm.json');
   }
   res.status(200).send(data);
 });

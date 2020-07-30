@@ -121,6 +121,7 @@ interface IdatabaseData {
       categoryName: string;
     }
   }
+  picture: string;
   review?: {
     review: string;
     stars: number;
@@ -132,7 +133,7 @@ function AccordionCard(props: { data: IdatabaseData, updateDashboard: any }): JS
   const classes = useStyles();
   const { data, updateDashboard } = props;
   const {
-    restaurant, review, comment, id,
+    restaurant, review, comment, id, picture
   } = data;
   const { neighborhood, city } = restaurant.location;
 
@@ -174,7 +175,7 @@ function AccordionCard(props: { data: IdatabaseData, updateDashboard: any }): JS
       </div>
       <CardMedia
         className={classes.cover}
-        image="https://res.cloudinary.com/tf-lab/image/upload/w_1312,h_736,c_fill,g_auto:subject,q_auto,f_auto/restaurant/65a25515-99ba-438b-8487-747414880faf/c6d11bf4-bdf0-4da3-93f8-ea2778c68c57.jpg"
+        image={picture}
         title="Live from space album cover"
       />
     </Card>
