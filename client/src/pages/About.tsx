@@ -11,6 +11,7 @@ import Danijela from '../Dev_team/Danijela.jpeg';
 import Johnny from '../Dev_team/Johnny.jpeg';
 import Josephine from '../Dev_team/Josephine.jpeg';
 import Mans from '../Dev_team/Mans.jpeg';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
