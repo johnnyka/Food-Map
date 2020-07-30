@@ -9,7 +9,7 @@
     "tsc": "tsc",
     "prestart": "tsc",
     "predev": "tsc",
-    "start": "NODE_ENV=production index.js",
+    "start": "NODE_ENV=production node index.js",
     "dev": "NODE_ENV=development nodemon index.js"
   },
   "keywords": [],
