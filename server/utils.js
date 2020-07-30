@@ -57,7 +57,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateDb = void 0;
+exports.addPictureToResponsefrom = void 0;
 // import fs from 'fs';
 // import util from 'util';
 var node_fetch_1 = __importDefault(require("node-fetch"));
@@ -69,47 +69,61 @@ global.fetch = node_fetch_1.default;
 // @ts-ignore:
 var unsplash = new unsplash_js_1.default({ accessKey: process.env.UNSPLASH_ACCESS_KEY });
 var getPictures = function (path) { return __awaiter(void 0, void 0, void 0, function () {
-    var updatedPath, response, json;
+    var venuesJson, venuesObj, updatedPath, updatedCategories;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0:
-                updatedPath = path.replace(/\s/g, '-');
-                return [4 /*yield*/, unsplash.search.photos(path, 1, 1, { orientation: 'landscape' })];
+            case 0: return [4 /*yield*/, dbUtils_1.readFile('../mock_db/venuesCategories.json')];
             case 1:
-                response = _a.sent();
-                return [4 /*yield*/, response.json()];
-            case 2:
-                json = _a.sent();
-                // const url = `https://api.unsplash.com/photos/?client_id=${process.env.UNSPLASH_ACCESS_KEY}`
-                // const response = await fetch(path);
-                // const json = await response.json();
-                return [2 /*return*/, json.results[0].urls.small];
+                venuesJson = _a.sent();
+                venuesObj = JSON.parse(venuesJson);
+                updatedPath = path.replace(/\s/g, '-');
+                console.log('!!', venuesObj.venuesCategories);
+                updatedCategories = __assign({}, venuesObj.venuesCategories);
+                // updatedCategories.venuesCategories[updatedPath].small ='testing' ; 
+                /*   if(`${updatedPath}` in venuesObj){
+                   // return venuesObj[updatedPath];
+                  }else {
+                    const response = await unsplash.search.photos(path, 1, 1, { orientation: 'landscape' });
+                    //const json = await response.json();
+                  
+                    // const url = `https://api.unsplash.com/photos/?client_id=${process.env.UNSPLASH_ACCESS_KEY}`
+                    // const response = await fetch(path);
+                    // const json = await response.json();
+                
+                    //return venuesObj.venuesCategories[updatedPath];
+                  } */
+                dbUtils_1.saveToFile('../mock_db/venuesCategories.json', JSON.stringify(updatedCategories));
+                return [2 /*return*/];
         }
     });
 }); };
-exports.updateDb = function (json) { return __awaiter(void 0, void 0, void 0, function () {
-    var db, dbArr, updatedData, obj;
+exports.addPictureToResponsefrom = function (json) { return __awaiter(void 0, void 0, void 0, function () {
+    var jsonObj, db, updatedData, obj;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, dbUtils_1.readFile('../mock_db/stockholm.json')];
-            case 1:
-                db = _a.sent();
-                dbArr = JSON.parse(db);
-                return [4 /*yield*/, Promise.all(dbArr.response.venues.map(function (restaurant) { return __awaiter(void 0, void 0, void 0, function () {
-                        var picture;
-                        return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0: return [4 /*yield*/, getPictures(restaurant.categories[0].name)];
-                                case 1:
-                                    picture = _a.sent();
-                                    console.log('PIC', picture);
-                                    return [2 /*return*/, __assign(__assign({}, restaurant), { picture: picture })];
-                            }
-                        });
-                    }); }))];
+            case 0:
+                jsonObj = [];
+                if (!(process.env.NODE_ENV === 'production')) return [3 /*break*/, 1];
+                jsonObj = JSON.parse(json);
+                return [3 /*break*/, 3];
+            case 1: return [4 /*yield*/, dbUtils_1.readFile('../mock_db/stockholm.json')];
             case 2:
+                db = _a.sent();
+                jsonObj = JSON.parse(db);
+                _a.label = 3;
+            case 3: return [4 /*yield*/, Promise.all(jsonObj.response.venues.map(function (restaurant) { return __awaiter(void 0, void 0, void 0, function () {
+                    var picture;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0: return [4 /*yield*/, getPictures(restaurant.categories[0].name)];
+                            case 1:
+                                picture = _a.sent();
+                                return [2 /*return*/, __assign(__assign({}, restaurant), { picture: picture })];
+                        }
+                    });
+                }); }))];
+            case 4:
                 updatedData = _a.sent();
-                console.log(updatedData);
                 obj = {
                     meta: {
                         code: 200,
@@ -119,7 +133,6 @@ exports.updateDb = function (json) { return __awaiter(void 0, void 0, void 0, fu
                         venues: __spreadArrays(updatedData),
                     },
                 };
-                dbUtils_1.saveToFile('../mock_db/stockholm.json', JSON.stringify(obj));
                 return [2 /*return*/];
         }
     });

@@ -15,6 +15,7 @@ import {
   getUserPicture,
   deleteReviewBookmark,
 } from './dbUtils';
+import {addPictureToResponsefrom} from './utils';
 
 const ipfilter = require('express-ipfilter').IpFilter;
 
@@ -93,11 +94,7 @@ app.get('/api/nearby/:city', async (req: express.Request, res: express.Response)
     // fetch(`https://api.foursquare.com/v2/venues/search?near=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259`)
   } else {
     data = await readFile('../mock_db/stockholm.json');
-    // const temp = await updateDb(data);
-    /** resuse for api or make an  obj, specified restaurang category
-     * if category exist in that obj, no new fetch to unsplash,
-     * does not exist fetch that picture with query of categories type resturant
-     * */
+    const temp = addPictureToResponsefrom(data);
   }
   res.status(200).send(data);
 });
