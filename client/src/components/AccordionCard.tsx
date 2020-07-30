@@ -176,7 +176,7 @@ function AccordionCard(props: { data: IdatabaseData, updateDashboard: any }): JS
       <CardMedia
         className={classes.cover}
         image={picture}
-        title="Live from space album cover"
+        title={restaurant.name}
       />
     </Card>
   );
