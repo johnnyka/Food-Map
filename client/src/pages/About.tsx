@@ -11,7 +11,7 @@ import Danijela from '../Dev_team/Danijela.jpeg';
 import Johnny from '../Dev_team/Johnny.jpeg';
 import Josephine from '../Dev_team/Josephine.jpeg';
 import Mans from '../Dev_team/Mans.jpeg';
-import Link from '@material-ui/core/Link';
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,8 +23,6 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: 'center',
       backgroundColor: "rgba(255, 255, 255, 0.65)",
       color: 'black',
-      display: 'flex',
-      flexDirection: 'row',
     },
     control: {
       padding: theme.spacing(2),
@@ -40,9 +38,21 @@ const useStyles = makeStyles((theme: Theme) =>
       fontFamily: 'Amatic SC, cursive',
     },
     large: {
-      width: theme.spacing(20),
-      height: theme.spacing(20),
+      display: 'inline',
+      height: 250,
+      width: 250,
+      borderRadius: '160px'
     },
+    space: {
+      marginLeft: '.5rem',
+    },
+    membersinfo: {
+      display: 'flex',
+      flexDirection: 'row'
+    },
+    inlineText: {
+      display: 'inline',
+    }
   }),
 );
 function About() {
@@ -69,55 +79,49 @@ function About() {
           </Paper>
         </Grid>
 
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>6</Paper>
-        </Grid>
-
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>6</Paper>
-        </Grid>
-
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <Typography variant="h3" className={classes.readingSpace + classes.titleFont} gutterBottom>
               Food Map Creators
              </Typography>
+            <img alt="Johnny" src={Johnny} className={classes.large} />
+            <Grid item xs={12}>
+              <Typography variant="h6" className={classes.inlineText}>
+                Johnny
+              </Typography>
+              <a href="https://www.linkedin.com/in/johnny-kan-a4b0981a8/">
+                <GitHubIcon className={classes.space} />
+              </a>
+            </Grid>
+            <img alt="Danijela" src={Danijela} className={classes.large} />
+            <Grid item xs={12}>
+              <Typography variant="h6" className={classes.inlineText} >
+                Danijela
+              </Typography>
+              <a href="https://www.linkedin.com/in/danijela-milenkovic-926b0a57">
+                <GitHubIcon className={classes.space} />
+              </a>
+            </Grid>
+            <img alt="Josephine" src={Josephine} className={classes.large} />
+            <Grid item xs={12}>
+              <Typography variant="h6" className={classes.inlineText} >
+                Joséphine
+              </Typography>
+              <a href="https://github.com/code-crow1337">
+                <GitHubIcon className={classes.space} />
+              </a>
+            </Grid>
+            <img alt="Måns" src={Mans} className={classes.large} />
+            <Grid item xs={12}>
+              <Typography variant="h6" className={classes.inlineText} >
+                Måns
+              </Typography>
+              <a href="https://github.com/MansJackson">
+                <GitHubIcon className={classes.space} />
+              </a>
+            </Grid>
           </Paper>
         </Grid>
-
-        <Grid
-          container
-          direction='row'
-          justify="center"
-          alignItems="center"
-        >
-        </Grid>
-
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <Grid item xs={3}>
-              <Avatar alt="Johnny" src={Johnny} className={classes.large} />
-              Johnny
-              <GitHubIcon />
-            </Grid>
-            <Grid item xs={3}>
-              <Avatar alt="Danijela" src={Danijela} className={classes.large} />
-              Danijela
-              <GitHubIcon />
-            </Grid>
-            <Grid item xs={3}>
-              <Avatar alt="Josephine" src={Josephine} className={classes.large} />
-              Joséphine
-              <GitHubIcon />
-            </Grid>
-            <Grid item xs={3}>
-              <Avatar alt="Måns" src={Mans} className={classes.large} />
-              Måns
-              <GitHubIcon />
-            </Grid>
-          </Paper>
-        </Grid>
-
       </Grid>
     </Container>
   );
