@@ -16,6 +16,8 @@ import VisitedModal from './VisitedModal';
 import BookmarkModal from './BookmarkModal';
 import { LogedInContext } from './LogedInProvider';
 import GoogleModal from './GoogleModal';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -38,6 +40,9 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
   },
   avatar: {
     backgroundColor: red[500],
+  },
+  unfilled:{
+    color:'lightgray',
   },
   star: {
     color: '#ffe100',
@@ -90,6 +95,8 @@ function RestaurantCard(props: any): JSX.Element {
   const { isLogedIn } = useContext(LogedInContext);
   const [googleOpen, setGoogleOpen] = useState(false);
   const [lastClick, setLastClick] = useState('');
+  const [bookmark, setbookmark] = useState(false);
+  const [review, setReview] = useState(false);
 
   const handleVisitedClickOpen = () => {
     setLastClick('Visited');
@@ -123,6 +130,16 @@ function RestaurantCard(props: any): JSX.Element {
     }
   }, [isLogedIn]); // eslint-disable-line
 
+  useEffect(() => {
+   if(props.hasBookmark){
+     setbookmark(true);
+   }
+   if(props.hasReview){
+    setReview(true)
+   }
+
+  }, []);
+  
   function saveToVisited(stars: number, review: string) {
     fetch('/api/users/reviews', {
       method: 'POST',
@@ -132,6 +149,7 @@ function RestaurantCard(props: any): JSX.Element {
       },
     })
       .then(() => setVisitedOpen(false));
+      setReview(true);
   }
 
   function saveToBookmarks(comment: string) {
@@ -143,6 +161,7 @@ function RestaurantCard(props: any): JSX.Element {
       },
     })
       .then(() => setBookmarkOpen(false));
+      setbookmark(true);
   }
 
   return (
@@ -164,10 +183,11 @@ function RestaurantCard(props: any): JSX.Element {
         </CardContent>
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites" onClick={handleVisitedClickOpen}>
-            <StarIcon className={classes.star} />
+           { review ? <StarIcon className={classes.star}/> : <StarBorderIcon className={classes.star}/>}
           </IconButton>
           <IconButton aria-label="share" onClick={handleBookmarkOpen}>
-            <BookmarkIcon className={classes.bookmark} />
+           { bookmark ?<BookmarkIcon className={classes.bookmark}/> :<BookmarkBorderIcon className={classes.bookmark}/>}
+         
           </IconButton>
 
         </CardActions>

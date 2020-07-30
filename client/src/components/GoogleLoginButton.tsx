@@ -48,7 +48,7 @@ function GoogleLoginButton() {
         },
         body: JSON.stringify({ token }),
       };
-      await fetch('/api/google_id/verify', options)
+      fetch('/api/google_id/verify', options)
         .then((res) => res.json())
         .then((msg) => console.log(msg));
       console.log('IS LOGED IN:', isLogedIn)
@@ -106,9 +106,22 @@ function GoogleLoginButton() {
 
   const renderBtn = (): JSX.Element => {
     if (isLogedIn) {
-      return (
-        // @ts-ignore:
-        <GoogleLogout
+      // @ts-ignore:
+      return (<GoogleLogout
+        clientId={CLIENT_ID}
+        render={renderProps => (
+          <IconButton onClick={renderProps.onClick} disabled={renderProps.disabled} className={classes.iconBtn}>
+            <Avatar src={userPicture} className={classes.picture} onClick={logout} />
+          </IconButton>
+        )}
+        buttonText="Logout"
+        onLogoutSuccess={logout}
+        onFailure={handleLogoutFailure}
+      />)
+    } else {
+      if (width < 600) {
+        return (<GoogleLogin
+          uxMode="popup"
           clientId={CLIENT_ID}
           render={(renderProps) => (
             <IconButton onClick={renderProps.onClick} disabled={renderProps.disabled} className={classes.iconBtn}>
@@ -116,21 +129,34 @@ function GoogleLoginButton() {
             </IconButton>
           )}
           buttonText="Logout"
+          // @ts-ignore:
           onLogoutSuccess={logout}
           onFailure={handleLogoutFailure}
         />
-      );
-    }
-    if (width < 600) {
+        );
+      }
+      if (width < 600) {
+        return (
+          <GoogleLogin
+            uxMode="popup"
+            clientId={CLIENT_ID}
+            render={(renderProps) => (
+              <IconButton onClick={renderProps.onClick} disabled={renderProps.disabled} className={classes.iconBtn}>
+                <AccountCircleIcon className={classes.picture} />
+              </IconButton>
+            )}
+            buttonText="Login"
+            onSuccess={login}
+            onFailure={handleLoginFailure}
+            cookiePolicy="single_host_origin"
+            responseType="code,token"
+          />
+        );
+      }
       return (
         <GoogleLogin
           uxMode="popup"
           clientId={CLIENT_ID}
-          render={(renderProps) => (
-            <IconButton onClick={renderProps.onClick} disabled={renderProps.disabled} className={classes.iconBtn}>
-              <AccountCircleIcon className={classes.picture} />
-            </IconButton>
-          )}
           buttonText="Login"
           onSuccess={login}
           onFailure={handleLoginFailure}
@@ -138,20 +164,9 @@ function GoogleLoginButton() {
           responseType="code,token"
         />
       );
-    }
-    return (
-      <GoogleLogin
-        uxMode="popup"
-        clientId={CLIENT_ID}
-        buttonText="Login"
-        onSuccess={login}
-        onFailure={handleLoginFailure}
-        cookiePolicy="single_host_origin"
-        responseType="code,token"
-      />
-    );
-  };
-  
+    };
+  }
+
   return (
     <div id="LoginBtn">
       {CLIENT_ID !== '' ? renderBtn() : ''}
