@@ -11,7 +11,7 @@
 1.`git clone` this repository.<br/>
 2. Make sure to do a `npm install` in both the `client` folder as well the `server` folder.</br>
 3. Create a developer account on [Unpslash](https://unsplash.com/developers).<br/>
-4. Create a `.env file in your root`.<br/>
+4. Create a `.env file in the server folder`.<br/>
 5. Add a key in your .env file with `UNSPLASH_ACCESS_KEY={YOUR_UNSLASH_KEY}`.<br/>
 6. Add a key in your .env file with `UNSPLASH_SECRET_KEY={YOUR_UNSLASH_SECRET}`.<br/>
 7. Do an `npm start`in your `/client` folder.<br/>
