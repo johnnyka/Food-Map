@@ -17,4 +17,3 @@ describe('Express server routes', () => {
   });
 });
 
-// https://api.foursquare.com/v2/venues/search?ll=59.32,18.07&client_id=MBRCJZD0R44AWD4Z2TLLXAEGZAIV0WEPNGEACRO5Y5UVHX1B&client_secret=LPRHXCDJLK1ICA4GVUCY0JBA1H0BAF41RUVZIGRFCH420XMW&v=20200621&categoryId=4d4b7105d754a06374d81259
