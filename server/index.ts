@@ -72,12 +72,8 @@ app.get('/api/checkValidCookie', async (req: express.Request, res: express.Respo
 
 app.get('/api/nearby', async (req: express.Request, res: express.Response) => {
   let data = '';
-  // const query = req.query.ll;
   if (process.env.NODE_ENV === 'production') {
-    return; //  Make api call
-    /* const responseAPI =  ''; 
-    data = await responseAPI.json();
-    data = await addPictureToResponsefrom(data); */
+    return; 
   }
   data = await readFile('../mock_db/hornsgatan.json');
   data = await addPictureToResponsefrom(data, '../mock_db/hornsgatan.json');
@@ -91,7 +87,7 @@ app.get('/api/se/cities', async (req: express.Request, res: express.Response) =>
 });
 
 app.get('/api/nearby/:city', async (req: express.Request, res: express.Response) => {
-  // const { city } = req.params;
+  
 
   let data = '';
   if (process.env.NODE_ENV === 'production') {
@@ -143,14 +139,13 @@ app.delete('/api/users/bookmarks/:id', async (req: express.Request, res: express
   res.status(204).end();
 });
 
-// https://api.foursquare.com/v2/venues/search?nar=stockholm&client_id=YOUR_ID&client_secret=YOUR_SECRET&v=20200621&categoryId=4d4b7105d754a06374d81259
 
 https.createServer({
   key: fs.readFileSync('./certificates/server.key'),
   cert: fs.readFileSync('./certificates/server.crt'),
   passphrase: process.env.OPENSSL_PASS,
 }, app).listen(8080, () => {
-  console.log('listening on port 8080'); // eslint-disable-line
+  console.log('listening on port 8080');
 });
 
 export default app;
