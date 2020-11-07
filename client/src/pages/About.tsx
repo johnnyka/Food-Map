@@ -1,12 +1,10 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import Grid, { GridSpacing } from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import { Icon } from '@material-ui/core';
 import Danijela from '../Dev_team/Danijela.jpeg';
 import Johnny from '../Dev_team/Johnny.jpeg';
 import Josephine from '../Dev_team/Josephine.jpeg';
@@ -92,7 +90,7 @@ function About() {
               <Typography variant="h6" className={classes.inlineText}>
                 Johnny
               </Typography>
-              <a href="https://www.linkedin.com/in/johnny-kan-a4b0981a8/">
+              <a href="https://github.com/johnnyka/404Coders">
                 <GitHubIcon className={classes.space} />
               </a>
             </Grid>
@@ -101,7 +99,7 @@ function About() {
               <Typography variant="h6" className={classes.inlineText} >
                 Danijela
               </Typography>
-              <a href="https://www.linkedin.com/in/danijela-milenkovic-926b0a57">
+              <a href="https://github.com/Danijela2019">
                 <GitHubIcon className={classes.space} />
               </a>
             </Grid>

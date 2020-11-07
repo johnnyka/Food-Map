@@ -19,13 +19,13 @@
     "react-dom": "^16.13.1",
     "react-google-login": "^5.1.21",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "typescript": "~3.7.2"
   },
   "proxy": "https://localhost:8080",
   "scripts": {
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./ --fix",
-    "start": "HTTPS=true react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
