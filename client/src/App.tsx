@@ -43,7 +43,6 @@ function App() {
             <ThemeProvider theme={theme}>
               <div className="App" id="App">
                 <NavigationBar />
-
                 <Switch>
                   <Route path="/about">
                     <About />

@@ -3,7 +3,7 @@ import React from 'react';
 function Restaurants() {
   return (
     <div>
-      <span>Resturang pages</span>
+      <span>Restaurant pages</span>
     </div>
   );
 }
