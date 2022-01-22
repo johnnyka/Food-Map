@@ -44,7 +44,7 @@
     "express": "^4.17.1",
     "express-ipfilter": "^1.1.2",
     "google-auth-library": "^6.0.5",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^3.1.1",
     "unsplash-js": "^6.0.0",
     "uuidv4": "^6.2.0"
   }
